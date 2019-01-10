@@ -8,7 +8,7 @@ class LandingPage extends Component {
         <div className="LandingPage">
             <h1>Family Tabs Landing Page</h1>
             <button>BUY NOW!!!!</button>
-            <Link to='/home/admin'>Log-In</Link>
+            <Link to='/home/tabs'>Log-In</Link>
         </div>
       );
     }
