@@ -1,15 +1,12 @@
-import React from 'react';
-
-import "./ParentHome.css";
+import React, { Component } from 'react';
 
 
-class ParentHome extends React.Component {
+class ParentHome extends Component {
     render() {
       return (
         <div className="ParentHomepage">
             <h1>Parent Homepage</h1>
         </div>
-
       );
     }
   }
