@@ -63,43 +63,11 @@ server.get("/fulleventsbyfamily/:id", async (req, res) => {
 
 
 server.post("/create event", async (req, res) => {
-  const { familyID, eventTypeID, locationID, userID, location_name, address } = req.body;
-  if (!eventTypeID, location_name, address) {
-    
+  const { familyID, eventTypeID, locationID, userID, location_name, address, timeDate } = req.body;
+  if (!eventTypeID, timeDate, location_name, address) {
+
     res.status(400).json({ error:'Please Provide a Event Description and Location Information'});
   }
 
-
-  // try {
-  //   const familyEvents = await db("family")
-  //     .join("eventWithUsers", function() {
-  //       this.on("family.id", "=", "eventWithUsers.familyID")
-  //         .onIn("family.id", id)
-  //         .onIn("eventWithUsers.isArchived", 0);
-  //     })
-  //      .join("user", "eventWithUsers.userID", "=", "user.id")
-  //     .join(
-  //       "scheduledEvent",
-  //       "eventWithUsers.scheduledEventID",
-  //       "=",
-  //       "scheduledEvent.id"
-  //     )
-  //     .join("location", "scheduledEvent.locationID", "=", "location.id")
-  //     .join("eventType", "scheduledEvent.eventTypeID", "=", "eventType.id")
-  //     .select(
-  //       "family.family_name",
-  //       "user.userName",
-  //       "scheduledEvent.scheduledEvent_name",
-  //       "scheduledEvent.timeDate",
-  //       'scheduledEvent.id',
-  //       "location.location_name",
-  //       "location.address",
-  //       "eventType.eventType_name"
-  //     );
-    
-  //   return res.status(200).json(familyEvents);
-  // } catch (err) {
-  //   res.status(500).json({ err: "broke" });
-  // }
 });
 module.exports = server;
