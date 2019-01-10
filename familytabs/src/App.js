@@ -10,10 +10,12 @@ class App extends Component {
     return (
       <div>
         <header>
-          <h1>Family Tabs. Keep tabs on the whole family</h1>
-          <Navigation />
+          <Route path='/home' component={Navigation}/>
           <Route exact path='/' component={LandingPage} />
-          <Route exact path='/admin' component={ParentHome} />
+          <div className="home">
+            <h1>Family Tabs. Keep tabs on the whole family</h1>
+            <Route exact path='/home/admin' component={ParentHome} />
+          </div>
         </header>
       </div>
     )
