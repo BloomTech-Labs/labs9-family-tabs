@@ -73,4 +73,5 @@ server.post("/createevent", (req, res) => {
     .where({id})
     .then(event => res.status(201).json(event)));
 });
+
 module.exports = server;
