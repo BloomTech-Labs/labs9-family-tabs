@@ -62,13 +62,16 @@ server.get("/fulleventsbyfamily/:id", async (req, res) => {
 
 
 
-server.post("/createevent", async (req, res) => {
-  const { familyID, eventTypeID, locationID, userID, location_name, address, timeDate } = req.body;
-  if (!eventTypeID && !timeDate && !location_name && !address) {
+server.post("/createevent", (req, res) => {
+  const { familyID, eventTypeID, locationID, userID, timeDate, scheduledEvent_name } = req.body;
+  if (!scheduledEvent_name && !eventTypeID && !timeDate ) {
     res.status(400).json({ error:'Please Provide a Event Description and Location Information'});
   }
-  db.insert({familyID, eventTypeID, locationID, userID, location_name, address, timeDate})
-  .into("scheduledEvent")
-  .then()
+    db("scheduledEvent")
+    .insert(req.body)
+    .then(id => db("scheduledEvent")
+    .where({id})
+    .then(event => res.status(201).json(event)));
 });
+
 module.exports = server;
