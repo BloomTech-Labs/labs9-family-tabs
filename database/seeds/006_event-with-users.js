@@ -8,6 +8,8 @@ exports.seed = function(knex, Promise) {
         {userID: 2, scheduledEventID: 1, familyID: 1},
         {userID: 3, scheduledEventID: 1, familyID: 1},
         {userID: 6, scheduledEventID: 2, familyID: 2},
+        {userID: 2, scheduledEventID: 3, familyID: 1},
+        {userID: 3, scheduledEventID: 3, familyID: 1}
       ]);
     });
 };
