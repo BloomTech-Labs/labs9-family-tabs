@@ -77,4 +77,21 @@ server.post("/createevent", async (req, res) => {
   }
 });
 
+server.put("/changeevent/:id", async (req, res) => {
+  const { id } = req.params;
+  const { body } = req;
+  try {
+    const count = await db('scheduledEvent')
+      .where({ id })
+      .update(body);
+    if (!count) {
+      res.status(400).json({error: 'Event was not successfully changed.'});
+    }
+    const eventUpdated = await db('scheduledEvent').where({ id });
+    res.status(201).json({ updated: eventUpdated });
+  } catch (err) {
+    res.status(500).json({error: 'Event could not be edited.'});
+  }
+});
+
 module.exports = server;
