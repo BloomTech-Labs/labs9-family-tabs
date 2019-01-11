@@ -16,7 +16,7 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
 server.get("/", (req, res) => {
-  db("user")
+  db("scheduledEvent")
     .then(users => {
       res.status(201).json({ users });
     })
@@ -62,16 +62,19 @@ server.get("/fulleventsbyfamily/:id", async (req, res) => {
 
 
 
-server.post("/createevent", (req, res) => {
+server.post("/createevent", async (req, res) => {
   const { familyID, eventTypeID, locationID, userID, timeDate, scheduledEvent_name } = req.body;
   if (!scheduledEvent_name && !eventTypeID && !timeDate ) {
     res.status(400).json({ error:'Please Provide a Event Description and Location Information'});
   }
-    db("scheduledEvent")
-    .insert(req.body)
-    .then(id => db("scheduledEvent")
-    .where({id})
-    .then(event => res.status(201).json(event)));
+  try{
+    let id = await db("scheduledEvent").insert(req.body)
+    id = id[0]
+    const event = await db('scheduledEvent').where({id})
+    res.status(201).json(event)
+  }catch(err){
+    res.status(500).json({error: 'could not add event'})
+  }
 });
 
 module.exports = server;
