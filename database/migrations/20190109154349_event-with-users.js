@@ -9,7 +9,6 @@ exports.up = function(knex, Promise) {
         .boolean("isArchived")
         .defaultTo(false);
 
-
     eventWithUsers
       .integer("familyID")
       .references("family.id")
