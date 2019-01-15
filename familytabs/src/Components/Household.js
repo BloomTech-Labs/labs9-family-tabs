@@ -26,7 +26,10 @@ export default class Household extends Component {
     return (
       <div>
         <h1>I am the Household page</h1>
-        <p>{this.state.familydata}</p>
+        <div>
+        <h1>I am the Household page</h1>
+        <div>{this.state.familydata.map()}</div>
+      </div>
       </div>
     )
   }
