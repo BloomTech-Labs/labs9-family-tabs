@@ -1,24 +1,35 @@
 import React, { Component } from 'react';
 //import {Link} from 'react-router-dom'; 
 import Checkout from './Checkout';
+import styled from "styled-components";
 
-class LandingPage extends Component {
-
-
+const  LandingPageTop = styled.div`
+  border: 2px solid red; 
+  max-width: 550px;
+  display: flex; 
+  align-items: center; 
+  justify-content: center;
+`;
   
+
+
+
+class LandingPage extends Component { 
+
     render() {
-      this.props.testFunc()
+      
       return (
         <div>
-          <div className="LandingPage">
+          <LandingPageTop>
               <h1>Family Tabs Landing Page</h1>
               <button>BUY NOW!!!!</button>
+
               {/* 
               uncomment to bypass login requirements
               
               <Link to='/home/tabs'>Enter</Link> */}
               <button onClick={this.props.auth.login}>Log in</button>
-          </div>
+          </LandingPageTop>
           <div>
             <p className="App-intro">
             <Checkout

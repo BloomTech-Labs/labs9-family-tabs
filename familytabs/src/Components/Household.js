@@ -29,9 +29,13 @@ render() {
       <div>
       <h1>I am the Household page</h1>
       </div>
+
+    
+
     {this.state.familydata.map(familydata => (
 
           <HouseholdFamily key={familydata.id} familydata={familydata} />
+
 
         ))}   
 

@@ -10,17 +10,27 @@ import Callback from "./Components/Callback";
 import PublicRoute from "./context/PublicRoute";
 import PrivateRoute from "./context/PrivateRoute";
 import VerifyProfile from "./Components/VerifyProfile";
+import styled from "styled-components";
+
+const  AppStyles = styled.div`
+  *{
+    box-sizing: border-box;
+  }
+  border: 2px solid orange; 
+  margin-left: 220px;
+`;
 
 class App extends Component {
   render() {
     return (
+
       // start comment out
       
         <div>
           <PrivateRoute path='/verify' component={VerifyProfile}></PrivateRoute>
           <PublicRoute exact path="/" component={LandingPage} />
           <PrivateRoute path="/home" component={Navigation} />
-          <div className="home">
+          <AppStyles className="home">
             <h1>Family Tabs. Keep tabs on the whole family</h1>
             <PrivateRoute exact path="/home/tabs" component={ParentHome} />
             <PrivateRoute
@@ -33,7 +43,7 @@ class App extends Component {
             <PrivateRoute exact path="/home/billing" component={Billing} />
             <PublicRoute path="/callback" component={Callback} />
             
-          </div>
+          </AppStyles>
         </div>
         //end comment out
 
