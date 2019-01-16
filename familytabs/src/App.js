@@ -9,7 +9,15 @@ import Household from './Components/Household';
 import Billing from './Components/Billing';
 import PublicRoute from './auth/PublicRoute'
 import Callback from './Components/Callback';
+import styled from "styled-components";
 
+const  AppStyles = styled.div`
+  *{
+    box-sizing: border-box;
+  }
+  border: 2px solid orange; 
+  margin-left: 220px;
+`;
 
 class App extends Component {
   render() {
@@ -18,7 +26,7 @@ class App extends Component {
         <header>
           <Route path='/home' component={Navigation}/>
           <PublicRoute exact path='/' component={LandingPage} />
-          <div className="home">
+          <AppStyles className="home">
             <h1>Family Tabs. Keep tabs on the whole family</h1>
             <Route exact path='/home/tabs' component={ParentHome} />
             <Route exact path='/home/notifications' component={Notifications} />
@@ -26,7 +34,7 @@ class App extends Component {
             <Route exact path='/home/household' component={Household} />
             <Route exact path='/home/billing' component={Billing} />
             <PublicRoute path='/callback' component={Callback}/>
-          </div>
+          </AppStyles>
         </header>
       </div>
     )

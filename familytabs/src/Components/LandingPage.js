@@ -1,22 +1,28 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom'; 
 import Checkout from './Checkout';
+import styled from "styled-components";
 
-class LandingPage extends Component {
-
-
-  componentDidMount(){
-
-}
+const  LandingPageTop = styled.div`
+  border: 2px solid red; 
+  max-width: 550px;
+  display: flex; 
+  align-items: center; 
+  justify-content: center;
+`;
   
+
+
+
+class LandingPage extends Component { 
     render() {
       return (
         <div>
-          <div className="LandingPage">
+          <LandingPageTop>
               <h1>Family Tabs Landing Page</h1>
               <button>BUY NOW!!!!</button>
               <Link to='/home/tabs'>Log-In</Link>
-          </div>
+          </LandingPageTop>
           <div>
             <p className="App-intro">
             <Checkout
