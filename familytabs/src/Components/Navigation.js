@@ -1,38 +1,81 @@
 import React from 'react';
-import './Navigation.css';
 import {Link} from 'react-router-dom'
 import styled from "styled-components";
 
 const NavBarStyling = styled.div`
+    border: 2px solid orange;
+    font-family: 'Lato', sans-serif;
     display: flex;
     flex-direction: column;
-    padding: 1rem;
-    width: 220px;
-    height: 100vh;
-    background-color: #D3D3D3;
+    width: 280px;
+    background-color: skyblue;
     border: 1px solid rgb(122, 122, 122);
     border-radius: 0.1rem;
     position: fixed;
-    top: 0;       
+    top: 0;
+`;
+
+const Links = styled(Link)`
+    border: 4px solid orange;
+    display: flex;
+    align-items: center;
+    color: white;
+    font-weight: 300;
+    border: 1px solid #86AEB1;
+    width: 100%;
+    height: 60px;
+    padding-left: 15px;
+    border-radius: 0.1rem;
+    text-decoration: none;
+`;
+
+const Buttons = styled.button`
+    border: 4px solid orange;
+    background-color: skyblue;
+    font-family: 'Lato', sans-serif;
+    display: flex;
+    align-items: center;
+    color: white;
+    font-weight: 300;
+    border: 1px solid #86AEB1;
+    width: 100%;
+    height: 60px;
+    padding-left: 15px;
+    border-radius: 0.1rem;
+    text-decoration: none;
+    font-size: 16px;
+`;
+
+const NavButtonsContainer = styled.div`
+    margin: 0.5rem 0 0 0;
+
+    flex-direction: column;
 `;
 
 const StyledH1 = styled.h1`
    font-family: 'Fredoka One';
-   text-align: center;
+   color: white;
+   font-size: 18px;
+   width: 100%;
+   height: 60px;
+   padding-left: 15px;
+   padding-top: 30px;
+   display: flex;
 `;
 
 const Navigation = props => {
     return (
       <NavBarStyling>
        <StyledH1>Family Tabs</StyledH1>
-       <div className='nav_buttons_container'>
-       <Link to='/home/tabs' className="nav_button">Family Tabs</Link>
-       <Link to='/home/notifications' className="nav_button">Notifications</Link>
-       <Link to='/home/settings' className="nav_button">Account Settings</Link>
-       <Link to='/home/household' className="nav_button">Household</Link>
-       <Link to='/home/billing' className="nav_button">Billing</Link>
-       <button onClick={props.auth.logout}>Log out</button>
-       </div>
+        <NavButtonsContainer>
+            <Links to='/home/tabs'>Family Tabs</Links>
+            <Links to='/home/notifications'>Notifications</Links>
+            <Links to='/home/settings'>Account Settings</Links>
+            <Links to='/home/household'>Household</Links>
+            <Links to='/home/billing' className="nav_button">Billing</Links>
+
+            <Buttons onClick={props.auth.logout}>Log out</Buttons>
+        </NavButtonsContainer>
        </NavBarStyling>
     )
   }
