@@ -13,13 +13,18 @@ const NavBarStyling = styled.div`
     border: 1px solid rgb(122, 122, 122);
     border-radius: 0.1rem;
     position: fixed;
-    top: 0; 
+    top: 0;       
+`;
+
+const StyledH1 = styled.h1`
+   font-family: 'Fredoka One';
+   text-align: center;
 `;
 
 const Navigation = props => {
     return (
       <NavBarStyling>
-       <h1>Family Tabs</h1>
+       <StyledH1>Family Tabs</StyledH1>
        <div className='nav_buttons_container'>
        <Link to='/home/tabs' className="nav_button">Family Tabs</Link>
        <Link to='/home/notifications' className="nav_button">Notifications</Link>
