@@ -28,7 +28,7 @@ export default class Auth {
     this.auth0.parseHash((err, authResult) => {
       if (authResult && authResult.accessToken && authResult.idToken) {
         this.setSession(authResult);
-        this.history.push('/');
+        this.history.push('/home/tabs');
       } else if (err) {
         this.history.push("/");
         alert(`Error: ${err.error}. Check console for more.`);
@@ -60,7 +60,7 @@ export default class Auth {
     localStorage.removeItem("expires_at");
     this.auth0.logout({
       clientID: process.env.REACT_APP_AUTH0_CLIENT_ID,
-      returnTo: "http://localhost:3000"
+      returnTo: process.env.REACT_APP_ROOT
     });
   };
 

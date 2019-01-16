@@ -4,12 +4,12 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import {AuthProvider} from './auth/AuthContext'
+import {FamilyProvider} from './context/FamilyContext'
 
 
 ReactDOM.render(
 <Router>
-    <Route render={props => <AuthProvider {...props}><App /></AuthProvider>}/>
+    <Route render={props => <FamilyProvider {...props}><App /></FamilyProvider>}/>
 </Router>,
 document.getElementById('root'));
 

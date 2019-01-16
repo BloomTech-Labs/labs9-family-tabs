@@ -1,18 +1,18 @@
 import React from "react";
 import { Route } from "react-router-dom";
 import PropTypes from "prop-types";
-import { AuthConsumer } from "./AuthContext";
+import { FamilyConsumer } from "./FamilyContext";
 
 const PrivateRoute = ({ component: Component, scopes,  ...rest }) => {
   return (
-    <AuthConsumer>
-      {auth => (
+    <FamilyConsumer>
+      {context => (
         <Route
           {...rest}
           render={props => {
-            if (!auth.isAuthenticated()) return auth.login();
+            if (!context.auth.isAuthenticated()) return context.auth.login();
 
-            if (scopes.length > 0 && !auth.userHasScopes(scopes)) {
+            if (scopes.length > 0 && !context.auth.userHasScopes(scopes)) {
               return (
                 <h1>
                   Unauthorized - You need the following scope(s) to view this
@@ -20,11 +20,11 @@ const PrivateRoute = ({ component: Component, scopes,  ...rest }) => {
                 </h1>
               );
             }
-            return <Component auth={auth} {...props} />;
+            return <Component {...context} {...props} />;
           }}
         />
       )}
-    </AuthConsumer>
+    </FamilyConsumer>
   );
 };
 
