@@ -28,7 +28,7 @@ export default class Auth {
     this.auth0.parseHash((err, authResult) => {
       if (authResult && authResult.accessToken && authResult.idToken) {
         this.setSession(authResult);
-        this.history.push('/home/tabs');
+        this.history.push('/home');
       } else if (err) {
         this.history.push("/");
         alert(`Error: ${err.error}. Check console for more.`);
@@ -76,7 +76,8 @@ export default class Auth {
     if (this.userProfile) return cb(this.userProfile);
     this.auth0.client.userInfo(this.getAccessToken(), (err, profile) => {
       if (profile) this.userProfile = profile;
-      cb(profile, err);
+      const {name, email} = profile
+      cb({name, email}, err);
     });
   };
 

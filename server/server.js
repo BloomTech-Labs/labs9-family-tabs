@@ -149,6 +149,7 @@ server.get("/family", async (req, res) => {
 
 server.get("/profile/:email", async (req, res) => {
   const { email } = req.params;
+  console.log(email)
   try {
     const profile = await db("user")
       .where({ email })

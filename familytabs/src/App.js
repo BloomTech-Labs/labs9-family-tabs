@@ -7,9 +7,9 @@ import Settings from "./Components/Settings";
 import Household from "./Components/Household";
 import Billing from "./Components/Billing";
 import Callback from "./Components/Callback";
-
 import PublicRoute from "./context/PublicRoute";
 import PrivateRoute from "./context/PrivateRoute";
+import VerifyProfile from "./Components/VerifyProfile";
 
 class App extends Component {
   render() {
@@ -17,6 +17,7 @@ class App extends Component {
       // start comment out
       
         <div>
+          <PrivateRoute path='/verify' component={VerifyProfile}></PrivateRoute>
           <PublicRoute exact path="/" component={LandingPage} />
           <PrivateRoute path="/home" component={Navigation} />
           <div className="home">
@@ -31,6 +32,7 @@ class App extends Component {
             <PrivateRoute exact path="/home/household" component={Household} />
             <PrivateRoute exact path="/home/billing" component={Billing} />
             <PublicRoute path="/callback" component={Callback} />
+            
           </div>
         </div>
         //end comment out
