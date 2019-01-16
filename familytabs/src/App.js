@@ -13,9 +13,6 @@ import VerifyProfile from "./Components/VerifyProfile";
 import styled from "styled-components";
 
 const  AppStyles = styled.div`
-  *{
-    box-sizing: border-box;
-  }
   border: 2px solid orange; 
   margin-left: 220px;
 `;
@@ -30,7 +27,7 @@ class App extends Component {
           <PrivateRoute path='/verify' component={VerifyProfile}></PrivateRoute>
           <PublicRoute exact path="/" component={LandingPage} />
           <PrivateRoute path="/home" component={Navigation} />
-          <AppStyles className="home">
+          <AppStyles>
             <h1>Family Tabs. Keep tabs on the whole family</h1>
             <PrivateRoute exact path="/home/tabs" component={ParentHome} />
             <PrivateRoute

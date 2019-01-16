@@ -51,6 +51,8 @@ table {
 /*===========Begin CSS==========*/
 
 
-
+*{
+    box-sizing: border-box;
+  }
 
 
