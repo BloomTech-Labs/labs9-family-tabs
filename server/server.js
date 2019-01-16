@@ -33,18 +33,21 @@ server.get("/familymembers/:id", async (req, res) => {
       .join("family", "user.familyID", "=", "family.id")
       .select(
         "family.family_name",
+        "user.id",
         "user.userName",
         "user.phone",
         "user.email",
         "user.isAdmin"
       );
-      if (!familyMembers.length){
-        return res.status(400).json({err: 'no family at that id'})
-      }
+    if (!familyMembers.length) {
+      return res.status(400).json({ err: "no family at that id" });
+    }
     return res.status(200).json(familyMembers);
   } catch (err) {
     console.log(err);
-    return res.status(500).json({ err: "Failed to get users from user table." });
+    return res
+      .status(500)
+      .json({ err: "Failed to get users from user table." });
   }
 });
 
@@ -76,9 +79,9 @@ server.get("/fulleventsbyfamily/:id", async (req, res) => {
         "location.address",
         "eventType.eventType_name"
       );
-      if (!familyEvents.length){
-        return res.status(400).json({err: 'no events for family at that id'})
-      }
+    if (!familyEvents.length) {
+      return res.status(400).json({ err: "no events for family at that id" });
+    }
     return res.status(200).json(familyEvents);
   } catch (err) {
     res.status(500).json({ err: "broke" });
@@ -123,6 +126,89 @@ server.put("/changeevent/:id", async (req, res) => {
     res.status(201).json({ updated: eventUpdated });
   } catch (err) {
     res.status(500).json({ error: "Event could not be edited." });
+  }
+});
+
+server.get("/profile", async (req, res) => {
+  try {
+    const profiles = await db("user");
+    return res.status(200).json(profiles);
+  } catch (err) {
+    return res.json(err);
+  }
+});
+
+server.get("/family", async (req, res) => {
+  try {
+    const profiles = await db("family");
+    return res.status(200).json(profiles);
+  } catch (err) {
+    return res.json(err);
+  }
+});
+
+server.get("/profile/:email", async (req, res) => {
+  const { email } = req.params;
+  try {
+    const profile = await db("user")
+      .where({ email })
+      .join("family", "user.familyID", "=", "family.id")
+      .select(
+        "user.id",
+        "user.email",
+        "user.userName",
+        "user.familyID",
+        "user.phone",
+        "user.isAdmin",
+        "family.family_name"
+      )
+      .first();
+
+    profile.email = profile.email.toLowerCase();
+    if (!profile.userName) {
+      res.status(200).json({ message: "no profile" });
+    }
+    return res.status(200).json(profile);
+  } catch (err) {
+    res.json({ err });
+  }
+});
+
+server.post("/profile", async (req, res) => {
+  const body = req.body;
+  body.email = body.email.toLowerCase();
+  try {
+    const id = await db("user").insert(body);
+    const newProfile = await db("user")
+      .where({ id: id[0] })
+      .first();
+    return res.status(201).json(newProfile);
+  } catch (err) {
+    res.json({ err });
+  }
+});
+
+server.post("/family", async (req, res) => {
+  const { body } = req;
+  try {
+    const id = await db("family").insert(body);
+    console.log(id);
+    const newProfile = await db("family")
+      .where({ id: id[0] })
+      .join("family", "user.familyID", "=", "family.id")
+      .select(
+        "user.id",
+        "user.email",
+        "user.userName",
+        "user.familyID",
+        "user.phone",
+        "user.isAdmin",
+        "family.family_name"
+      )
+      .first();
+    return res.status(201).json(newProfile);
+  } catch (err) {
+    res.json({ err });
   }
 });
 
