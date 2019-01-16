@@ -54,7 +54,8 @@ class VerifyProfile extends Component {
           phone: this.state.phone
         }
       );
-      this.setState({ profile: userResponse.data });
+      console.log(userResponse.data)
+      this.props.setUserProfile({ profile: userResponse.data });
     } catch (err) {
       console.log(userResponse, "no bueno");
     }
