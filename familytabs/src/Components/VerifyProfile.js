@@ -72,8 +72,11 @@ class VerifyProfile extends Component {
         let response = await axios.get(
           `${process.env.REACT_APP_API_URL}/profile/${this.state.userEmail}`
         );
-        this.setState({ profile: response.data });
-        this.props.setUserProfile(this.state.profile)
+        console.log(response.data)
+        if (response.data.err){
+          return
+        }
+        this.props.setUserProfile(response.data)
       } catch (err) {
         console.log(err);
       }
@@ -82,20 +85,9 @@ class VerifyProfile extends Component {
   }
 
   render() {
-    const { profile } = this.state;
-    if (!profile) {
-      
-      return null
-    };
+   
     return (
       <>
-        <h1>Profile</h1>
-        <p>Name: {profile.name}</p>
-        <p>Family: {profile.family_name}</p>
-        <p>Email: {profile.email}</p>
-        <p>
-          ID: {profile.id} Family ID: {profile.familyID}
-        </p>
 
         {this.props.profile ? (<Redirect to='/home'></Redirect>
         ) : (
