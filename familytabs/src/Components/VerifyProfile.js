@@ -44,7 +44,6 @@ class VerifyProfile extends Component {
           family_name: this.state.family_name
         }
       );
-      console.log(response.data);
       userResponse = await axios.post(
         `${process.env.REACT_APP_API_URL}/profile`,
         {
@@ -55,8 +54,7 @@ class VerifyProfile extends Component {
           phone: this.state.phone
         }
       );
-      console.log(userResponse.data);
-      this.setState({ familyName: "" });
+      this.setState({ profile: userResponse.data });
     } catch (err) {
       console.log(userResponse, "no bueno");
     }
@@ -75,15 +73,20 @@ class VerifyProfile extends Component {
           `${process.env.REACT_APP_API_URL}/profile/${this.state.userEmail}`
         );
         this.setState({ profile: response.data });
+        this.props.setUserProfile(this.state.profile)
       } catch (err) {
         console.log(err);
       }
+      
     });
   }
 
   render() {
     const { profile } = this.state;
-    if (!profile) return null;
+    if (!profile) {
+      
+      return null
+    };
     return (
       <>
         <h1>Profile</h1>
@@ -94,11 +97,11 @@ class VerifyProfile extends Component {
           ID: {profile.id} Family ID: {profile.familyID}
         </p>
 
-        {profile.userName ? (<Redirect to='/home'></Redirect>
+        {this.props.profile ? (<Redirect to='/home'></Redirect>
         ) : (
           <form onSubmit={this.familySubmitHandle}>
             <h1>Register Family</h1>
-            <label>familyName</label>
+            <label>family name</label>
             <input
               type="text"
               name="family_name"

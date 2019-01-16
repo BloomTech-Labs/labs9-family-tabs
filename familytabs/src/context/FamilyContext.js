@@ -7,15 +7,16 @@ export class FamilyProvider extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      auth: new Auth(this.props.history)
+      auth: new Auth(this.props.history),
+      profile: null
     };
   }
   testFunc = () => console.log('hello world')
-
+  setUserProfile = userProfile => {this.setState({profile:userProfile})}
   
   render() {
     return (
-      <FamilyContext.Provider value={{...this.state, testFunc:this.testFunc}}>
+      <FamilyContext.Provider value={{...this.state, testFunc:this.testFunc, setUserProfile:this.setUserProfile}}>
         {this.props.children}
       </FamilyContext.Provider>
     );

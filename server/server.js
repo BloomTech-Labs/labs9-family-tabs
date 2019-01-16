@@ -149,7 +149,6 @@ server.get("/family", async (req, res) => {
 
 server.get("/profile/:email", async (req, res) => {
   const { email } = req.params;
-  console.log(email)
   try {
     const profile = await db("user")
       .where({ email })
@@ -179,10 +178,19 @@ server.post("/profile", async (req, res) => {
   const body = req.body;
   body.email = body.email.toLowerCase();
   try {
-    const id = await db("user").insert(body);
-    const newProfile = await db("user")
-      .where({ id: id[0] })
-      .first();
+    let id = await db("user").insert(body);
+    id = id[0]
+    const newProfile = await db("user").join("family", "user.familyID", "family.id")
+      .where('user.id', id )
+      .select(
+        "user.id",
+        "user.email",
+        "user.userName",
+        "user.familyID",
+        "user.phone",
+        "user.isAdmin",
+        "family.family_name"
+      ).first()
     return res.status(201).json(newProfile);
   } catch (err) {
     res.json({ err });
@@ -193,21 +201,7 @@ server.post("/family", async (req, res) => {
   const { body } = req;
   try {
     const id = await db("family").insert(body);
-    console.log(id);
-    const newProfile = await db("family")
-      .where({ id: id[0] })
-      .join("family", "user.familyID", "=", "family.id")
-      .select(
-        "user.id",
-        "user.email",
-        "user.userName",
-        "user.familyID",
-        "user.phone",
-        "user.isAdmin",
-        "family.family_name"
-      )
-      .first();
-    return res.status(201).json(newProfile);
+    return res.status(201).json({ id: id[0] });
   } catch (err) {
     res.json({ err });
   }
