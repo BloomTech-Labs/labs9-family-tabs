@@ -9,7 +9,7 @@ export default class Auth {
       domain: process.env.REACT_APP_AUTH0_DOMAIN,
       clientID: process.env.REACT_APP_AUTH0_CLIENT_ID,
       redirectUri: process.env.REACT_APP_AUTH0_CALLBACK_URL,
-      //audience: process.env.REACT_APP_AUTH0_AUDIENCE,
+      audience: process.env.REACT_APP_AUTH0_AUDIENCE,
       responseType: "token id_token",
       scope: this.requestedScopes
     });
@@ -28,7 +28,7 @@ export default class Auth {
     this.auth0.parseHash((err, authResult) => {
       if (authResult && authResult.accessToken && authResult.idToken) {
         this.setSession(authResult);
-        this.history.push('/');
+        this.history.push('/verify');
       } else if (err) {
         this.history.push("/");
         alert(`Error: ${err.error}. Check console for more.`);
@@ -60,7 +60,7 @@ export default class Auth {
     localStorage.removeItem("expires_at");
     this.auth0.logout({
       clientID: process.env.REACT_APP_AUTH0_CLIENT_ID,
-      returnTo: "http://localhost:3000"
+      returnTo: process.env.REACT_APP_ROOT
     });
   };
 
@@ -76,7 +76,8 @@ export default class Auth {
     if (this.userProfile) return cb(this.userProfile);
     this.auth0.client.userInfo(this.getAccessToken(), (err, profile) => {
       if (profile) this.userProfile = profile;
-      cb(profile, err);
+      const {name, email} = profile
+      cb({name, email}, err);
     });
   };
 

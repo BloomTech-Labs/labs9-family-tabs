@@ -1,19 +1,19 @@
 import React from "react";
 import { Route } from "react-router-dom";
 import PropTypes from "prop-types";
-import { AuthConsumer } from "./AuthContext";
+import { FamilyConsumer } from "./FamilyContext";
 
 const PublicRoute = ({ component: Component, scopes,  ...rest }) => {
   return (
-    <AuthConsumer>
-      {auth => (
+    <FamilyConsumer>
+      {context => (
         <Route
           {...rest}
-          render={props => <Component auth={auth} {...props} />
+          render={props => <Component {...context} {...props} />
           }
         />
       )}
-    </AuthConsumer>
+    </FamilyConsumer>
   );
 };
 

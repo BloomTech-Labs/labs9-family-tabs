@@ -1,21 +1,23 @@
 import React, { Component } from 'react';
-import {Link} from 'react-router-dom'; 
+//import {Link} from 'react-router-dom'; 
 import Checkout from './Checkout';
 
 class LandingPage extends Component {
 
 
-  componentDidMount(){
-
-}
   
     render() {
+      this.props.testFunc()
       return (
         <div>
           <div className="LandingPage">
               <h1>Family Tabs Landing Page</h1>
               <button>BUY NOW!!!!</button>
-              <Link to='/home/tabs'>Log-In</Link>
+              {/* 
+              uncomment to bypass login requirements
+              
+              <Link to='/home/tabs'>Enter</Link> */}
+              <button onClick={this.props.auth.login}>Log in</button>
           </div>
           <div>
             <p className="App-intro">
