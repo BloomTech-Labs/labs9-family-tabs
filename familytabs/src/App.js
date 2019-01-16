@@ -15,6 +15,8 @@ import styled from "styled-components";
 const  AppStyles = styled.div`
   border: 2px solid orange; 
   margin-left: 220px;
+  font-family: 'Fredoka One';
+  text-align: center;
 `;
 
 class App extends Component {
@@ -28,7 +30,7 @@ class App extends Component {
           <PublicRoute exact path="/" component={LandingPage} />
           <PrivateRoute path="/home" component={Navigation} />
           <AppStyles>
-            <h1>Family Tabs. Keep tabs on the whole family</h1>
+            <h1>Family Tabs. Keep tabs on the whole family.</h1>
             <PrivateRoute exact path="/home/tabs" component={ParentHome} />
             <PrivateRoute
               exact
