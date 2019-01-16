@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Link} from 'react-router-dom'; 
+//import {Link} from 'react-router-dom'; 
 import Checkout from './Checkout';
 import styled from "styled-components";
 
@@ -15,13 +15,20 @@ const  LandingPageTop = styled.div`
 
 
 class LandingPage extends Component { 
+
     render() {
+      
       return (
         <div>
           <LandingPageTop>
               <h1>Family Tabs Landing Page</h1>
               <button>BUY NOW!!!!</button>
-              <Link to='/home/tabs'>Log-In</Link>
+
+              {/* 
+              uncomment to bypass login requirements
+              
+              <Link to='/home/tabs'>Enter</Link> */}
+              <button onClick={this.props.auth.login}>Log in</button>
           </LandingPageTop>
           <div>
             <p className="App-intro">

@@ -2,7 +2,7 @@ import React from 'react';
 import './Navigation.css';
 import {Link} from 'react-router-dom'
 
-const Navigation = () => {
+const Navigation = props => {
     return (
       <div className='nav_container'>
        <h1>Family Tabs</h1>
@@ -12,6 +12,8 @@ const Navigation = () => {
        <Link to='/home/settings' className="nav_button">Account Settings</Link>
        <Link to='/home/household' className="nav_button">Household</Link>
        <Link to='/home/billing' className="nav_button">Billing</Link>
+       <button onClick={props.auth.logout}>Log out</button>
+       
        </div>
       </div>
     )
