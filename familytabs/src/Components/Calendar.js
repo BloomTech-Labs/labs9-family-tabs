@@ -1,12 +1,31 @@
 import React, { Component } from "react";
 import Calendar from "react-big-calendar";
 import moment from "moment";
-
+import styled from 'styled-components'
 
 import "react-big-calendar/lib/css/react-big-calendar.css";
-
-
 const localizer = Calendar.momentLocalizer(moment);
+
+const StyledCalendar = styled(Calendar)`
+
+
+  /* play with the inspector in the browser to see what things are called and how best to interact with them. Have fun */
+  .rbc-month-view {
+    border-radius: 21px;
+    overflow: hidden;
+    height: 450px;
+    border-color:red;
+  }
+  
+  .rbc-day-bg{
+    background:blue;
+    :nth-child(1){
+    background:orange;
+  }
+  }
+  
+
+`
 
 class CalendarComponent extends Component {
   state = {
@@ -22,12 +41,11 @@ class CalendarComponent extends Component {
   render() {
     return (
       <div className="CalendarComponent">
-        <Calendar
+        <StyledCalendar day={1}
           localizer={localizer}
           defaultDate={new Date()}
           defaultView="month"
           events={this.state.events}
-          style={{ height: "100vh" }}
         />
       </div>
     );
