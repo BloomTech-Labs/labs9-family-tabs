@@ -9,12 +9,8 @@ import styled from "styled-components";
 
 
 const CardList = styled.div`
-   
-display: flex;
-flex-wrap: wrap;
-   
-
-    
+  display: flex;
+  flex-wrap: wrap;
 `;
 
 
