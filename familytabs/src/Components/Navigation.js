@@ -13,6 +13,7 @@ const NavBarStyling = styled.div`
     border-radius: 0.1rem;
     position: fixed;
     top: 0;
+    height: 100%;
 `;
 
 const Links = styled(Link)`

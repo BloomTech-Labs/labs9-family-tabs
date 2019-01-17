@@ -14,9 +14,10 @@ import styled from "styled-components";
 
 const  AppStyles = styled.div`
   border: 2px solid orange; 
-  margin-left: 220px;
+  margin-left: 280px;
   font-family: 'Fredoka One';
   text-align: center;
+  max-width: 880px;
 `;
 
 class App extends Component {
