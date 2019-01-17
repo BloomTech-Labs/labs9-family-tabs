@@ -2,6 +2,24 @@ import React, { Component } from 'react'
 import axios from 'axios';
 import HouseholdFamily from './HouseholdFamily';
 
+
+
+import styled from "styled-components";
+
+
+
+const CardList = styled.div`
+   
+display: flex;
+flex-wrap: wrap;
+   
+
+    
+`;
+
+
+
+
 export default class Household extends Component {
 
   constructor() {
@@ -31,14 +49,14 @@ render() {
       </div>
 
     
-
+<CardList>
     {this.state.familydata.map(familydata => (
 
           <HouseholdFamily key={familydata.id} familydata={familydata} />
 
-
+          
         ))}   
-
+</CardList>
     </div>
   )
 }
