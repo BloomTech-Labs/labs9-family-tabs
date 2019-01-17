@@ -28,7 +28,7 @@ export default class Household extends Component {
   }
 
   componentDidMount() {
-    axios.get('http://localhost:5000/familymembers/1')
+    axios.get(`${process.env.REACT_APP_API_URL}/familymembers/1`)
     .then(familydata => {
       this.setState({familydata: familydata.data});
     })
