@@ -33,6 +33,7 @@ export default class Household extends Component {
       this.setState({familydata: familydata.data});
     })
     .catch(err => {
+      console.log('running')
       console.log(err); 
     });
     
