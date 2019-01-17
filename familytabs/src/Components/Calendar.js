@@ -13,17 +13,15 @@ const StyledCalendar = styled(Calendar)`
   .rbc-month-view {
     border-radius: 21px;
     overflow: hidden;
-    height: 450px;
+    height: 800px;
     border-color:red;
   }
-  
   .rbc-day-bg{
     background: white;
     :nth-child(1){
     background: white;
   }
   }
-
   .rbc-date-cell{
     display:flex;
     justify-content: center;
@@ -31,14 +29,14 @@ const StyledCalendar = styled(Calendar)`
     font-size: 12px;
     padding-top: 5px;
   }
-
   .rbc-toolbar-label{
     font-family: 'Lato', sans-serif;
   }
-
   .rbc-header {
     font-family: 'Lato', sans-serif;
     padding: 15px;
+    font-weight: 300;
+    
   }
 `
 
@@ -56,7 +54,8 @@ class CalendarComponent extends Component {
   render() {
     return (
       <div className="CalendarComponent">
-        <StyledCalendar day={1}
+        <StyledCalendar 
+          day={1}
           localizer={localizer}
           defaultDate={new Date()}
           defaultView="month"
