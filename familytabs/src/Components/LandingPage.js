@@ -24,10 +24,6 @@ class LandingPage extends Component {
               <h1>Family Tabs Landing Page</h1>
               <button>BUY NOW!!!!</button>
 
-              {/* 
-              uncomment to bypass login requirements
-              
-              <Link to='/home/tabs'>Enter</Link> */}
               <button onClick={this.props.auth.login}>Log in</button>
           </LandingPageTop>
           <div>
