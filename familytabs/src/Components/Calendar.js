@@ -18,13 +18,28 @@ const StyledCalendar = styled(Calendar)`
   }
   
   .rbc-day-bg{
-    background:blue;
+    background: white;
     :nth-child(1){
-    background:orange;
+    background: white;
   }
   }
-  
 
+  .rbc-date-cell{
+    display:flex;
+    justify-content: center;
+    font-family: 'Lato', sans-serif;
+    font-size: 12px;
+    padding-top: 5px;
+  }
+
+  .rbc-toolbar-label{
+    font-family: 'Lato', sans-serif;
+  }
+
+  .rbc-header {
+    font-family: 'Lato', sans-serif;
+    padding: 15px;
+  }
 `
 
 class CalendarComponent extends Component {
