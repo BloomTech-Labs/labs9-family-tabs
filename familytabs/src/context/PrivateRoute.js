@@ -12,14 +12,6 @@ const PrivateRoute = ({ component: Component, scopes,  ...rest }) => {
           render={props => {
             if (!context.auth.isAuthenticated()) return context.auth.login();
 
-            if (scopes.length > 0 && !context.auth.userHasScopes(scopes)) {
-              return (
-                <h1>
-                  Unauthorized - You need the following scope(s) to view this
-                  page: {scopes.join(",")}.
-                </h1>
-              );
-            }
             return <Component {...context} {...props} />;
           }}
         />
