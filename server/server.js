@@ -37,7 +37,8 @@ server.get("/familymembers/:id", async (req, res) => {
         "user.userName",
         "user.phone",
         "user.email",
-        "user.isAdmin"
+        "user.isAdmin",
+        'user.familyID'
       );
     if (!familyMembers.length) {
       return res.status(400).json({ err: "no family at that id" });
