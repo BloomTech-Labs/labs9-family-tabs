@@ -1,7 +1,7 @@
 const cors = require('cors');
 const bodyParser = require('body-parser');
 
-const CORS_WHITELIST = require('./constants/frontend');
+const CORS_WHITELIST = require('./Constants/frontend');
 
 const corsOptions = {
   origin: (origin, callback) =>
