@@ -3,9 +3,9 @@ import axios from 'axios';
 import StripeCheckout from 'react-stripe-checkout';
 
 import STRIPE_PUBLISHABLE from '../constants/stripe';
-import PAYMENT_SERVER_URL from '../constants/server';
+//import PAYMENT_SERVER_URL from '../constants/server';
 
-const CURRENCY = 'EUR';
+const CURRENCY = 'USD';
 
 const fromEuroToCent = amount => amount * 100;
 
@@ -14,11 +14,11 @@ const successPayment = data => {
 };
 
 const errorPayment = data => {
-  alert('Payment Error');
+  alert('Payment Error'+data);
 };
 
 const onToken = (amount, description) => token =>
-  axios.post(PAYMENT_SERVER_URL,
+  axios.post(`${process.env.REACT_APP_API_URL}/stripe`,
     {
       description,
       source: token.id,
