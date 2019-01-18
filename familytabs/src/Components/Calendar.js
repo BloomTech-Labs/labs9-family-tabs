@@ -36,7 +36,7 @@ const StyledCalendar = styled(Calendar)`
     font-family: 'Lato', sans-serif;
     padding: 15px;
     font-weight: 300;
-    
+
   }
 `
 

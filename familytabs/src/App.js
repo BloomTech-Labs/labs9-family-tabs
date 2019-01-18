@@ -14,7 +14,7 @@ import styled from "styled-components";
 
 const AppStyles = styled.div`
   border: 2px solid orange; 
-  margin-left: 280px;
+  margin-left: 300px;
   font-family: 'Lato', sans-serif;
   text-align: center;
   max-width: 1000px;
