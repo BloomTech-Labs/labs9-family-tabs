@@ -8,8 +8,8 @@ exports.up = function(knex, Promise) {
           .string('scheduledEvent_name', 128)
           .notNullable()
 
-          scheduledEvent
-          .string('timeDate', 128)
+        scheduledEvent
+          .datetime('timeDate', 128)
           .notNullable()
 
         scheduledEvent
@@ -17,15 +17,20 @@ exports.up = function(knex, Promise) {
           .references('family.id')
           .notNullable()
 
-          scheduledEvent
+        scheduledEvent
           .integer('eventTypeID')
           .references('eventType.id')
           .notNullable()
 
-          scheduledEvent
+        scheduledEvent
           .integer('locationID')
           .references('location.id')
           .notNullable()
+
+        scheduledEvent
+          .boolean('dayAlert')
+          .notNullable()
+          .defaultTo(false)
         });
 };
 

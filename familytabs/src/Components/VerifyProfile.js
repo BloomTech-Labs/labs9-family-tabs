@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import { Link,Redirect } from "react-router-dom";
 
+
 class VerifyProfile extends Component {
   state = {
     error: "",

@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import Checkout from './Checkout';
 import styled from "styled-components";
 
+
 const  LandingPageTop = styled.div`
   border: 2px solid red; 
   max-width: 550px;
@@ -10,8 +11,6 @@ const  LandingPageTop = styled.div`
   align-items: center; 
   justify-content: center;
 `;
-  
-
 
 
 class LandingPage extends Component { 

@@ -2,6 +2,7 @@ import React from 'react';
 import {Link} from 'react-router-dom'
 import styled from "styled-components";
 
+
 const NavBarStyling = styled.div`
     border: 2px solid orange;
     font-family: 'Lato', sans-serif;
