@@ -15,6 +15,77 @@ server.use(cors(corsOptions));
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
+const accountSid = 'ACb660a753d5eff40f7332f2f87fc97af6';
+const authToken = 'e4d85e8d9cd5d82e9e040b1c2a534589';
+const client = require('twilio')(accountSid, authToken);
+
+const CronJob = require("cron").CronJob;
+const axios = require("axios");
+const moment = require("moment")
+
+
+// ========= NODE-CRON =========//
+
+
+console.log('Before job instantiation');
+const job = new CronJob('* */10 * * * *', function() {
+	const d = new Date();
+  
+  console.log('Every Tenth Second:', d);
+  
+  axios.get(`http://localhost:5000/`)
+    .then(events => {
+      //  console.log(events.data.users);
+       events.data.users.map(event => {
+         let today = moment();
+         let eventDate = moment(event.timeDate, "YYYYMMDD");
+         let eventReminder = {
+          title: event.scheduledEvent_name,
+          start: event.timeDate,
+          phone: '8133613402',
+          body: 'test of event notification system',
+          allDay: true,
+         }
+         console.log(eventDate.diff(today, 'days'));
+         console.log(event)
+
+
+         if(eventDate.diff(today, 'days') === 0 && event.dayAlert === 0) {
+           axios.post('http://localhost:5000/text', eventReminder)
+            .then(resp => {
+              console.log(resp)
+            })
+            .catch(err => {
+              console.log(err)
+            })
+         } else
+       })
+     })
+    .catch(err => {
+       console.log(err); 
+    });
+});
+console.log('After job instantiation');
+job.start();
+
+
+// ========= TWILIO =========//
+
+server.post("/text", (req, res) => {
+  const {phone, title, start, body} = req.body;
+      client.messages
+        .create({
+          body: `    Reminder that you have a ${title} starting on ${start}.\n\n Note: ${body} `,
+          from: '+18338536427',
+          to: `+1${phone}`
+        })
+        .then(message => console.log(message.sid))
+        .done();
+});
+
+
+// ========= SERVER =========//
+
 server.get("/", (req, res) => {
   db("scheduledEvent")
     .then(users => {

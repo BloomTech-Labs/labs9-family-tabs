@@ -2,9 +2,6 @@ import React from 'react'
 import styled from "styled-components";
 
 
-
-
-
 const Card = styled.div`
     border: 2px solid lightgrey;
     width: 380px;
@@ -15,7 +12,6 @@ const Card = styled.div`
     background: #ffffff;
     font-family: 'Roboto', sans-serif;
     margin: 28px;
-    
 `;
 
 const Header = styled.div` 
@@ -30,7 +26,6 @@ font-family: 'Fredoka One';
    display: flex;
 `;
 
-
 const Info = styled.div `
     padding-left: 20px;
     display: flex;
@@ -38,12 +33,6 @@ const Info = styled.div `
     align-items: flex-start; 
     padding-bottom: 10px;
 `;
-
-
-
-
-
-
 
 function HouseholdFamily(props) {
     

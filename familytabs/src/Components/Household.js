@@ -1,20 +1,13 @@
 import React, { Component } from 'react'
 import axios from 'axios';
 import HouseholdFamily from './HouseholdFamily';
-
-
-
 import styled from "styled-components";
-
 
 
 const CardList = styled.div`
   display: flex;
   flex-wrap: wrap;
 `;
-
-
-
 
 export default class Household extends Component {
 
@@ -32,11 +25,7 @@ export default class Household extends Component {
       console.log('running')
       console.log(err); 
     });
-    
-  
 }
-
-
 
 render() {
   return (

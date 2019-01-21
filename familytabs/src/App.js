@@ -10,6 +10,7 @@ import Callback from "./Components/Callback";
 import PublicRoute from "./context/PublicRoute";
 import PrivateRoute from "./context/PrivateRoute";
 import VerifyProfile from "./Components/VerifyProfile";
+import AddEvent from "./Components/AddEvent";
 import styled from "styled-components";
 
 const AppStyles = styled.div`
@@ -34,6 +35,7 @@ class App extends Component {
           <AppStyles>
             <h1>Family Tabs. Keep tabs on the whole family.</h1>
             <PrivateRoute exact path="/home/tabs" component={ParentHome} />
+            <PrivateRoute exact path="/home/add-event" component={AddEvent}/>
             <PrivateRoute
               exact
               path="/home/notifications"
