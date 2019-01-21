@@ -46,8 +46,8 @@ const job = new CronJob('* */10 * * * *', function() {
           body: 'test of event notification system',
           allDay: true,
          }
-         console.log(eventDate.diff(today, 'days'));
-         console.log(event)
+
+         console.log("EVENT",event)
 
 
          if(eventDate.diff(today, 'days') === 0 && event.dayAlert === 0) {
@@ -58,7 +58,19 @@ const job = new CronJob('* */10 * * * *', function() {
             .catch(err => {
               console.log(err)
             })
-         } else
+            
+            let eventAlert = {
+              dayAlert: true,
+            }
+
+            axios.put(`http://localhost:5000/changeevent/${event.id}`, eventAlert)
+              .then(resp => {
+                console.log("RUNNING",resp)
+              })
+              .catch(err => {
+                console.log("RUNNING", err)
+              })
+         } 
        })
      })
     .catch(err => {
