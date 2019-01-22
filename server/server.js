@@ -99,30 +99,6 @@ server.use('/event', routeMaker('scheduledEvent', ['scheduledEvent_name', 'timeD
 server.use('/profile', routeMaker('user',['phone', 'familyID', 'userName', 'email','isAdmin'],db, 'profile' ))
 server.use('/family', routeMaker('family', ['family_name'], db, 'family'))
 
-server.post("/profile", async (req, res) => {
-  const body = req.body;
-  body.email = body.email.toLowerCase();
-  try {
-    let id = await db("user").insert(body);
-    id = id[0];
-    const newProfile = await db("user")
-      .join("family", "user.familyID", "family.id")
-      .where("user.id", id)
-      .select(
-        "user.id",
-        "user.email",
-        "user.userName",
-        "user.familyID",
-        "user.phone",
-        "user.isAdmin",
-        "family.family_name"
-      )
-      .first();
-    return res.status(201).json(newProfile);
-  } catch (err) {
-    res.json({ err });
-  }
-});
 
 getState(server,db)
 paymentApi(server)

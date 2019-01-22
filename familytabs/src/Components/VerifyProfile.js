@@ -19,19 +19,6 @@ class VerifyProfile extends Component {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  submitHandle = e => {
-    e.preventDefault();
-    if (!this.state.name || !this.state.email) {
-      return;
-    }
-    axios.post(`${process.env.REACT_APP_API_URL}/profile`, {
-      name: this.state.name,
-      email: this.state.email.toLowerCase(),
-      family_id: this.state.profile.family_id
-    });
-    this.setState({ name: "", email: "" });
-  };
-
   familySubmitHandle = async e => {
     e.preventDefault();
     let userResponse;
@@ -40,25 +27,27 @@ class VerifyProfile extends Component {
     }
     try {
       let response = await axios.post(
-        `${process.env.REACT_APP_API_URL}/family`,
+        `${process.env.REACT_APP_API_URL}/family/create`,
         {
           family_name: this.state.family_name
         }
       );
+      console.log(response.data[0])
       userResponse = await axios.post(
-        `${process.env.REACT_APP_API_URL}/profile`,
+        `${process.env.REACT_APP_API_URL}/newlogin`,
         {
           userName: this.state.userName,
           email: this.state.userEmail,
-          familyID: response.data.id,
+          familyID: response.data[0].id,
           isAdmin: 1,
           phone: this.state.phone
         }
       );
       console.log(userResponse.data)
-      this.props.setUserProfile({ profile: userResponse.data });
+      this.props.setProfile({ profile: userResponse.data });
+      return
     } catch (err) {
-      console.log(userResponse, "no bueno");
+      console.log(userResponse.data, "no bueno");
     }
   };
 
@@ -78,7 +67,8 @@ class VerifyProfile extends Component {
         if (response.data.err){
           return
         }
-        this.props.setUserProfile(response.data)
+        this.props.setProfile(response.data)
+        this.props.setFamilyID(response.data.id)
       } catch (err) {
         console.log(err);
       }
