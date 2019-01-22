@@ -121,9 +121,7 @@ const getState = (app,db) => {
           "location.address",
           "eventType.eventType_name"
         );
-      if (!familyEvents.length) {
-        return res.status(400).json({ err: "no events for family at that id" });
-      }
+
       return res.status(200).json(condenseUsers(familyEvents));
     } catch (err) {
       res.status(500).json({ err: "broke" });
