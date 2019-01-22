@@ -33,17 +33,19 @@ class VerifyProfile extends Component {
         }
       );
       console.log(response.data[0])
+      let familyID =response.data[0].id
       userResponse = await axios.post(
         `${process.env.REACT_APP_API_URL}/newlogin`,
         {
           userName: this.state.userName,
           email: this.state.userEmail,
-          familyID: response.data[0].id,
+          familyID ,
           isAdmin: 1,
           phone: this.state.phone
         }
       );
-      console.log(userResponse.data)
+      console.log(familyID)
+      this.props.loadState(familyID)
       this.props.setProfile({ profile: userResponse.data });
       return
     } catch (err) {
@@ -67,12 +69,12 @@ class VerifyProfile extends Component {
         if (response.data.err){
           return
         }
+        this.props.loadState(response.data.familyID)
         this.props.setProfile(response.data)
-        this.props.setFamilyID(response.data.id)
+        
       } catch (err) {
         console.log(err);
       }
-      
     });
   }
 
