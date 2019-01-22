@@ -1,0 +1,75 @@
+import React from 'react';
+import styled from "styled-components";
+import Checkout from './Checkout';
+
+const Card = styled.div`
+    border: 2px solid lightgrey;
+    width: 380px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;  
+    line-height: 2;
+    background: #ffffff;
+    font-family: 'Roboto', sans-serif;
+    margin: 28px;
+`;
+
+const Header = styled.div` 
+/* border: 1px solid red; */
+font-family: 'Roboto';
+   color: black;
+   font-size: 18px;
+   width: 100%;
+   height: 60px;
+  justify-content: center;
+   padding-top: 10px;
+   display: flex;
+`;
+
+const BillingInfo = styled.div`
+border: 2px solid red;
+display: flex;
+justify-content: center;
+`;
+
+const Info = styled.div `
+    /* padding-left: 20px; */
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    padding-bottom: 10px;
+    font-size: 14px;
+`;
+
+function BillingCard(props) {
+    
+    return (
+    <div className= "BillingWrapper">
+      <BillingInfo>
+         <Header>Billing</Header>
+         <Card >
+         <Header>Subscription Info</Header>
+           <Info>
+           <p>Family Tabs free accounts automatically offers a single parent account with up to
+               three children.  For only 9.99 a month the Premium account includes three admins
+               and and unlimited amount of children accounts.  Your information is always safe with
+               us, and will never be sold to third parties under any circumstances.  With Family Tabs
+               we make it easy to keep tabs on the whole family!
+           </p>
+           </Info>
+       </Card >
+      </BillingInfo>
+      <div>
+      <p className="App-intro">
+      <Checkout
+        name={'The Road to learn React'}
+        description={'Only the Book'}
+        amount={1}
+      />
+    </p>
+    </div>
+    </div>
+    );
+}
+
+export default BillingCard;

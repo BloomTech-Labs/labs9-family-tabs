@@ -25,15 +25,6 @@ class LandingPage extends Component {
 
               <button onClick={this.props.auth.login}>Log in</button>
           </LandingPageTop>
-          <div>
-            <p className="App-intro">
-            <Checkout
-              name={'The Road to learn React'}
-              description={'Only the Book'}
-              amount={1}
-            />
-          </p>
-          </div>
         </div>
       )
     }
