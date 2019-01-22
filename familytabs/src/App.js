@@ -30,10 +30,11 @@ class App extends Component {
       
         <div>
           <PrivateRoute path='/verify' component={VerifyProfile}></PrivateRoute>
-          <PublicRoute exact path="/" component={LandingPage} />
+          
           <PrivateRoute path="/home" component={Navigation} />
           <AppStyles>
             <h1>Family Tabs. Keep tabs on the whole family.</h1>
+            <PublicRoute exact path="/" component={LandingPage} />
             <PrivateRoute exact path="/home/tabs" component={ParentHome} />
             <PrivateRoute exact path="/home/add-event" component={AddEvent}/>
             <PrivateRoute

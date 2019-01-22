@@ -6967,7 +6967,7 @@ prop-types-extra@^1.0.1, prop-types-extra@^1.1.0:
     react-is "^16.3.2"
     warning "^3.0.0"
 
-prop-types@^15.5.10, prop-types@^15.5.4, prop-types@^15.6.0, prop-types@^15.6.1, prop-types@^15.6.2:
+prop-types@^15.5.10, prop-types@^15.5.4, prop-types@^15.5.8, prop-types@^15.6.0, prop-types@^15.6.1, prop-types@^15.6.2:
   version "15.6.2"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.6.2.tgz#05d5ca77b4453e985d60fc7ff8c859094a497102"
   dependencies:
@@ -7185,6 +7185,12 @@ react-dom@^16.7.0:
     prop-types "^15.6.2"
     scheduler "^0.12.0"
 
+react-easy-swipe@^0.0.16:
+  version "0.0.16"
+  resolved "https://registry.yarnpkg.com/react-easy-swipe/-/react-easy-swipe-0.0.16.tgz#5a3d949a8f975d05be92a818254315d1318a81ea"
+  dependencies:
+    prop-types "^15.5.8"
+
 react-error-overlay@^5.1.2:
   version "5.1.2"
   resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-5.1.2.tgz#888957b884d4b25b083a82ad550f7aad96585394"
@@ -7207,6 +7213,14 @@ react-overlays@^0.8.3:
     prop-types-extra "^1.0.1"
     react-transition-group "^2.2.0"
     warning "^3.0.0"
+
+react-responsive-carousel@^3.1.45:
+  version "3.1.45"
+  resolved "https://registry.yarnpkg.com/react-responsive-carousel/-/react-responsive-carousel-3.1.45.tgz#606b2c36d489c0c19084bf53efcd50817a14c8a7"
+  dependencies:
+    classnames "^2.2.5"
+    prop-types "^15.5.8"
+    react-easy-swipe "^0.0.16"
 
 react-router-dom@^4.3.1:
   version "4.3.1"
