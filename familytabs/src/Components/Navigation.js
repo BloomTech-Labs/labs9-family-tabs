@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom'
 import styled from "styled-components";
-
+//import axios from 'axios'
 
 const NavBarStyling = styled.div`
     border: 2px solid orange;
@@ -65,7 +65,10 @@ const StyledH1 = styled.h1`
    display: flex;
 `;
 
-const Navigation = props => {
+class Navigation extends React.Component {
+
+    render(){
+       
     return (
       <NavBarStyling>
        <StyledH1>Family Tabs</StyledH1>
@@ -76,11 +79,11 @@ const Navigation = props => {
             <Links to='/home/household'>Household</Links>
             <Links to='/home/billing' className="nav_button">Billing</Links>
 
-            <Buttons onClick={props.auth.logout}>Log out</Buttons>
+            <Buttons onClick={this.props.auth.logout}>Log out</Buttons>
         </NavButtonsContainer>
        </NavBarStyling>
     )
   }
-  
+  }
   export default Navigation;
   

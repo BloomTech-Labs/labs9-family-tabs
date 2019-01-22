@@ -1,4 +1,44 @@
+const condenseUsers = arr =>{
+    result = []
+    for (let i = 0; i < arr.length; i++){
+      let cur = arr[i]
+      let resultIndex = result.findIndex(x => x.id === cur.id)
+      if (resultIndex >= 0){
+        result[resultIndex].userName.push(cur.userName)
+      }
+      else{
+        result.push({...cur, userName: [cur.userName]})
+      }
+    }
+    return result
+  }
+
 const getState = (app,db) => {
+
+    app.post("/newlogin", async (req, res) => {
+        const body = req.body;
+        try {
+          let id = await db("user").insert(body);
+          id = id[0];
+          const newProfile = await db("user")
+            .join("family", "user.familyID", "family.id")
+            .where("user.id", id)
+            .select(
+              "user.id",
+              "user.email",
+              "user.userName",
+              "user.familyID",
+              "user.phone",
+              "user.isAdmin",
+              "family.family_name"
+            )
+            .first();
+          return res.status(201).json(newProfile);
+        } catch (err) {
+          res.json({ err });
+        }
+      });
+
   app.get("/profile/:email", async (req, res) => {
     const { email } = req.params;
     try {
@@ -84,7 +124,7 @@ const getState = (app,db) => {
       if (!familyEvents.length) {
         return res.status(400).json({ err: "no events for family at that id" });
       }
-      return res.status(200).json(familyEvents);
+      return res.status(200).json(condenseUsers(familyEvents));
     } catch (err) {
       res.status(500).json({ err: "broke" });
     }
