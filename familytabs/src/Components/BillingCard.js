@@ -2,46 +2,6 @@ import React from 'react';
 import styled from "styled-components";
 import Checkout from './Checkout';
 
-// const Card = styled.div`
-//     border: 2px solid lightgrey;
-//     width: 380px;
-//     display: flex;
-//     justify-content: center;
-//     align-items: flex-start;  
-//     line-height: 2;
-//     background: #ffffff;
-//     font-family: 'Roboto', sans-serif;
-//     margin: 28px;
-// `;
-
-// const Header = styled.div` 
-// /* border: 1px solid red; */
-// font-family: 'Roboto';
-//    color: black;
-//    font-size: 18px;
-//    width: 100%;
-//    height: 60px;
-//   justify-content: center;
-//    padding-top: 10px;
-//    display: flex;
-// `;
-
-// const BillingInfo = styled.div`
-// border: 2px solid red;
-// display: flex;
-// justify-content: center;
-// `;
-
-// const Info = styled.div `
-//     /* padding-left: 20px; */
-//     display: flex;
-//     flex-direction: row;
-//     align-items: center; 
-//     padding-bottom: 10px;
-//     font-size: 14px;
-// `;
-
-
 const Card = styled.div`
     border: 2px solid lightgrey;
     width: 380px;
