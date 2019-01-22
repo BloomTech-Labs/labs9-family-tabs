@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import NotifcationTabs from './NotificationTabs';
 
 
 export default class Notifications extends Component {
@@ -6,6 +7,7 @@ export default class Notifications extends Component {
     return (
       <div>
         <h1>I am the Notifications page</h1>
+        <NotifcationTabs />
       </div>
     )
   }
