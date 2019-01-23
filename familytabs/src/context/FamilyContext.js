@@ -45,7 +45,7 @@ export class FamilyProvider extends Component {
       const familyMembers = await axios.get(
         `${process.env.REACT_APP_API_URL}/familymembers/${id}`
       );
-      console.log(familyMembers);
+
       const familyEvents = await axios.get(
         `${process.env.REACT_APP_API_URL}/fulleventsbyfamily/${id}`
       );
