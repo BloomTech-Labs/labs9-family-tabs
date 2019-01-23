@@ -9,10 +9,14 @@ exports.up = function(knex, Promise) {
           .notNullable()
 
         scheduledEvent
-          .datetime('timeDate', 128)
+          .datetime('eventStart', 128)
           .notNullable()
 
         scheduledEvent
+          .datetime('eventEnd', 128)
+          .notNullable()
+        
+          scheduledEvent
           .integer('familyID')
           .references('family.id')
           .notNullable()
