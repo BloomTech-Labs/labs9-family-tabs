@@ -31,6 +31,23 @@ exports.up = function(knex, Promise) {
           .boolean('dayAlert')
           .notNullable()
           .defaultTo(false)
+
+          scheduledEvent
+          .boolean('approved')
+          .notNullable()
+          .defaultTo(false)
+
+          scheduledEvent
+          .boolean('declined')
+          .notNullable()
+          .defaultTo(false)
+
+          scheduledEvent
+          .boolean('createdByAdmin')
+          .notNullable()
+          .defaultTo(false)
+
+
         });
 };
 
