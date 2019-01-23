@@ -11,6 +11,8 @@ const CardList = styled.div`
 
 export default class Household extends Component {
 
+
+  
   constructor() {
     super();
     this.state = { familydata: [] };
