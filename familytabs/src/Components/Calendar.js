@@ -89,7 +89,7 @@ addEventHandler = (e) => {
  this.setState({Event: Event, title: '', dateStart: '', dateEnd: ''});
 
 
- axios.post(`${process.env.REACT_APP_API_URL}/createevent`, newEvent)
+ axios.post(`${process.env.REACT_APP_API_URL}/event/create`, newEvent)
    .then(event => {
       console.log(event);
    })

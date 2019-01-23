@@ -20,10 +20,11 @@ cron()
 // ========= TWILIO =========//
 
 server.post("/text", (req, res) => {
+  console.log("RUNNING TWILIO")
   const { phone, title, start, body } = req.body;
   client.messages
     .create({
-      body: `    Reminder that you have a ${title} starting on ${start}.\n\n Note: ${body} `,
+      body: `Reminder that you have a ${title} starting on ${start}.\n\n Note: ${body} `,
       from: "+18338536427",
       to: `+1${phone}`
     })
@@ -37,7 +38,7 @@ server.get("/", (req, res) => {
   res.send('Family Tabs Api')
 });
 
-server.use('/event', routeMaker('scheduledEvent', ['scheduledEvent_name', 'timeDate', 'eventTypeID', 'locationID','familyID'],db, 'scheduled event'))
+server.use('/event', routeMaker('scheduledEvent', ['scheduledEvent_name', 'eventStart', 'eventEnd', 'eventTypeID', 'locationID','familyID'],db, 'scheduled event'))
 server.use('/profile', routeMaker('user',['phone', 'familyID', 'userName', 'email','isAdmin'],db, 'profile' ))
 server.use('/family', routeMaker('family', ['family_name'], db, 'family'))
 
