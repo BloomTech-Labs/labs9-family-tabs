@@ -32,6 +32,7 @@
     "react-stripe-checkout": "^2.6.3",
     "sqlite3": "^4.0.4",
     "stripe": "^6.20.1",
-    "twilio": "^3.27.1"
+    "twilio": "^3.27.1",
+    "username": "^4.0.0"
   }
 }

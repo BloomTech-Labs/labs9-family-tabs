@@ -15,10 +15,10 @@ const job = new CronJob("*/10 * * * * *", function() {
       console.log(events.data);
       events.data.map(event => {
         let today = moment();
-        let eventDate = moment(event.timeDate, "YYYYMMDD");
+        let eventDate = moment(event.eventStart, "YYYYMMDD, h:mm a");
         let eventReminder = {
           title: event.scheduledEvent_name,
-          start: event.timeDate,
+          start: event.eventStart,
           phone: "8133613402",
           body: "test of event notification system",
           allDay: true
