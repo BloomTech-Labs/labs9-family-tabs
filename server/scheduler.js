@@ -46,7 +46,7 @@ const job = new CronJob("*/10 * * * * *", function() {
               console.log("RUNNING", resp);
             })
             .catch(err =>  {
-              console.log("RUNNING", err);
+              console.log("ERROR", err);
             });
         }
       });
