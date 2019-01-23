@@ -7,7 +7,7 @@ class ParentHome extends Component {
       return (
         <div className="ParentHomepage">
             <h1>Parent Homepage</h1>
-            <CalendarComponent />
+            <CalendarComponent {...this.props}/>
         </div>
       );
     }
