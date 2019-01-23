@@ -17,14 +17,24 @@ export default class Household extends Component {
   }
 
   componentDidMount() {
-    axios.get(`${process.env.REACT_APP_API_URL}/familymembers/1`)
-    .then(familydata => {
-      this.setState({familydata: familydata.data});
-    })
-    .catch(err => {
-      console.log('running')
-      console.log(err); 
-    });
+    console.log("THIS IS PROPS", this.props);
+    
+    if(this.props.profile === null) {
+
+    } else {
+        let id = this.props.profile.profile.familyID;
+        axios.get(`${process.env.REACT_APP_API_URL}/familymembers/${id}`)
+        .then(familydata => {
+          this.setState({familydata: familydata.data});
+          console.log("ID",id)
+        })
+        .catch(err => {
+          console.log('running')
+          console.log(err); 
+        });
+      }
+    
+
 }
 
 render() {
@@ -47,5 +57,3 @@ render() {
   )
 }
 }
-
-
