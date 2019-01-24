@@ -75,7 +75,7 @@ class Navigation extends React.Component {
         <NavButtonsContainer>
             <Links to='/home/tabs'>Family Tabs</Links>
             <Links to='/home/notifications'>Notifications</Links>
-            <Links to='/home/settings'>Account Settings</Links>
+            <Links to='/home/settings'>Settings</Links>
             <Links to='/home/household'>Household</Links>
             <Links to='/home/billing' className="nav_button">Billing</Links>
 
