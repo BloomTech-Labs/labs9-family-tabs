@@ -35,21 +35,19 @@ const Info = styled.div `
     padding-bottom: 10px;
 `;
 
-function NotificationCard(props) {
+function DeclineCard(props) {
     
       return (
         <div className="ParentHomepage">
            
            <Card >
-             <Header>Event: {props.pendingdata.scheduledEvent_name}</Header>
+             <Header>Event: {props.declineddata.scheduledEvent_name}</Header>
              <Info>
-             <p>Event Start: {props.pendingdata.eventStart}</p>
-             <p>Event End: {props.pendingdata.eventEnd}</p>
-             <p>Created By: {props.pendingdata.userName}</p>
+             <p>Event Start: {props.declineddata.eventStart}</p>
+             <p>Event End: {props.declineddata.eventEnd}</p>
+             <p>Created By: {props.declineddata.userName}</p>
              </Info>
-             <button onClick={props.clickHandler} id={props.pendingdata.id}>Approve</button>
-             <button>Decline</button>
-             <Link to="/home/tabs">View On Calendar</Link>
+         
          </Card >
         </div>
       );
@@ -57,4 +55,4 @@ function NotificationCard(props) {
   
   
  
-  export default NotificationCard;
+  export default DeclineCard;

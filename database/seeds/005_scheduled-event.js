@@ -5,13 +5,13 @@ exports.seed = function(knex, Promise) {
   return knex('scheduledEvent').truncate()
     .then(function () {
       // Inserts seed entries
-      let date1 = moment('2019-01-23').format('YYYYMMDD, h:mm a')
-      let date2 = moment('2019-01-24').format('YYYYMMDD, h:mm a')
-      let date3 = moment('2019-01-25').format('YYYYMMDD, h:mm a')
+      let date1 = moment('2019-01-25').format('YYYYMMDD, h:mm a')
+      let date2 = moment('2019-01-26').format('YYYYMMDD, h:mm a')
+      let date3 = moment('2019-01-27').format('YYYYMMDD, h:mm a')
 
-      let date4 = moment('2019-01-24').format('YYYYMMDD, h:mm a')
-      let date5 = moment('2019-01-25').format('YYYYMMDD, h:mm a')
-      let date6 = moment('2019-01-26').format('YYYYMMDD, h:mm a')
+      let date4 = moment('2019-01-25').format('YYYYMMDD, h:mm a')
+      let date5 = moment('2019-01-26').format('YYYYMMDD, h:mm a')
+      let date6 = moment('2019-01-27').format('YYYYMMDD, h:mm a')
 
 
       return knex('scheduledEvent').insert([
