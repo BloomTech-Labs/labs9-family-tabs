@@ -1,6 +1,7 @@
-import React, { Component } from 'react'
-import NotificationCard from './NotificationCard'
-import NotifcationTabs from './NotificationTabs';
+import React, { Component } from 'react';
+import PendingCard from './PendingCard';
+import ApprovedCard from './ApproveCard';
+import DeclineCard from './DeclineCard';
 import axios from 'axios';
 import moment from 'moment';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
@@ -25,6 +26,8 @@ export default class Notifications extends Component {
       this.state = { 
         eventdata: [],
         pendingdata: [],
+        approveddata: [],
+        declineddata:[]
        };
     }
 
@@ -47,18 +50,46 @@ export default class Notifications extends Component {
             let pendingdata = this.state.pendingdata.splice();
             pendingdata.push(eventsmapped);
             this.setState({pendingdata});
+
+           
           }
-        })
+          else if(eventsmapped.approved === 1 && eventsmapped.declined === 0 && eventsmapped.createdByAdmin === 0) {
+            let approveddata = this.state.approveddata.splice();
+            approveddata.push(eventsmapped);
+            this.setState({approveddata});
+          }
+          else if(eventsmapped.approved === 0 && eventsmapped.declined === 1 && eventsmapped.createdByAdmin === 0) {
+            let declineddata = this.state.declineddata.splice();
+            declineddata.push(eventsmapped);
+            this.setState({declineddata});
+          }
       })
+    })
     }
 
 
-    clickHandler = (e) => { 
+    approveClick = (e) => { 
       console.log("TARGET ID",e.target.id)
       e.preventDefault()
       const id = e.target.id
       let reqBody = {
         approved: 1,
+      }
+
+      axios.put(`${process.env.REACT_APP_API_URL}/event/edit/${id}`, reqBody)
+      .then(resp => console.log(resp))
+      
+      .catch( error => {
+        console.log(error)
+      })
+    }
+
+    declineClick = (e) => { 
+      console.log("TARGET ID",e.target.id)
+      e.preventDefault()
+      const id = e.target.id
+      let reqBody = {
+        declined: 1,
       }
 
       axios.put(`${process.env.REACT_APP_API_URL}/event/edit/${id}`, reqBody)
@@ -85,16 +116,26 @@ export default class Notifications extends Component {
             <TabPanel>
             {this.state.pendingdata.map(pendingdata => (
 
-<NotificationCard key={pendingdata.id} pendingdata={pendingdata} clickHandler={this.clickHandler}/>
+<PendingCard key={pendingdata.id} pendingdata={pendingdata} approveClick={this.approveClick} declineClick={this.declineClick}/>
 
 
 ))}   
             </TabPanel>
             <TabPanel>
-              <h2>Any content 2</h2>
+            {this.state.approveddata.map(approveddata => (
+
+<ApprovedCard key={approveddata.id} approveddata={approveddata} />
+
+
+))}   
             </TabPanel>
             <TabPanel>
-              <h2>Any content 3</h2>
+            {this.state.declineddata.map(declineddata => (
+
+<DeclineCard key={declineddata.id} declineddata={declineddata} />
+
+
+))}   
             </TabPanel>
           </Tabs>
           </StyledTabs>
