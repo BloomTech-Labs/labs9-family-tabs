@@ -41,6 +41,7 @@ exports.up = function(knex, Promise) {
           .notNullable()
           .defaultTo(false)
 
+
         scheduledEvent
           .boolean('declined')
           .notNullable()

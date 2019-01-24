@@ -11,8 +11,8 @@ exports.up = function(knex, Promise) {
 
         location
           .string('address', 128)
-          .notNullable()
 
+          
         location
           .integer('familyID')
           .references('family.id')

@@ -7,6 +7,7 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import styled from 'styled-components';
 import "react-tabs/style/react-tabs.css";
 
+
 const StyledTabs = styled(Tabs)`
 .react-tabs__tab-list {
   border: 2px solid red;
