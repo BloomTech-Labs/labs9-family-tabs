@@ -25,6 +25,11 @@ exports.up = function(knex, Promise) {
           .integer('familyID')
           .references('family.id')
           .notNullable()
+        
+        user
+          .boolean('textCheckbox')
+          .notNullable()
+          .defaultTo(false)
         });
 };
 

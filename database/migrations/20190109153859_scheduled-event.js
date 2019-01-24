@@ -16,7 +16,7 @@ exports.up = function(knex, Promise) {
           .datetime('eventEnd', 128)
           .notNullable()
         
-          scheduledEvent
+        scheduledEvent
           .integer('familyID')
           .references('family.id')
           .notNullable()
@@ -36,23 +36,20 @@ exports.up = function(knex, Promise) {
           .notNullable()
           .defaultTo(false)
 
-          scheduledEvent
+        scheduledEvent
           .boolean('approved')
           .notNullable()
           .defaultTo(false)
-te
-          scheduledEvent
+
+        scheduledEvent
           .boolean('declined')
           .notNullable()
           .defaultTo(false)
 
-          scheduledEvent
+        scheduledEvent
           .boolean('createdByAdmin')
           .notNullable()
           .defaultTo(false)
-
-
-
         });
 };
 
