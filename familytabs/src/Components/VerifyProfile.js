@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { Link,Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 
 
 class VerifyProfile extends Component {
@@ -116,12 +116,7 @@ class VerifyProfile extends Component {
           </form>
         )}
 
-        {/* it's ugly so we don't forget to remove it */}
-        
-<div style={{fontSize: '50px', width:'922px', padding:'29px', background:'green', margin:'50px auto', textAlign:'center', border:'red solid 5px'}}>
-  <Link  to='/home/tabs'>Dev mode backdoor for skipping database interaction</Link>
 
-</div>
       </>
     );
   }

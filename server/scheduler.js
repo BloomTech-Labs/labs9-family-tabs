@@ -12,7 +12,7 @@ const job = new CronJob("*/10 * * * * *", function() {
   axios
     .get(`${process.env.SERVER_API_URL}/event`)
     .then(events => {
-      console.log(events.data);
+      //console.log(events.data);
       events.data.map(event => {
         let today = moment();
         let eventDate = moment(event.eventStart, "YYYYMMDD, h:mm a");
