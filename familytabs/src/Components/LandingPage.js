@@ -13,9 +13,14 @@ const  LandingPageTop = styled.div`
 
 
 class LandingPage extends Component { 
+  componentDidMount(){
+    localStorage.removeItem("access_token");
+    localStorage.removeItem("id_token");
+    localStorage.removeItem("expires_at");
+    localStorage.removeItem('scopes')
+  }
 
     render() {
-      
       return (
         <div>
           <LandingPageTop>

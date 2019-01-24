@@ -56,9 +56,9 @@ function BillingCard(props) {
       <div>
       <p className="App-intro">
       <Checkout
-        name={'The Road to learn React'}
-        description={'Only the Book'}
-        amount={1}
+        name={'Family Tabs'}
+        description={'Monthy Subscription'}
+        amount={9.99}
       />
     </p>
     </div>

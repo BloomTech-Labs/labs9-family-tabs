@@ -29,7 +29,6 @@ export class FamilyProvider extends Component {
   };
 
   componentDidMount() {
-    console.log(this.state.familyID);
     if (localStorage.getItem("access_token")) {
       if (!this.state.profile) {
         this.loadAPIProfile();
