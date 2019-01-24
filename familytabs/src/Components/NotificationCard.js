@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from "styled-components";
+import {Link} from 'react-router-dom'; 
 
 
 const Card = styled.div`
@@ -46,6 +47,9 @@ function NotificationCard(props) {
              <p>Event End: {props.pendingdata.eventEnd}</p>
              <p>Created By: {props.pendingdata.userName}</p>
              </Info>
+             <button onClick={props.clickHandler}>Approve</button>
+             <button>Decline</button>
+             <Link to="/home/tabs">View On Calendar</Link>
          </Card >
         </div>
       );

@@ -23,7 +23,8 @@ export default class Notifications extends Component {
       super();
       this.state = { 
         eventdata: [],
-        pendingdata: [] };
+        pendingdata: [],
+       };
     }
 
 
@@ -51,6 +52,17 @@ export default class Notifications extends Component {
     }
 
 
+    clickHandler = (e) => { 
+      e.preventDefault()
+      const id = this.state.eventdata
+      axios.put(`${process.env.REACT_APP_API_URL}/event/edit/${id}`)
+      .then(resp => console.log(resp))
+      
+      .catch( error => {
+        console.log(error)
+      })
+    }
+
   render() {
     console.log("rendered",this.state);
     return (
@@ -67,7 +79,7 @@ export default class Notifications extends Component {
             <TabPanel>
             {this.state.pendingdata.map(pendingdata => (
 
-<NotificationCard key={pendingdata.id} pendingdata={pendingdata} />
+<NotificationCard key={pendingdata.id} pendingdata={pendingdata} clickHandler={this.clickHandler}/>
 
 
 ))}   
