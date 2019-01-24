@@ -21,6 +21,15 @@ const AppStyles = styled.div`
   text-align: center;
   max-width: 1000px;
   height: 900px;
+
+  @media (max-width: 768px) {
+    border: 2px solid blue; 
+  margin-left: 300px;
+  font-family: 'Lato', sans-serif;
+  text-align: center;
+  max-width: 1000px;
+  height: 900px;
+  }
 `;
 
 class App extends Component {
@@ -44,7 +53,7 @@ class App extends Component {
               path="/home/notifications"
               component={Notifications}
             />
-            <PrivateRoute exact path="/home/settings" component={Settings} />
+            <PrivateRoute  exact path="/home/settings" component={Settings} />
             <PrivateRoute exact path="/home/household" component={Household} />
             <PrivateRoute exact path="/home/billing" component={Billing} />
             <PublicRoute path="/callback" component={Callback} />
