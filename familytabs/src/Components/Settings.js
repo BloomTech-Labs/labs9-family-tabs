@@ -28,47 +28,72 @@ const PasswordChange = styled.div`
 `;
 
 export default class Settings extends Component {
+  
   render() {
-    return (
-      <div>
-        <h1>I am the Account Settings page</h1>
-        <FormContainer>
-        <form>
-          <BasicInfo>
-          <label>
-          Email:
-          <input type="text" name="name" />
-          </label>
-          <label>
-          Phone:
-          <input type="text" name="name" />
-          </label>
-          </BasicInfo>
-          <NotificationOptions>
-          <label>
-          Emails?
-          <input type="checkbox" name="name" />
-          </label>
-          <label>
-          Texts?
-          <input type="checkbox" name="name" />
-          </label>
-          </NotificationOptions>
-          <PasswordChange>
-          <label>
-          Old Password
-          <input type="password" name="name" />
-          </label>
-          <label>
-          New Password
-          <input type="password" name="name" />
-          </label>
-          </PasswordChange>
-          <button>Save</button>
-        </form>
-       
-        </FormContainer>
-      </div>
-    )
+    if (this.props.profile === null) {
+      return (
+        <div></div>
+        );
+    } else if (this.props.profile.isAdmin === 1) {
+        return (
+          <div>
+            <h1>I am the Account Settings page</h1>
+            <FormContainer>
+            <form>
+              <BasicInfo>
+                <label>
+                  Email: 
+                  <input 
+                  type="text" 
+                  name="name" 
+                  value={this.props.profile.email} 
+                  />
+                </label>
+                <label>
+                  Phone: 
+                  <input 
+                  type="text" 
+                  name="name" 
+                  value={this.props.profile.phone} 
+                  />
+                </label>
+              </BasicInfo>
+              <NotificationOptions>
+                <label>
+                  Texts?
+                  <input 
+                  type="checkbox" 
+                  name="name" 
+                  
+                  />
+                </label>
+              </NotificationOptions>
+                <button>Save</button>
+            </form>
+            </FormContainer>
+          </div>
+        )
+    } else {
+        return (
+          <div>
+            <h1>I am the Account Settings page</h1>
+            <FormContainer>
+            <form>
+            <BasicInfo>
+                <label>
+                  Email: 
+                  <input type="text" name="name" value={this.props.profile.email} />
+                </label>
+                <label>
+                  Phone: 
+                  <input type="text" name="name" value={this.props.profile.phone} />
+                </label>
+              </BasicInfo>
+                <button>Save</button>
+            </form>
+            </FormContainer>
+          </div>
+        )
+      }
   }
 }
