@@ -12,6 +12,7 @@ import PrivateRoute from "./context/PrivateRoute";
 import VerifyProfile from "./Components/VerifyProfile";
 import AddEvent from "./Components/AddEvent";
 import styled from "styled-components";
+import SignUp from "./Components/SignUp";
 
 const AppStyles = styled.div`
   border: 2px solid orange; 
@@ -35,6 +36,7 @@ class App extends Component {
           <AppStyles>
             <h1>Family Tabs. Keep tabs on the whole family.</h1>
             <PublicRoute exact path="/" component={LandingPage} />
+            <PublicRoute exact path="/signup" component={SignUp} />
             <PrivateRoute exact path="/home/tabs" component={ParentHome} />
             <PrivateRoute exact path="/home/add-event" component={AddEvent}/>
             <PrivateRoute

@@ -10,6 +10,7 @@ const CardList = styled.div`
 
 export default class Household extends Component {
 
+
 render() {
   return (
     <div>
@@ -30,5 +31,3 @@ render() {
   )
 }
 }
-
-
