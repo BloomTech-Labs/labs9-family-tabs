@@ -38,100 +38,163 @@ const StyledCalendar = styled(Calendar)`
     font-weight: 300;
   }
 `;
-const Event =({event})=>{
-    return(
-      <span>
-        <p>{event.title}</p><p>{event.desc}</p> 
-      </span>
-    )
-  }
+const Event = ({ event }) => {
+  return (
+    <span>
+      <p>{event.title}</p>
+      <p>{event.participants}</p> <p>{event.particulars}</p>
+    </span>
+  );
+};
 class CalendarComponent extends Component {
   constructor(props) {
     super(props);
     this.state = {
       events: [],
-      title: "",
-      dateStart: "",
-      dateEnd: "",
-      phone: "",
-      body: ""
+      scheduledEvent_name: "",
+      eventStart: null,
+      eventEnd: null,
+      eventTypeID: null,
+      locationID: null,
+      eventTypes: [],
+      locations: [],
+      showForm: false
     };
   }
-  
+
+  componentDidMount() {
+    this.loadState();
+  }
+  toggleForm = () => {
+    this.loadState();
+    this.setState({ showForm: !this.state.showForm });
+  };
+  loadState = async () => {
+    const { familyEvents, familyID } = this.props;
+    let { locations, eventTypes, events } = this.state;
+    if (!locations.length) {
+      locations = await axios.get(
+        `${process.env.REACT_APP_API_URL}/location/byfamily/${familyID}`
+      );
+      this.setState({ locations: locations.data });
+    }
+    if (!eventTypes.length) {
+      eventTypes = await axios.get(
+        `${process.env.REACT_APP_API_URL}/eventtype/byfamily/${familyID}`
+      );
+      this.setState({ eventTypes: eventTypes.data });
+    }
+    if (!events.length) {
+      events = this.mapToCalendar(familyEvents);
+      this.setState({ events });
+    }
+  };
 
   mapToCalendar = events =>
-    events.map((event,i) => {
+    events.map((event, i) => {
       const {
         address,
         scheduledEvent_name,
         location_name,
         eventType_name,
         eventStart,
-        eventEnd,
+        //eventEnd,
         userName
       } = event;
 
-      console.log( eventEnd)
-      let starter= new Date(moment(`${eventStart.split(', ')[0]} ${eventStart.split(', ')[1].slice(0,5).split(':').join('')}`).add(i, 'days'))
-      let ender = new Date(moment(`${eventStart.split(', ')[0]} ${eventStart.split(', ')[1].slice(0,5).split(':').join('')}`).add(i, 'days'))
-      return { 
+      let starter = new Date(
+        moment(
+          `${eventStart.split(", ")[0]} ${eventStart
+            .split(", ")[1]
+            .slice(0, 5)
+            .split(":")
+            .join("")}`
+        )
+      );
+      let ender = new Date(
+        moment(
+          `${eventStart.split(", ")[0]} ${eventStart
+            .split(", ")[1]
+            .slice(0, 5)
+            .split(":")
+            .join("")}`
+        ).add(3, "hours")
+      );
+      return {
         title: scheduledEvent_name,
-        start:starter,
+        start: starter,
         end: ender,
-        desc: `${userName.join(' ')} ${eventType_name} event at ${location_name} ${address}`,
+        participants: `${userName.join(", ")}`,
+        particulars: `${eventType_name} event at ${location_name} ${address}`
         //allDay:true
-        
       };
     });
+
+  setStart = e => {
+    this.setState({ eventStart: e });
+  };
+
+  setEnd = e => {
+    this.setState({ eventEnd: e });
+  };
 
   inputHandler = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  addEventHandler = e => {
+  addEventHandler = async e => {
     e.preventDefault();
-
-    let Event = this.state.Event.slice();
+    const {
+      scheduledEvent_name,
+      eventStart,
+      eventEnd,
+      // eventTypeID,
+      // locationID
+      locations,
+      events
+    } = this.state;
+    if (
+      !scheduledEvent_name ||
+      !eventStart ||
+      !eventEnd 
+      //|| !eventTypeID ||
+      // !locationID
+    ) {
+      return;
+    }
 
     let newEvent = {
-      title: this.state.title,
-      start: this.state.dateStart,
-      end: this.state.dateEnd,
-      phone: this.state.phone,
-      body: this.state.body,
-      allDay: true
+      scheduledEvent_name,
+      eventStart,
+      eventEnd,
+      eventTypeID: 1,
+      locationID: 1,
+      familyID: this.props.familyID,
+      createdByAdmin: this.props.profile.isAdmin ? 1 : 0
     };
-
-    Event.push(newEvent);
-
-    this.setState({ Event: Event, title: "", dateStart: "", dateEnd: "" });
-
-    axios
-      .post(`${process.env.REACT_APP_API_URL}/event/create`, newEvent)
-      .then(event => {
-        console.log(event);
-      })
-      .catch(err => {
-        console.log(err);
-      });
-
-    axios
-      .post(`${process.env.REACT_APP_API_URL}/text`, newEvent)
-      .then(text => {
-        console.log("You rang?", text);
-      })
-      .catch(err => {
-        console.log(err);
-      });
+    this.setState({
+      events: [...this.state.events, newEvent],
+      title: "",
+      dateStart: "",
+      dateEnd: ""
+    });
+    try {
+      await axios.post(
+        `${process.env.REACT_APP_API_URL}/event/create`,
+        newEvent
+      );
+      this.toggleForm();
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   render() {
-    if (!this.props.familyEvents) {
-      return <h1>loading</h1>;
+    let events;
+    if (!this.state.events.length) {
+      events = this.mapToCalendar(this.props.familyEvents);
     }
-    console.log(this.props.familyEvents);
-    let events = this.mapToCalendar(this.props.familyEvents);
-    console.log(events);
+    console.log(this.state);
     return (
       <div>
         <div className="CalendarComponent">
@@ -140,18 +203,24 @@ class CalendarComponent extends Component {
             localizer={localizer}
             defaultDate={new Date()}
             defaultView="month"
-            events={events}
+            events={this.state.events.length ? this.state.events : events}
             components={{
-              event:Event
+              event: Event
             }}
           />
         </div>
-        <div>
+        {this.state.showForm ? (
           <AddEvent
+            toggleForm={this.toggleForm}
             inputHandler={this.inputHandler}
             addEventHandler={this.addEventHandler}
+            setStart={this.setStart}
+            setEnd={this.setEnd}
+            state={this.state}
           />
-        </div>
+        ) : (
+          <button onClick={this.toggleForm}>New Event</button>
+        )}
       </div>
     );
   }

@@ -45,31 +45,10 @@ server.get("/", (req, res) => {
 server.use('/event', routeMaker('scheduledEvent', ['scheduledEvent_name', 'eventStart', 'eventEnd', 'eventTypeID', 'locationID','familyID'],db, 'scheduled event'))
 server.use('/profile', routeMaker('user',['phone', 'familyID', 'userName', 'email','isAdmin'],db, 'profile' ))
 server.use('/family', routeMaker('family', ['family_name'], db, 'family'))
+server.use('/location', routeMaker('location', ['location_name', 'familyID', 'address'], db, 'location'))
+server.use('/eventtype', routeMaker('eventType', ['eventType_name', 'familyID' ], db, 'event type'))
 
 
-server.post("/createevent", async (req, res) => {
-  const {
-    familyID,
-    eventTypeID,
-    locationID,
-    userID,
-    timeDate,
-    scheduledEvent_name
-  } = req.body;
-  if (!scheduledEvent_name && !eventTypeID && !timeDate) {
-    res.status(400).json({
-      error: "Please Provide a Event Description and Location Information"
-    });
-  }
-  try {
-    let id = await db("scheduledEvent").insert(req.body);
-    id = id[0];
-    const event = await db("scheduledEvent").where({ id });
-    res.status(201).json(event);
-  } catch (err) {
-    res.status(500).json({ error: "could not add event" });
-  }
-});
 getState(server, db);
 paymentApi(server);
 
