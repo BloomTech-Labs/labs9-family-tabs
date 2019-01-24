@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import Navigation from "./Components/Navigation";
 import ParentHome from "./Components/ParentHome";
 import LandingPage from "./Components/LandingPage";
 import Notifications from "./Components/Notifications";
@@ -13,6 +12,7 @@ import VerifyProfile from "./Components/VerifyProfile";
 import AddEvent from "./Components/AddEvent";
 import styled from "styled-components";
 import SignUp from "./Components/SignUp";
+import NavBurger from "./Components/NavBurger";
 
 const AppStyles = styled.div`
   border: 2px solid orange; 
@@ -41,7 +41,7 @@ class App extends Component {
         <div>
           <PrivateRoute path='/verify' component={VerifyProfile}></PrivateRoute>
           
-          <PrivateRoute path="/home" component={Navigation} />
+          <PrivateRoute path="/home" component={NavBurger} />
           <AppStyles>
             <h1>Family Tabs. Keep tabs on the whole family.</h1>
             <PublicRoute exact path="/" component={LandingPage} />
