@@ -13,6 +13,7 @@ import AddEvent from "./Components/AddEvent";
 import styled from "styled-components";
 import SignUp from "./Components/SignUp";
 import NavBurger from "./Components/NavBurger";
+import FTLogo3 from './Components/images/FTLogo3.jpg';
 
 const AppStyles = styled.div`
   border: 2px solid orange; 
@@ -21,6 +22,7 @@ const AppStyles = styled.div`
   text-align: center;
   max-width: 1000px;
   height: 900px;
+  background-color: #2da9d2;
 
   @media (max-width: 768px) {
     border: 2px solid blue; 
@@ -30,6 +32,11 @@ const AppStyles = styled.div`
   max-width: 1000px;
   height: 900px;
   }
+`;
+
+const LogoStyles = styled.img`
+  height: 10%;
+  width: 10%;
 `;
 
 class App extends Component {
@@ -43,7 +50,7 @@ class App extends Component {
           
           <PrivateRoute path="/home" component={NavBurger} />
           <AppStyles>
-            <h1>Family Tabs. Keep tabs on the whole family.</h1>
+            <LogoStyles src={FTLogo3} alt="FTLogo3"></LogoStyles>
             <PublicRoute exact path="/" component={LandingPage} />
             <PublicRoute exact path="/signup" component={SignUp} />
             <PrivateRoute exact path="/home/tabs" component={ParentHome} />
