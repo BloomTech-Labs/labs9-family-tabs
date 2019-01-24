@@ -52,7 +52,8 @@ const getState = (app,db) => {
           "user.familyID",
           "user.phone",
           "user.isAdmin",
-          "family.family_name"
+          "family.family_name",
+          "user.textCheckbox"
         )
         .first();
 

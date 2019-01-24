@@ -47,7 +47,7 @@ function NotificationCard(props) {
              <p>Event End: {props.pendingdata.eventEnd}</p>
              <p>Created By: {props.pendingdata.userName}</p>
              </Info>
-             <button onClick={props.clickHandler}>Approve</button>
+             <button onClick={props.clickHandler} id={props.pendingdata.id}>Approve</button>
              <button>Decline</button>
              <Link to="/home/tabs">View On Calendar</Link>
          </Card >

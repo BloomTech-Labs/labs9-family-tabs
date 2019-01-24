@@ -144,7 +144,8 @@ onSaveHandler = async (e) => {
             email: this.props.profile.email, 
             phone: this.props.profile.phone, 
             firstTimeFlag: 1, 
-            id: this.props.profile.id});
+            id: this.props.profile.id
+          });
         }
 
         return (
