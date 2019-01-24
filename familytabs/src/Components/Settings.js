@@ -32,7 +32,7 @@ export default class Settings extends Component {
   render() {
     if (this.props.profile === null) {
       return (
-        <div></div>
+        <div>Login Id not found. Cannot determine Admin status of user. Please contact support at familytabs@gmail.com.</div>
         );
     } else if (this.props.profile.isAdmin === 1) {
         return (
@@ -42,10 +42,18 @@ export default class Settings extends Component {
             <form>
               <BasicInfo>
                 <label>
-                  Email: 
+                  Name: 
                   <input 
                   type="text" 
                   name="name" 
+                  value={this.props.profile.userName} 
+                  />
+                </label>
+                <label>
+                  Email: 
+                  <input 
+                  type="text" 
+                  name="email" 
                   value={this.props.profile.email} 
                   />
                 </label>
@@ -53,7 +61,7 @@ export default class Settings extends Component {
                   Phone: 
                   <input 
                   type="text" 
-                  name="name" 
+                  name="phone" 
                   value={this.props.profile.phone} 
                   />
                 </label>
@@ -64,7 +72,6 @@ export default class Settings extends Component {
                   <input 
                   type="checkbox" 
                   name="name" 
-                  
                   />
                 </label>
               </NotificationOptions>
@@ -81,12 +88,28 @@ export default class Settings extends Component {
             <form>
             <BasicInfo>
                 <label>
+                  Name: 
+                  <input 
+                  type="text" 
+                  name="name" 
+                  value={this.props.profile.userName} 
+                  />
+                </label>
+                <label>
                   Email: 
-                  <input type="text" name="name" value={this.props.profile.email} />
+                  <input 
+                  type="text" 
+                  name="email" 
+                  value={this.props.profile.email} 
+                  />
                 </label>
                 <label>
                   Phone: 
-                  <input type="text" name="name" value={this.props.profile.phone} />
+                  <input 
+                  type="text" 
+                  name="phone" 
+                  value={this.props.profile.phone} 
+                  />
                 </label>
               </BasicInfo>
                 <button>Save</button>
