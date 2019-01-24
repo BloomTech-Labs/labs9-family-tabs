@@ -54,9 +54,14 @@ export default class Notifications extends Component {
 
 
     clickHandler = (e) => { 
+      console.log("TARGET ID",e.target.id)
       e.preventDefault()
-      const id = this.state.eventdata
-      axios.put(`${process.env.REACT_APP_API_URL}/event/edit/${id}`)
+      const id = e.target.id
+      let reqBody = {
+        approved: 1,
+      }
+
+      axios.put(`${process.env.REACT_APP_API_URL}/event/edit/${id}`, reqBody)
       .then(resp => console.log(resp))
       
       .catch( error => {

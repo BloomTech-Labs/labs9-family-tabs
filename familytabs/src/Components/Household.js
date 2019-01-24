@@ -8,6 +8,24 @@ const CardList = styled.div`
   flex-wrap: wrap;
 `;
 
+const Buttons = styled.button`
+    border: 4px solid orange;
+    background-color: skyblue;
+    font-family: 'Lato', sans-serif;
+    display: flex;
+    align-items: center;
+    color: white;
+    font-weight: 300;
+    border: 1px solid #86AEB1;
+    width: 100%;
+    height: 60px;
+    padding-left: 15px;
+    border-radius: 0.1rem;
+    text-decoration: none;
+    font-size: 16px;
+`;
+
+
 export default class Household extends Component {
 
 
@@ -27,6 +45,7 @@ render() {
           
         ))}   
 </CardList>
+<Buttons onClick={this.props.auth.logout}>Log out</Buttons>
     </div>
   )
 }

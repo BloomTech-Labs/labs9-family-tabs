@@ -31,23 +31,6 @@ const Links = styled(Link)`
     text-decoration: none;
 `;
 
-const Buttons = styled.button`
-    border: 4px solid orange;
-    background-color: skyblue;
-    font-family: 'Lato', sans-serif;
-    display: flex;
-    align-items: center;
-    color: white;
-    font-weight: 300;
-    border: 1px solid #86AEB1;
-    width: 100%;
-    height: 60px;
-    padding-left: 15px;
-    border-radius: 0.1rem;
-    text-decoration: none;
-    font-size: 16px;
-`;
-
 const NavButtonsContainer = styled.div`
     margin: 0.5rem 0 0 0;
     flex-direction: column;
@@ -77,8 +60,6 @@ class Navigation extends React.Component {
             <Links to='/home/settings'>Settings</Links>
             <Links to='/home/household'>Household</Links>
             <Links to='/home/billing' className="nav_button">Billing</Links>
-
-            {/* <Buttons onClick={this.props.auth.logout}>Log out</Buttons> */}
         </NavButtonsContainer>
        </NavBarStyling>
     )
