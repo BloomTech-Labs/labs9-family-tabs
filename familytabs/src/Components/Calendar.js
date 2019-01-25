@@ -51,11 +51,6 @@ class CalendarComponent extends Component {
     super(props);
     this.state = {
       events: [],
-      scheduledEvent_name: "",
-      eventStart: null,
-      eventEnd: null,
-      eventTypeID: null,
-      locationID: null,
       eventTypes: [],
       locations: [],
       showForm: false
@@ -65,10 +60,17 @@ class CalendarComponent extends Component {
   componentDidMount() {
     this.loadState();
   }
+
+  addOption = (name, option) =>{
+    this.setState({[`${name}s`]: [...this.state[`${name}s`], option] })
+  }
+
   toggleForm = () => {
     this.loadState();
     this.setState({ showForm: !this.state.showForm });
   };
+
+
   loadState = async () => {
     const { familyEvents, familyID } = this.props;
     let { locations, eventTypes, events } = this.state;
@@ -102,24 +104,8 @@ class CalendarComponent extends Component {
         userName
       } = event;
 
-      let starter = new Date(
-        moment(
-          `${eventStart.split(", ")[0]} ${eventStart
-            .split(", ")[1]
-            .slice(0, 5)
-            .split(":")
-            .join("")}`
-        )
-      );
-      let ender = new Date(
-        moment(
-          `${eventStart.split(", ")[0]} ${eventStart
-            .split(", ")[1]
-            .slice(0, 5)
-            .split(":")
-            .join("")}`
-        ).add(3, "hours")
-      );
+      let starter = moment(eventStart, "YYYYMMDD hh:mm a");
+      let ender = moment(eventStart, "YYYYMMDD hh:mm a").add(3, "hours");
       return {
         title: scheduledEvent_name,
         start: starter,
@@ -130,60 +116,21 @@ class CalendarComponent extends Component {
       };
     });
 
-  setStart = e => {
-    this.setState({ eventStart: e });
-  };
-
-  setEnd = e => {
-    this.setState({ eventEnd: e });
-  };
-
-  inputHandler = e => {
-    this.setState({ [e.target.name]: e.target.value });
-  };
-
-  addEventHandler = async e => {
-    e.preventDefault();
-    const {
-      scheduledEvent_name,
-      eventStart,
-      eventEnd,
-      // eventTypeID,
-      // locationID
-      locations,
-      events
-    } = this.state;
-    if (
-      !scheduledEvent_name ||
-      !eventStart ||
-      !eventEnd 
-      //|| !eventTypeID ||
-      // !locationID
-    ) {
-      return;
-    }
-
-    let newEvent = {
-      scheduledEvent_name,
-      eventStart,
-      eventEnd,
-      eventTypeID: 1,
-      locationID: 1,
-      familyID: this.props.familyID,
-      createdByAdmin: this.props.profile.isAdmin ? 1 : 0
-    };
-    this.setState({
-      events: [...this.state.events, newEvent],
-      title: "",
-      dateStart: "",
-      dateEnd: ""
-    });
+  addToCalendar = async eventData => {
     try {
-      await axios.post(
+      let addedEvent = await axios.post(
         `${process.env.REACT_APP_API_URL}/event/create`,
-        newEvent
+        eventData
       );
-      this.toggleForm();
+      addedEvent = {
+        ...addedEvent.data[0],
+        eventStart: moment(addedEvent.data[0].eventStart, "YYYYMMDD hh:mm a"),
+        eventEnd: moment(addedEvent.data[0].eventEnd, "YYYYMMDD hh:mm a")
+      };
+      console.log(addedEvent)
+      this.setState({events:[...this.state.events, addedEvent]})
+      
+      return addedEvent;
     } catch (err) {
       console.log(err);
     }
@@ -212,11 +159,11 @@ class CalendarComponent extends Component {
         {this.state.showForm ? (
           <AddEvent
             toggleForm={this.toggleForm}
-            inputHandler={this.inputHandler}
-            addEventHandler={this.addEventHandler}
-            setStart={this.setStart}
-            setEnd={this.setEnd}
+            addToCalendar={this.addToCalendar}
             state={this.state}
+            addOption={this.addOption}
+            familyID={this.props.familyID}
+            isAdmin={this.props.profile.isAdmin}
           />
         ) : (
           <button onClick={this.toggleForm}>New Event</button>

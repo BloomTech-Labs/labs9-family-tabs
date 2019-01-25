@@ -7,7 +7,7 @@ const routeMaker = (resource, requiredSchema, db, string) => {
       const items = await db(resource);
       res.status(200).json(items);
     } catch (err) {
-      res.status(500).send(`Server error. ${string} could not be found.`);
+      res.status(500).json({error:`Server error. ${string} could not be found.`});
     }
   });
 
@@ -20,7 +20,7 @@ const routeMaker = (resource, requiredSchema, db, string) => {
       } catch (err) {
         res
           .status(500)
-          .send(`Server error. Could not find ${string}s for family.`);
+          .json({error:`Server error. Could not find ${string}s for family.`});
       }
     });
   }
@@ -34,8 +34,8 @@ const routeMaker = (resource, requiredSchema, db, string) => {
     try {
       let id = await db(resource).insert(body);
       id = id[0];
-      const event = await db(resource).where({ id });
-      res.status(201).json(event);
+      const newItem = await db(resource).where({ id });
+      res.status(201).json(newItem);
     } catch (err) {
       console.log(err)
       res.status(500).json({ error: `could not add ${string}` });
