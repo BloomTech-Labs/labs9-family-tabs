@@ -31,13 +31,14 @@ const routeMaker = (resource, requiredSchema, db, string) => {
         error: "Please Provide all required fields."
       });
     }
+    
     try {
       let id = await db(resource).insert(body);
       id = id[0];
       const event = await db(resource).where({ id });
       res.status(201).json(event);
     } catch (err) {
-      console.log(err)
+      console.log("this is running")
       res.status(500).json({ error: `could not add ${string}` });
     }
   });
