@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import styled from 'styled-components';
 import axios from 'axios';
+import { text } from 'body-parser';
 
 const FormContainer = styled.div`
  border: 1px solid  black;
@@ -43,16 +44,17 @@ export default class Settings extends Component {
   }
 
 inputHandler = (e) => {
-  this.setState({ [e.target.name]: e.target.value });
+  this.setState({ [e.target.name]: e.target.value, textCheckbox: e.target.checked});
 }
 
 onSaveHandler = async (e) => {
   e.preventDefault(); 
-  const { userName, email, phone, id} = this.state; 
+  const { userName, email, phone, id, textCheckbox} = this.state; 
   const reqBody = {
     userName: userName,
     email: email,
     phone: phone,
+    textCheckbox: textCheckbox,
   }
 
   try {
@@ -76,13 +78,20 @@ onSaveHandler = async (e) => {
         );
     } else if (this.props.profile.isAdmin === 1) {
         if(this.state.userName === '' && this.state.firstTimeFlag === 0) {
+          let textCheckbox;
+          if(this.props.profile.textCheckbox === 1) {
+           textCheckbox = true; 
+          } else {
+            textCheckbox = false;
+          }
+
           this.setState({
             userName: this.props.profile.userName, 
             email: this.props.profile.email, 
             phone: this.props.profile.phone, 
             firstTimeFlag: 1, 
             id: this.props.profile.id,
-            textCheckbox: this.props.profile.textCheckbox,
+            textCheckbox: textCheckbox,
           });
         }
 
@@ -127,6 +136,7 @@ onSaveHandler = async (e) => {
                   type="checkbox" 
                   name="textCheckbox" 
                   onChange={this.inputHandler}
+                  checked={this.state.textCheckbox}
                   value={this.state.textCheckbox}
                   />
                 </label>
