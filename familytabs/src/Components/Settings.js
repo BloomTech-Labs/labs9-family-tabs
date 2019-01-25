@@ -115,8 +115,7 @@ onSaveHandler = async (e) => {
                   <input 
                   type="text" 
                   name="email" 
-                  onChange={this.inputHandler}
-                  value={this.state.email} 
+                  value={this.props.profile.email} 
                   />
                 </label>
                 <label>
@@ -178,8 +177,7 @@ onSaveHandler = async (e) => {
                   <input 
                   type="text" 
                   name="email" 
-                  onChange={this.inputHandler}
-                  value={this.state.email} 
+                  value={this.props.profile.email} 
                   />
                 </label>
                 <label>
