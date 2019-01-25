@@ -19,7 +19,7 @@ const client = require("twilio")(
   process.env.TWILO_AUTH_TOKEN
 );
 
-//cron();
+cron();
 // ========= TWILIO =========//
 
 server.post("/text", (req, res) => {
