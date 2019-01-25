@@ -55,8 +55,8 @@ const job = new CronJob("*/10 * * * * *", function() {
       console.log(err);
     });
 });
-//console.log("After job instantiation");
-job.start();
+
+  job.start();
 }
 
 module.exports = cron
