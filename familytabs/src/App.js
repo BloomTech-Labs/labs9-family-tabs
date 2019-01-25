@@ -45,7 +45,7 @@ const MediaStyles = styled.div`
 
 const AppStyles = styled.div`
   border: 2px solid orange; 
-  /* margin-left: 300px; */
+  margin-left: 30px; 
   font-family: 'Lato', sans-serif;
   text-align: center;
   max-width: 1000px;
