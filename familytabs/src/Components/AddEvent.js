@@ -2,7 +2,12 @@ import React from "react";
 import DatePicker from "react-datepicker";
 import styled from "styled-components";
 import CreatableAdvanced from './CreatableAdvanced'
+import Select from 'react-select';
+import moment from "moment";
+import axios from 'axios'
 import "react-datepicker/dist/react-datepicker.css";
+
+
 
 const StyledFormWrapper = styled.div`
   height: 100vh;
@@ -31,9 +36,15 @@ class AddEvent extends React.Component {
     eventStart: null,
     eventEnd: null,
     eventTypeID: null,
-    locationID: null
+    locationID: null,
+    participants:[]
   };
 
+  participantToOptions = options => options.map(option=> {return{ value:option.id, label: option.userName}})
+
+  onInputChange = (inputValue, { action }) => {
+     this.setState({ participants:inputValue });
+  };
   setStart = e => {
     this.setState({ eventStart: e });
   };
@@ -61,7 +72,8 @@ class AddEvent extends React.Component {
       eventStart,
       eventEnd,
       eventTypeID,
-      locationID
+      locationID,
+      participants
     } = this.state;
     if (
       !scheduledEvent_name ||
@@ -74,14 +86,18 @@ class AddEvent extends React.Component {
     }
     let newEvent = {
       scheduledEvent_name,
-      eventStart,
-      eventEnd,
+      eventStart: moment(eventStart).format("YYYYMMDD hh:mm a"),
+      eventEnd : moment(eventEnd).format("YYYYMMDD hh:mm a"),
       eventTypeID,
       locationID,
       familyID: this.props.familyID,
       createdByAdmin: this.props.isAdmin ? 1 : 0
     };
-    await this.props.addToCalendar(newEvent)
+    try{
+      let eventResponse = await this.props.addToCalendar(newEvent)
+      console.log(eventResponse)
+    let {id, familyID} =eventResponse
+     await participants.forEach(async x => await axios.post(`${process.env.REACT_APP_API_URL}/eventwithusers/create`, {familyID, userID:x.value, scheduledEventID:id}))
     this.setState({
       scheduledEvent_name: "",
       eventStart: null,
@@ -89,6 +105,12 @@ class AddEvent extends React.Component {
       eventTypeID: null,
       locationID: null
     });
+    this.props.loadGlobal(familyID)
+    this.props.toggleForm()
+    }catch(err){
+      console.log(err)
+    }
+    
   };
  
   render() {
@@ -98,8 +120,10 @@ class AddEvent extends React.Component {
       eventTypeID,
       eventStart,
       locationID,
-      eventEnd
+      eventEnd,
+      participants
     } = this.state;
+    console.log(participants)
     return (
       <StyledFormWrapper>
         <form onSubmit={this.addEventHandler}>
@@ -113,7 +137,7 @@ class AddEvent extends React.Component {
 
           <DatePicker
             name="eventStart"
-            dateFormat="yyyyMMdd h:mm"
+            dateFormat="MMMM d, yyyy h:mm aa"
             selected={eventStart}
             selectsStart
             showTimeSelect
@@ -137,21 +161,24 @@ class AddEvent extends React.Component {
             popperPlacement="right-start"
             popperClassName="popper"
             timeFormat="HH:mm"
-            dateFormat="yyyyMMdd h:mm"
+            dateFormat="MMMM d, yyyy h:mm aa"
             startDate={eventStart}
             endDate={eventEnd}
             onChange={this.setEnd}
           />
           <CreatableAdvanced
           name='eventType'
+          placeholder='Event type'
           options = {eventTypes}
           value = {eventTypeID}
           setValue= {this.setEventID}
           addOption={this.props.addOption}
           familyID={this.props.familyID}
           ></CreatableAdvanced>
+
           <CreatableAdvanced
           name='location'
+          placeholder='Location'
           options = {locations}
           value = {locationID}
           setValue= {this.setLocationID}
@@ -159,21 +186,20 @@ class AddEvent extends React.Component {
           familyID={this.props.familyID}
           ></CreatableAdvanced>
 
-          {/* <select onChange={this.inputHandler} name="Location">
-            {locations.map(x => (
-              <option value={x.id} key={x.id}>
-                {x.location_name}
-              </option>
-            ))}
-          </select>
 
-          <select name="Event Type" onChange={this.props.inputHandler}>
-            {eventTypes.map(x => (
-              <option value={x.id} key={x.id}>
-                {x.eventType_name}
-              </option>
-            ))}
-          </select> */}
+
+
+  <Select
+  placeholder='Participants'
+    name='participants'
+    defaultValue={null}
+    isMulti
+    options={this.participantToOptions(this.props.participants)}
+    value={this.state.participants}
+    onChange={this.onInputChange}
+  />
+
+
 
           <button type='submit'>Add Event</button>
           <button onClick={this.props.toggleForm}>Exit</button>

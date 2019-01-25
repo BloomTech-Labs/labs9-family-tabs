@@ -63,6 +63,10 @@ class CalendarComponent extends Component {
 
   toggleForm = () => {
     this.loadState();
+    const {familyEvents}=this.props
+    if(familyEvents > this.state.events){
+      this.setState({events : this.mapToCalendar(familyEvents)})
+    }
     this.setState({ showForm: !this.state.showForm });
   };
 
@@ -137,6 +141,9 @@ class CalendarComponent extends Component {
     if (!this.state.events.length) {
       events = this.mapToCalendar(this.props.familyEvents);
     }
+    if(this.state.events>events){
+      console.log('why')
+    }
     console.log(this.state);
     return (
       <div>
@@ -160,6 +167,8 @@ class CalendarComponent extends Component {
             addOption={this.addOption}
             familyID={this.props.familyID}
             isAdmin={this.props.profile.isAdmin}
+            participants={this.props.family}
+            loadGlobal={this.props.loadState}
           />
         ) : (
           <button onClick={this.toggleForm}>New Event</button>
