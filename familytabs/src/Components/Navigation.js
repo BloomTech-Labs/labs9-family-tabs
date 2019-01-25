@@ -12,7 +12,7 @@ const NavBarStyling = styled.div`
     background-color: skyblue;
     border: 1px solid rgb(122, 122, 122);
     border-radius: 0.1rem;
-    position: fixed;
+    /* position: fixed; */
     top: 0;
     height: 100%;
 `;
