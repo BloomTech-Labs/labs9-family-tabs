@@ -15,23 +15,42 @@ import SignUp from "./Components/SignUp";
 import NavBurger from "./Components/NavBurger";
 import FTLogo3 from './Components/images/FTLogo3.jpg';
 
+const MediaStyles = styled.div`
+@media (max-width: 1281px) {
+    background: palevioletred;
+  }
+  
+@media (min-width: 1025px) and (max-width: 1280px) {
+  background: salmon;
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  background: palegreen;
+}
+
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+  background: gray;
+}
+
+@media (min-width: 481px) and (max-width: 767px) {
+  background: bisque;
+  margin: auto;
+}
+
+
+@media (min-width: 320px) and (max-width: 480px) {
+  background: lightseagreen;
+}
+`;
+
 const AppStyles = styled.div`
   border: 2px solid orange; 
-  margin-left: 300px;
+  /* margin-left: 300px; */
   font-family: 'Lato', sans-serif;
   text-align: center;
   max-width: 1000px;
   height: 900px;
   background-color: #2da9d2;
-
-  @media (max-width: 768px) {
-    border: 2px solid blue; 
-  margin-left: 300px;
-  font-family: 'Lato', sans-serif;
-  text-align: center;
-  max-width: 1000px;
-  height: 900px;
-  }
 `;
 
 const LogoStyles = styled.img`
@@ -45,7 +64,7 @@ class App extends Component {
 
       // start comment out
       
-        <div>
+        <MediaStyles>
           <PrivateRoute path='/verify' component={VerifyProfile}></PrivateRoute>
           
           <PrivateRoute path="/home" component={NavBurger} />
@@ -66,7 +85,7 @@ class App extends Component {
             <PublicRoute path="/callback" component={Callback} />
             
           </AppStyles>
-        </div>
+        </MediaStyles>
         //end comment out
 
   
