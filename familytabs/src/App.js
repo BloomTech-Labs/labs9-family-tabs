@@ -48,7 +48,8 @@ const AppStyles = styled.div`
   text-align: center;
   max-width: 1000px;
   height: 900px;
-  background-color: #2da9d2;
+  background-color: #242943;
+
 `;
 
 const LogoStyles = styled.img`
