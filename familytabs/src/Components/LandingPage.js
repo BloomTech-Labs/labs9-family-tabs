@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {Link} from 'react-router-dom'; 
 import InfoCarousel from './InfoCarousel';
 import styled from "styled-components";
+import { Button } from "@blueprintjs/core";
 
 
 
@@ -18,6 +19,10 @@ const  MainElements = styled.div`
   opacity: 100%;
   color: #ffffff;
 
+`;
+
+const StyledButton = styled(Button)`
+    background: transparent;
 `;
 
 
@@ -40,8 +45,8 @@ class LandingPage extends Component {
               <h1>Family Tabs Landing Page</h1>
               <InfoCarousel />
               <Link to="/signup">Sign Up for Family Tabs!</Link>
-              <button onClick={this.props.auth.login}>Log in</button>
               </MainElements>
+              <StyledButton rightIcon="arrow-right" large={true} onClick={this.props.auth.login}>Log in</StyledButton>
         </div>
       )
     }
