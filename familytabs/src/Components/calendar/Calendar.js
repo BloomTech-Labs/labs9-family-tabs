@@ -100,12 +100,12 @@ class CalendarComponent extends Component {
         location_name,
         eventType_name,
         eventStart,
-        //eventEnd,
+        eventEnd,
         userName
       } = event;
 
-      let starter = moment(eventStart, "YYYYMMDD hh:mm a");
-      let ender = moment(eventStart, "YYYYMMDD hh:mm a").add(3, "hours");
+      let starter = new Date(moment(eventStart, "YYYYMMDD hh:mm a"));
+      let ender = new Date(moment(eventEnd, "YYYYMMDD hh:mm a"));
       return {
         title: scheduledEvent_name,
         start: starter,
@@ -141,10 +141,6 @@ class CalendarComponent extends Component {
     if (!this.state.events.length) {
       events = this.mapToCalendar(this.props.familyEvents);
     }
-    if(this.state.events>events){
-      console.log('why')
-    }
-    console.log(this.state);
     return (
       <div>
         <div className="CalendarComponent">
@@ -169,6 +165,7 @@ class CalendarComponent extends Component {
             isAdmin={this.props.profile.isAdmin}
             participants={this.props.family}
             loadGlobal={this.props.loadState}
+            history={this.props.history}
           />
         ) : (
           <button onClick={this.toggleForm}>New Event</button>
@@ -176,6 +173,8 @@ class CalendarComponent extends Component {
       </div>
     );
   }
+
+
 }
 
 export default CalendarComponent;

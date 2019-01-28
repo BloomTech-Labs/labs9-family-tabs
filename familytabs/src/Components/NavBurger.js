@@ -25,7 +25,7 @@ class NavBurger extends Component {
       <CheeseburgerMenu
         isOpen={this.state.menuOpen}
         closeCallback={this.closeMenu.bind(this)}>
-        <Navigation closeCallback={this.closeMenu.bind(this)}/>
+        <Navigation auth={this.props.auth} closeCallback={this.closeMenu.bind(this)}/>
       </CheeseburgerMenu>
       
       <HamburgerMenu
