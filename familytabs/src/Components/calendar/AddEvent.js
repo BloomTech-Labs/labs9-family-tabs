@@ -80,7 +80,6 @@ class AddEvent extends React.Component {
       !eventStart ||
       !eventEnd
       || !eventTypeID ||!locationID
-       
     ) {
       return;
     }
@@ -106,7 +105,6 @@ class AddEvent extends React.Component {
       locationID: null
     });
     await this.props.loadGlobal(familyID)
-    this.props.history.push('/home/tabs')
     this.props.toggleForm()
     }catch(err){
       console.log(err)
@@ -115,15 +113,16 @@ class AddEvent extends React.Component {
   };
  
   render() {
-    const { locations, eventTypes } = this.props.state;
+    const { locations, eventTypes, addOption, familyID} = this.props.state;
     const {
       scheduledEvent_name,
       eventTypeID,
       eventStart,
       locationID,
       eventEnd,
-      //participants
+      participants
     } = this.state;
+    console.log(participants)
     return (
       <StyledFormWrapper>
         <form onSubmit={this.addEventHandler}>
@@ -174,8 +173,8 @@ class AddEvent extends React.Component {
           options = {eventTypes}
           value = {eventTypeID}
           setValue= {this.setEventID}
-          addOption={this.props.addOption}
-          familyID={this.props.familyID}
+          addOption={addOption}
+          familyID={familyID}
           ></CreatableAdvanced>
 
           <CreatableAdvanced
@@ -184,8 +183,8 @@ class AddEvent extends React.Component {
           options = {locations}
           value = {locationID}
           setValue= {this.setLocationID}
-          addOption={this.props.addOption}
-          familyID={this.props.familyID}
+          addOption={addOption}
+          familyID={familyID}
           ></CreatableAdvanced>
 
 
@@ -196,8 +195,8 @@ class AddEvent extends React.Component {
     name='participants'
     defaultValue={null}
     isMulti
-    options={this.participantToOptions(this.props.participants)}
-    value={this.state.participants}
+    options={this.participantToOptions(this.props.family)}
+    value={participants}
     onChange={this.onInputChange}
   />
 

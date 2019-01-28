@@ -2,9 +2,10 @@ import React, { Component } from "react";
 import Calendar from "react-big-calendar";
 import moment from "moment";
 import styled from "styled-components";
+import axios from "axios";
+import Select from "react-select";
 import AddEvent from "./AddEvent";
 import "react-big-calendar/lib/css/react-big-calendar.css";
-import axios from "axios";
 
 const localizer = Calendar.momentLocalizer(moment);
 const StyledCalendar = styled(Calendar)`
@@ -49,6 +50,7 @@ class CalendarComponent extends Component {
       events: [],
       eventTypes: [],
       locations: [],
+      participants:[],
       showForm: false
     };
   }
@@ -57,19 +59,29 @@ class CalendarComponent extends Component {
     this.loadState();
   }
 
-  addOption = (name, option) =>{
-    this.setState({[`${name}s`]: [...this.state[`${name}s`], option] })
-  }
+  participantToOptions = options =>
+    options
+      .map(option => {
+        return { value: option.id, label: option.userName };
+      })
+      
+
+  onInputChange = (inputValue, { action }) => {
+    this.setState({ participants: inputValue });
+  };
+
+  addOption = (name, option) => {
+    this.setState({ [`${name}s`]: [...this.state[`${name}s`], option] });
+  };
 
   toggleForm = () => {
     this.loadState();
-    const {familyEvents}=this.props
-    if(familyEvents > this.state.events){
-      this.setState({events : this.mapToCalendar(familyEvents)})
+    const { familyEvents } = this.props;
+    if (familyEvents > this.state.events) {
+      this.setState({ events: this.mapToCalendar(familyEvents) });
     }
     this.setState({ showForm: !this.state.showForm });
   };
-
 
   loadState = async () => {
     const { familyEvents, familyID } = this.props;
@@ -86,10 +98,8 @@ class CalendarComponent extends Component {
       );
       this.setState({ eventTypes: eventTypes.data });
     }
-    if (!events.length) {
-      events = this.mapToCalendar(familyEvents);
-      this.setState({ events });
-    }
+    events = this.mapToCalendar(familyEvents);
+    this.setState({ events });
   };
 
   mapToCalendar = events =>
@@ -101,19 +111,28 @@ class CalendarComponent extends Component {
         eventType_name,
         eventStart,
         eventEnd,
-        userName
+        userName,
+        userID
       } = event;
 
-      let starter = new Date(moment(eventStart, "YYYYMMDD hh:mm a"));
-      let ender = new Date(moment(eventEnd, "YYYYMMDD hh:mm a"));
+      let startTime = new Date(moment(eventStart, "YYYYMMDD hh:mm a"));
+      let endTime = new Date(moment(eventEnd, "YYYYMMDD hh:mm a"));
       return {
         title: scheduledEvent_name,
-        start: starter,
-        end: ender,
+        start: startTime,
+        end: endTime,
         participants: `${userName.join(", ")}`,
-        particulars: `${eventType_name} event at ${location_name} ${address}`
+        particulars: `${eventType_name} event at ${location_name} ${address}`,
+        userID
         //allDay:true
       };
+    })
+    .filter(event=>{
+      if(!this.state.participants.length){
+        return true
+      }
+      let currentFamilyIDs = this.state.participants.map(person => person.value)
+      return currentFamilyIDs.some(id => event.userID.includes(id))
     });
 
   addToCalendar = async eventData => {
@@ -127,9 +146,7 @@ class CalendarComponent extends Component {
         eventStart: moment(addedEvent.data[0].eventStart, "YYYYMMDD hh:mm a"),
         eventEnd: moment(addedEvent.data[0].eventEnd, "YYYYMMDD hh:mm a")
       };
-      console.log(addedEvent)
-      this.setState({events:[...this.state.events, addedEvent]})
-      
+      this.setState({ events: [...this.state.events, addedEvent] });
       return addedEvent;
     } catch (err) {
       console.log(err);
@@ -144,6 +161,15 @@ class CalendarComponent extends Component {
     return (
       <div>
         <div className="CalendarComponent">
+          <Select
+            placeholder="Filter by Family Members"
+            name="participants"
+            defaultValue={this.state.participants}
+            isMulti
+            options={this.participantToOptions(this.props.family)}
+            value={this.state.participants}
+            onChange={this.onInputChange}
+          />
           <StyledCalendar
             day={1}
             localizer={localizer}
@@ -163,7 +189,7 @@ class CalendarComponent extends Component {
             addOption={this.addOption}
             familyID={this.props.familyID}
             isAdmin={this.props.profile.isAdmin}
-            participants={this.props.family}
+            family={this.props.family}
             loadGlobal={this.props.loadState}
             history={this.props.history}
           />
@@ -173,8 +199,6 @@ class CalendarComponent extends Component {
       </div>
     );
   }
-
-
 }
 
 export default CalendarComponent;
