@@ -14,7 +14,7 @@ class InfoCarousel extends Component {
         return (
             <StyledCarousel  showArrows={true} >
                 <div>
-                    <img src ="https://www.thesprucepets.com/thmb/810a_HYIb2E8DxkedI6V-3gtkys=/450x0/filters:no_upscale():max_bytes(150000):strip_icc()/kitten-looking-at-camera-521981437-57d840213df78c583374be3b.jpg"/>
+                     <img src ="https://www.thesprucepets.com/thmb/810a_HYIb2E8DxkedI6V-3gtkys=/450x0/filters:no_upscale():max_bytes(150000):strip_icc()/kitten-looking-at-camera-521981437-57d840213df78c583374be3b.jpg"/>
                     <p className="legend">Legend 1</p>
                 </div>
                 <div>
