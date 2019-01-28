@@ -5,9 +5,10 @@ const condenseUsers = arr =>{
       let resultIndex = result.findIndex(x => x.id === cur.id)
       if (resultIndex >= 0){
         result[resultIndex].userName.push(cur.userName)
+        result[resultIndex].userID.push(cur.userID)
       }
       else{
-        result.push({...cur, userName: [cur.userName]})
+        result.push({...cur, userName: [cur.userName], userID:[cur.userID]})
       }
     }
     return result
@@ -115,6 +116,7 @@ const getState = (app,db) => {
         .select(
           "family.family_name",
           "user.userName",
+          "eventWithUsers.userID",
           "scheduledEvent.scheduledEvent_name",
           "scheduledEvent.eventStart",
           "scheduledEvent.eventEnd",
