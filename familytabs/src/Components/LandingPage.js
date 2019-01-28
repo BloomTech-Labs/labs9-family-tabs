@@ -9,7 +9,17 @@ const  LandingPageTop = styled.div`
   border: 2px solid red; 
   max-width: 100%;
   max-height: 100%;
+  opacity: 0.5;
+
 `;
+
+const  MainElements = styled.div`
+ 
+  opacity: 100%;
+  color: #ffffff;
+
+`;
+
 
 
 class LandingPage extends Component { 
@@ -24,11 +34,14 @@ class LandingPage extends Component {
       return (
         <div>
           <LandingPageTop>
+         
+          </LandingPageTop>
+          <MainElements>
               <h1>Family Tabs Landing Page</h1>
               <InfoCarousel />
               <Link to="/signup">Sign Up for Family Tabs!</Link>
               <button onClick={this.props.auth.login}>Log in</button>
-          </LandingPageTop>
+              </MainElements>
         </div>
       )
     }
