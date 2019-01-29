@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import {Link} from 'react-router-dom'; 
 import InfoCarousel from './InfoCarousel';
 import styled from "styled-components";
 import { Button, Colors} from "@blueprintjs/core";
-import SignUp from './SignUp';
+
 
 const MainContainer = styled.div`
 
