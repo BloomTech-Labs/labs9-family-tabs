@@ -9,7 +9,6 @@ const CardList = styled.div`
   flex-wrap: wrap;
 `;
 
-
 export default class Household extends Component {
   constructor() {
     super();
@@ -17,10 +16,14 @@ export default class Household extends Component {
       userName: "",
       phone: "",
       email: "",
-      isAdmin: 0,
-      showForm: false,
+      isAdmin: null,
+      showForm: false
     };
   }
+
+  onInputChange = (inputValue, { action }) => {
+    this.setState({ isAdmin: inputValue });
+  };
 
   toggleForm = () => {
     this.setState({ showForm: !this.state.showForm });
@@ -33,56 +36,69 @@ export default class Household extends Component {
   memberAdder = async e => {
     e.preventDefault();
     const { userName, phone, email, isAdmin } = this.state;
-    console.log("FAMILY ID", this.props.profile.familyID);
-
-    const reqBody = {
-      userName: userName,
-      phone: phone,
-      email: email,
-      isAdmin: isAdmin,
-      familyID: this.props.profile.familyID,
-      textCheckbox: 0
+    console.log(isAdmin.value)
+    const { familyID } = this.props;
+    const newProfile = {
+      userName,
+      phone,
+      email,
+      isAdmin: isAdmin.value,
+      familyID,
+      //textCheckbox: 0
     };
 
     try {
+      console.log(newProfile)
       let res = await axios.post(
         `${process.env.REACT_APP_API_URL}/profile/create`,
-        reqBody
+        newProfile
       );
       console.log(res);
+      this.props.loadState(familyID);
       this.setState({
-        editResult: `Your changes have been saved to your profile!`
-      });
+        userName: "",
+        phone: "",
+        email: "",
+        isAdmin: null,
+        showForm: false
+      })
     } catch (err) {
-      console.error("Axios is calling but getting error");
+      console.error(err);
     }
   };
 
   render() {
-    console.log("state", this.state);
-
     if (this.props.profile === null) {
-      return (
-        <div>
-          Loading...
-        </div>
-      );
-    } 
-      return (
-        <div>
-          <div>
-            <h1>Household</h1>
-          </div>
-
-          <CardList>
-            {this.props.family.map(familydata => (
-              <HouseholdFamily key={familydata.id} familydata={familydata} />
-            ))}
-          </CardList>
-            {this.props.profile.isAdmin ? <button onClick={this.toggleForm}>+</button>:''}
-              {this.state.showForm ? <HouseholdModal toggleForm={this.toggleForm}></HouseholdModal>: ''}
-        </div>
-      );
+      return <div>Loading...</div>;
     }
-  }
+    return (
+      <div>
+        <div>
+          <h1>Household</h1>
+        </div>
 
+        <CardList>
+          {this.props.family.map(familydata => (
+            <HouseholdFamily key={familydata.id} familydata={familydata} />
+          ))}
+        </CardList>
+        {this.props.profile.isAdmin ? (
+          <button onClick={this.toggleForm}>+</button>
+        ) : (
+          ""
+        )}
+        {this.state.showForm ? (
+          <HouseholdModal
+            toggleForm={this.toggleForm}
+            inputHandler={this.inputHandler}
+            onInputChange={this.onInputChange}
+            {...this.state}
+            memberAdder={this.memberAdder}
+          />
+        ) : (
+          ""
+        )}
+      </div>
+    );
+  }
+}
