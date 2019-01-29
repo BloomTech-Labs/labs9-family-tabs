@@ -1,5 +1,6 @@
-import React, { Component } from 'react'
-import styled from 'styled-components'
+import React, { Component } from "react";
+import Select from "react-select";
+import styled from "styled-components";
 
 const StyledFormWrapper = styled.div`
   height: 100vh;
@@ -22,60 +23,59 @@ const StyledFormWrapper = styled.div`
   }
 `;
 
-
 export default class HouseholdModal extends Component {
+  state = {
+    adminOptions: [
+      {
+        value: true,
+        label:
+          "Yes. Reminder, additional parent accounts only available with subscription"
+      },
+      { value: false, label: "No." }
+    ]
+  };
   render() {
     return (
       <StyledFormWrapper>
-          <form onSubmit={this.memberAdder}>
-              <label>
-                Name:
-                <input
-                  type="text"
-                  name="userName"
-                  placeholder="Name"
-                //   onChange={this.inputHandler}
-                //   value={this.state.userName}
-                />
-              </label>
+        <form onSubmit={this.props.memberAdder}>
+          <input
+            type="text"
+            name="userName"
+            placeholder="Name"
+            onChange={this.props.inputHandler}
+            value={this.props.userName}
+          />
 
-              <label>
-                Phone:
-                <input
-                  type="text"
-                  name="phone"
-                  placeholder="Phone"
-                //   onChange={this.inputHandler}
-                //   value={this.state.phone}
-                />
-              </label>
+          <input
+            type="text"
+            name="phone"
+            placeholder="Phone"
+           onChange={this.props.inputHandler}
+           value={this.props.phone}
+          />
 
-              <label>
-                Email:
-                <input
-                  type="text"
-                  name="email"
-                  placeholder="Email"
-                //   onChange={this.inputHandler}
-                //   value={this.state.email}
-                />
-              </label>
+          <input
+            type="email"
+            name="email"
+            placeholder="Email"
+            onChange={this.props.inputHandler}
+            value={this.props.email}
+          />
 
-              <label>
-                Is Admin? (1 for yes, 0 for no)
-                <input
-                  type="text"
-                  name="isAdmin"
-                //   onChange={this.inputHandler}
-                //   value={this.state.isAdmin}
-                />
-              </label>
+          <Select
+            placeholder="Parent Account?"
+            name="isAdmin"
+            defaultValue={null}
 
-              <button>Add Household Member</button>
-            </form>
+            options={this.state.adminOptions}
+            value={this.props.isAdmin}
+            onChange={this.props.onInputChange}
+          />
+
+          <button>Add Household Member</button>
+        </form>
         <button onClick={this.props.toggleForm}>Exit</button>
       </StyledFormWrapper>
-    )
+    );
   }
 }
-

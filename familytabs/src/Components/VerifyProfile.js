@@ -75,7 +75,6 @@ class VerifyProfile extends Component {
   }
 
   render() {
-    console.log(this.props.family.length)
     return (
       <>
             {this.props.profile ? (

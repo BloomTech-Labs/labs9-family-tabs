@@ -19,6 +19,9 @@ const StyledCalendar = styled(Calendar)`
   .rbc-day-bg {
     background: white;
   }
+  .rbc-row-content{
+    z-index:0;
+  }
   .rbc-date-cell {
     display: flex;
     justify-content: center;
@@ -51,7 +54,7 @@ class CalendarComponent extends Component {
       eventTypes: [],
       locations: [],
       participants:[],
-      showForm: false
+      showForm: false,
     };
   }
 

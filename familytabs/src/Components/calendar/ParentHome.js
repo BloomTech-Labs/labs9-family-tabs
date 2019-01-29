@@ -8,7 +8,6 @@ import CalendarComponent from './Calendar';
 
 class ParentHome extends Component {
     render() {
-      console.log(this.props.history.location)
       // if (this.props.family.length ===1){
       //   return <Redirect to='/home/household'></Redirect>
       // }

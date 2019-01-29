@@ -27,7 +27,7 @@ const routeMaker = (resource, requiredSchema, db, string) => {
   route.post("/create", async (req, res) => {
     const body = req.body;
     if (!requiredSchema.every(schema => body[schema])) {
-      res.status(400).json({
+      return res.status(400).json({
         error: "Please Provide all required fields."
       });
     }

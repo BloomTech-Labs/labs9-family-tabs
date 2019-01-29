@@ -43,7 +43,7 @@ server.get("/", (req, res) => {
 
 
 server.use('/event', routeMaker('scheduledEvent', ['scheduledEvent_name', 'eventStart', 'eventEnd', 'familyID', 'eventTypeID', 'locationID'],db, 'scheduled event'))
-server.use('/profile', routeMaker('user',['phone', 'familyID', 'userName', 'email', 'isAdmin'],db, 'profile' ))
+server.use('/profile', routeMaker('user',['phone', 'familyID', 'userName', 'email'],db, 'profile' ))
 server.use('/family', routeMaker('family', ['family_name'], db, 'family'))
 server.use('/location', routeMaker('location', ['location_name', 'familyID'], db, 'location'))
 server.use('/eventtype', routeMaker('eventType', ['eventType_name', 'familyID' ], db, 'event type'))

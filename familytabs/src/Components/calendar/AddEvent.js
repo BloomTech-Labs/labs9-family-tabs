@@ -1,13 +1,11 @@
 import React from "react";
 import DatePicker from "react-datepicker";
 import styled from "styled-components";
-import CreatableAdvanced from './CreatableAdvanced'
-import Select from 'react-select';
+import CreatableAdvanced from "./CreatableAdvanced";
+import Select from "react-select";
 import moment from "moment";
-import axios from 'axios'
+import axios from "axios";
 import "react-datepicker/dist/react-datepicker.css";
-
-
 
 const StyledFormWrapper = styled.div`
   height: 100vh;
@@ -37,13 +35,16 @@ class AddEvent extends React.Component {
     eventEnd: null,
     eventTypeID: null,
     locationID: null,
-    participants:[]
+    participants: []
   };
 
-  participantToOptions = options => options.map(option=> {return{ value:option.id, label: option.userName}})
+  participantToOptions = options =>
+    options.map(option => {
+      return { value: option.id, label: option.userName };
+    });
 
   onInputChange = (inputValue, { action }) => {
-     this.setState({ participants:inputValue });
+    this.setState({ participants: inputValue });
   };
   setStart = e => {
     this.setState({ eventStart: e });
@@ -78,42 +79,48 @@ class AddEvent extends React.Component {
     if (
       !scheduledEvent_name ||
       !eventStart ||
-      !eventEnd
-      || !eventTypeID ||!locationID
+      !eventEnd ||
+      !eventTypeID ||
+      !locationID
     ) {
       return;
     }
     let newEvent = {
       scheduledEvent_name,
       eventStart: moment(eventStart).format("YYYYMMDD hh:mm a"),
-      eventEnd : moment(eventEnd).format("YYYYMMDD hh:mm a"),
+      eventEnd: moment(eventEnd).format("YYYYMMDD hh:mm a"),
       eventTypeID,
       locationID,
       familyID: this.props.familyID,
       createdByAdmin: this.props.isAdmin ? 1 : 0
     };
-    try{
-      let eventResponse = await this.props.addToCalendar(newEvent)
-      console.log(eventResponse)
-    let {id, familyID} =eventResponse
-     await participants.forEach(async x => await axios.post(`${process.env.REACT_APP_API_URL}/eventwithusers/create`, {familyID, userID:x.value, scheduledEventID:id}))
-    this.setState({
-      scheduledEvent_name: "",
-      eventStart: null,
-      eventEnd: null,
-      eventTypeID: null,
-      locationID: null
-    });
-    await this.props.loadGlobal(familyID)
-    this.props.toggleForm()
-    }catch(err){
-      console.log(err)
+    try {
+      let eventResponse = await this.props.addToCalendar(newEvent);
+      console.log(eventResponse);
+      let { id, familyID } = eventResponse;
+      await participants.forEach(
+        async x =>
+          await axios.post(
+            `${process.env.REACT_APP_API_URL}/eventwithusers/create`,
+            { familyID, userID: x.value, scheduledEventID: id }
+          )
+      );
+      this.setState({
+        scheduledEvent_name: "",
+        eventStart: null,
+        eventEnd: null,
+        eventTypeID: null,
+        locationID: null
+      });
+      await this.props.loadGlobal(familyID);
+      this.props.toggleForm();
+    } catch (err) {
+      console.log(err);
     }
-    
   };
- 
+
   render() {
-    const { locations, eventTypes, addOption, familyID} = this.props.state;
+    const { locations, eventTypes, addOption, familyID } = this.props.state;
     const {
       scheduledEvent_name,
       eventTypeID,
@@ -122,7 +129,7 @@ class AddEvent extends React.Component {
       eventEnd,
       participants
     } = this.state;
-    console.log(participants)
+    console.log(participants);
     return (
       <StyledFormWrapper>
         <form onSubmit={this.addEventHandler}>
@@ -155,7 +162,7 @@ class AddEvent extends React.Component {
             name="eventEnd"
             value={eventEnd}
             selected={eventEnd}
-            minDate={ eventStart||new Date()}
+            minDate={eventStart || new Date()}
             selectsEnd
             showTimeSelect
             placeholderText="Event end"
@@ -168,41 +175,36 @@ class AddEvent extends React.Component {
             onChange={this.setEnd}
           />
           <CreatableAdvanced
-          name='eventType'
-          placeholder='Event type'
-          options = {eventTypes}
-          value = {eventTypeID}
-          setValue= {this.setEventID}
-          addOption={addOption}
-          familyID={familyID}
-          ></CreatableAdvanced>
+            name="eventType"
+            placeholder="Event type"
+            options={eventTypes}
+            value={eventTypeID}
+            setValue={this.setEventID}
+            addOption={addOption}
+            familyID={familyID}
+          />
 
           <CreatableAdvanced
-          name='location'
-          placeholder='Location'
-          options = {locations}
-          value = {locationID}
-          setValue= {this.setLocationID}
-          addOption={addOption}
-          familyID={familyID}
-          ></CreatableAdvanced>
+            name="location"
+            placeholder="Location"
+            options={locations}
+            value={locationID}
+            setValue={this.setLocationID}
+            addOption={addOption}
+            familyID={familyID}
+          />
 
+          <Select
+            placeholder="Participants"
+            name="participants"
+            defaultValue={null}
+            isMulti
+            options={this.participantToOptions(this.props.family)}
+            value={participants}
+            onChange={this.onInputChange}
+          />
 
-
-
-  <Select
-  placeholder='Participants'
-    name='participants'
-    defaultValue={null}
-    isMulti
-    options={this.participantToOptions(this.props.family)}
-    value={participants}
-    onChange={this.onInputChange}
-  />
-
-
-
-          <button type='submit'>Add Event</button>
+          <button type="submit">Add Event</button>
           <button onClick={this.props.toggleForm}>Exit</button>
         </form>
       </StyledFormWrapper>
