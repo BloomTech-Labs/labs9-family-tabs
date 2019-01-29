@@ -12,7 +12,7 @@ import VerifyProfile from "./Components/VerifyProfile";
 import styled from "styled-components";
 import SignUp from "./Components/SignUp";
 import NavBurger from "./Components/NavBurger";
-import FTLogo3 from "./Components/images/FTLogo3.jpg";
+
 
 const MediaStyles = styled.div`
   @media (max-width: 1281px) {
@@ -66,7 +66,6 @@ class App extends Component {
 
         <PrivateRoute path="/home" component={NavBurger} />
         <AppStyles>
-          <LogoStyles src={FTLogo3} alt="FTLogo3" />
           <PublicRoute exact path="/" component={LandingPage} />
           <PublicRoute exact path="/signup" component={SignUp} />
           <PrivateRoute exact path="/home/tabs" component={ParentHome} />

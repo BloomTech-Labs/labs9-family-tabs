@@ -4,9 +4,8 @@ import { Carousel } from 'react-responsive-carousel';
 import styled from 'styled-components';
 
 const StyledCarousel = styled(Carousel)`
-    height: 45%;
-    width: 45%;
-
+    /* height: 45%;
+    width: 45%; */
 `;
  
 class InfoCarousel extends Component {
