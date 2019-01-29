@@ -3,7 +3,13 @@ import {Link} from 'react-router-dom';
 import InfoCarousel from './InfoCarousel';
 import styled from "styled-components";
 import { Button, Colors} from "@blueprintjs/core";
+import SignUp from './SignUp';
 
+const MainContainer = styled.div`
+
+  max-height: 100%;
+
+`;
 
 const MainElements = styled.div`
   display: flex;
@@ -99,9 +105,13 @@ class LandingPage extends Component {
     localStorage.removeItem('scopes')
   }
 
+  signUpLink = () => {
+    this.props.history.push('/signup');
+  }
+
     render() {
       return (
-        <div>
+        <MainContainer>
         <ButtonContainer>
         <Button 
             style={{ color: Colors.WHITE, background: "#242943", border: "2px solid #ffffff", padding: "15px 50px 15px 50px", width:"200px", height: "50px"}} 
@@ -123,7 +133,7 @@ class LandingPage extends Component {
                 fill={false} 
                 rightIcon="arrow-right" 
                 large={true} 
-                onClick={this.props.auth.login}
+                onClick={this.signUpLink}
               >Get Started!</Button>
               </StartContainer>
               </LeftLanding>
@@ -137,7 +147,7 @@ class LandingPage extends Component {
               </RightLanding>
   
         </MainElements>
-        </div>
+        </MainContainer>
       )
     }
   }
