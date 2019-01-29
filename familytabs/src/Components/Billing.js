@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import BillingCard from './BillingCard';
+import { Button } from "@blueprintjs/core";
+import ButtonStyles from './ButtonStyles';
 
 
 export default class Billing extends Component {
@@ -10,6 +12,7 @@ export default class Billing extends Component {
         <h1>I am the Billing page</h1>
       </div>
       <BillingCard />
+      <ButtonStyles text="Test Button" />
       </div>
     )
   }
