@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import CalendarComponent from './calendar/Calendar';
+import CalendarComponent from './Calendar';
+//import {Redirect} from 'react-router-dom'
 //import styled from "styled-components";
 
 
@@ -7,12 +8,16 @@ import CalendarComponent from './calendar/Calendar';
 
 class ParentHome extends Component {
     render() {
+      console.log(this.props.history.location)
+      // if (this.props.family.length ===1){
+      //   return <Redirect to='/home/household'></Redirect>
+      // }
       return (
-        <div className="ParentHomepage">
+        <>
             <h1>Parent Homepage</h1>
             <CalendarComponent {...this.props}/>
             
-        </div>
+        </>
       );
     }
   }

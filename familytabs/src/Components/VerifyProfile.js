@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import axios from "axios";
 import { Redirect } from "react-router-dom";
 
-
 class VerifyProfile extends Component {
   state = {
     error: "",
@@ -32,24 +31,22 @@ class VerifyProfile extends Component {
           family_name: this.state.family_name
         }
       );
-      console.log(response.data[0])
-      let familyID =response.data[0].id
+      let familyID = response.data[0].id;
       userResponse = await axios.post(
         `${process.env.REACT_APP_API_URL}/newlogin`,
         {
           userName: this.state.userName,
           email: this.state.userEmail,
-          familyID ,
+          familyID,
           isAdmin: 1,
           phone: this.state.phone
         }
       );
-      console.log(familyID)
-      this.props.loadState(familyID)
+      this.props.loadState(familyID);
       this.props.setProfile({ profile: userResponse.data });
-      return
+      return;
     } catch (err) {
-      console.log(userResponse.data, "no bueno");
+      console.log(userResponse.data);
     }
   };
 
@@ -65,13 +62,12 @@ class VerifyProfile extends Component {
         let response = await axios.get(
           `${process.env.REACT_APP_API_URL}/profile/${this.state.userEmail}`
         );
-        console.log(response.data)
-        if (response.data.err){
-          return
+        console.log(response.data);
+        if (response.data.err) {
+          return;
         }
-        this.props.loadState(response.data.familyID)
-        this.props.setProfile(response.data)
-        
+        this.props.loadState(response.data.familyID);
+        this.props.setProfile(response.data);
       } catch (err) {
         console.log(err);
       }
@@ -79,47 +75,45 @@ class VerifyProfile extends Component {
   }
 
   render() {
-   
+    console.log(this.props.family.length)
     return (
       <>
-       
-
-        {this.props.profile ? (<Redirect to='/home'></Redirect>
-        ) : (
-          <form onSubmit={this.familySubmitHandle}>
-            <h1>Register Family</h1>
-            <label>family name</label>
-            <input
-              type="text"
-              name="family_name"
-              placeholder="family name"
-              value={this.state.family_name}
-              onChange={this.handleChange}
-            />
-            <label>name</label>
-            <input
-              type="text"
-              name="userName"
-              placeholder="name"
-              value={this.state.userName}
-              onChange={this.handleChange}
-            />
-            <label>phone</label>
-            <input
-              type="text"
-              name="phone"
-              placeholder="phone"
-              value={this.state.phone}
-              onChange={this.handleChange}
-            />
-            <button type="submit">Submit</button>
-          </form>
+            {this.props.profile ? (
+              <Redirect to="/home/tabs" />
+            ) : (
+              <form onSubmit={this.familySubmitHandle}>
+                <h1>Register Family</h1>
+                <label>family name</label>
+                <input
+                  type="text"
+                  name="family_name"
+                  placeholder="family name"
+                  value={this.state.family_name}
+                  onChange={this.handleChange}
+                />
+                <label>name</label>
+                <input
+                  type="text"
+                  name="userName"
+                  placeholder="name"
+                  value={this.state.userName}
+                  onChange={this.handleChange}
+                />
+                <label>phone</label>
+                <input
+                  type="text"
+                  name="phone"
+                  placeholder="phone"
+                  value={this.state.phone}
+                  onChange={this.handleChange}
+                />
+                <button type="submit">Submit</button>
+              </form>
+            )}
+          </>
         )}
 
-
-      </>
-    );
   }
-}
+
 
 export default VerifyProfile;
