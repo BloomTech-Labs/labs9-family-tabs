@@ -46,6 +46,7 @@ const AppStyles = styled.div`
   font-family: "Lato", sans-serif;
   text-align: center;
   max-width: 100%;
+  max-height: 100%;
   height: 900px;
   background-color: #242943;
 

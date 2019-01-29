@@ -11,40 +11,85 @@ const MainElements = styled.div`
   opacity: 100%;
   color: #ffffff;
   font-family:'Roboto', sans-serif;
-  margin: 250px 250px 400px 250px;
+  margin: 150px 150px 150px 150px;
+  border: 2px solid red;
 `;
 
 const LeftLanding = styled.div`
   display: flex; 
   flex-direction: column;
-  width: 50%;
+  width: 35%;
   margin: 15px;
+  border: 2px solid orange;
 `;
 
 const Title = styled.h1`
-  margin: 150px 0 0 0;
+  margin: 50px 0 0 0;
   display: flex;
+  justify-content: center;
   color: #ffffff;
   font-size: 60px;
+  padding:0;
   font-weight: 700;
+  /* border: 2px solid green; */
 `;
 
 const BottomBorder = styled.div`
   border-bottom: 2px solid white;
-  height: 50px;
+  height: 20px;
   width: 100%;
+  /* border: 2px solid yellow; */
 `;
 
+// const LandingText = styled.div`
+
+//     display: flex;
+//     flex-direction: column;
+//     align-items: flex-start; 
+//     padding-bottom: 10px;
+//     border: 2px solid brown;
+// `;
+
+
+// const Card = styled.div`
+//     border: 2px solid yellow;
+ 
+//     display: flex;
+//     flex-direction: row;
+//     /* align-items: flex-start;   */
+//     line-height: 2;
+//     font-family: 'Roboto', sans-serif;
+//     /* margin: 28px; */
+// `;
 const RightLanding = styled.div`
   display: flex;
-  width: 50%;
+  width: 65%;
   margin: 15px;
+  border: 2px solid lightblue;
 `;
 
 const CarouselDiv = styled.div`
 
 `;
 
+const ButtonContainer = styled.div`
+border: 2px solid lightcoral;
+display: flex;
+justify-content: flex-end;
+margin-right: 20px;
+margin-top: 20px;
+
+
+`;
+
+const StartContainer = styled.div`
+border: 2px solid lightcoral;
+display: flex;
+justify-content: center;
+
+
+
+`;
 
 class LandingPage extends Component { 
   componentDidMount(){
@@ -56,11 +101,31 @@ class LandingPage extends Component {
 
     render() {
       return (
+        <div>
+        <ButtonContainer>
+        <Button 
+            style={{ color: Colors.WHITE, background: "#242943", border: "2px solid #ffffff", padding: "15px 50px 15px 50px", width:"200px", height: "50px"}} 
+            fill={false} 
+            rightIcon="arrow-right" 
+            large={true} 
+            onClick={this.props.auth.login}
+            >Log in</Button>
+        </ButtonContainer>
         <MainElements>
+            
+
               <LeftLanding>
                 <Title>Family Tabs</Title>
                 <BottomBorder></BottomBorder>
-                <Link to="/signup">Sign Up for Family Tabs!</Link>
+                <StartContainer>
+                <Button 
+                style={{ color: Colors.WHITE, background: "#242943", border: "2px solid #ffffff", padding: "10px 30px 10px 30px", width: "200px", height: "50px"}} 
+                fill={false} 
+                rightIcon="arrow-right" 
+                large={true} 
+                onClick={this.props.auth.login}
+              >Get Started!</Button>
+              </StartContainer>
               </LeftLanding>
 
               <RightLanding>
@@ -68,15 +133,11 @@ class LandingPage extends Component {
                    <InfoCarousel />
                 </CarouselDiv>
                
-                <Button 
-                  style={{ color: Colors.WHITE, background: "#242943", border: Colors.WHITE }} 
-                  fill={false} 
-                  rightIcon="arrow-right" 
-                  large={true} 
-                  onClick={this.props.auth.login}
-                  >Log in</Button>
+                
               </RightLanding>
+  
         </MainElements>
+        </div>
       )
     }
   }
