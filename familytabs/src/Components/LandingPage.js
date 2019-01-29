@@ -2,29 +2,48 @@ import React, { Component } from 'react';
 import {Link} from 'react-router-dom'; 
 import InfoCarousel from './InfoCarousel';
 import styled from "styled-components";
-import { Button } from "@blueprintjs/core";
+import { Button, Colors} from "@blueprintjs/core";
 
 
-
-const  LandingPageTop = styled.div`
-  border: 2px solid red; 
-  max-width: 100%;
-  max-height: 100%;
-  opacity: 0.5;
-
-`;
-
-const  MainElements = styled.div`
- 
+const MainElements = styled.div`
+  display: flex;
+  justify-content: space-between;
   opacity: 100%;
   color: #ffffff;
-
+  font-family:'Roboto', sans-serif;
+  margin: 250px 250px 400px 250px;
 `;
 
-const StyledButton = styled(Button)`
-    background: transparent;
+const LeftLanding = styled.div`
+  display: flex; 
+  flex-direction: column;
+  width: 50%;
+  margin: 15px;
 `;
 
+const Title = styled.h1`
+  margin: 150px 0 0 0;
+  display: flex;
+  color: #ffffff;
+  font-size: 60px;
+  font-weight: 700;
+`;
+
+const BottomBorder = styled.div`
+  border-bottom: 2px solid white;
+  height: 50px;
+  width: 100%;
+`;
+
+const RightLanding = styled.div`
+  display: flex;
+  width: 50%;
+  margin: 15px;
+`;
+
+const CarouselDiv = styled.div`
+
+`;
 
 
 class LandingPage extends Component { 
@@ -37,17 +56,27 @@ class LandingPage extends Component {
 
     render() {
       return (
-        <div>
-          <LandingPageTop>
-         
-          </LandingPageTop>
-          <MainElements>
-              <h1>Family Tabs Landing Page</h1>
-              <InfoCarousel />
-              <Link to="/signup">Sign Up for Family Tabs!</Link>
-              </MainElements>
-              <StyledButton rightIcon="arrow-right" large={true} onClick={this.props.auth.login}>Log in</StyledButton>
-        </div>
+        <MainElements>
+              <LeftLanding>
+                <Title>Family Tabs</Title>
+                <BottomBorder></BottomBorder>
+                <Link to="/signup">Sign Up for Family Tabs!</Link>
+              </LeftLanding>
+
+              <RightLanding>
+                <CarouselDiv>
+                   <InfoCarousel />
+                </CarouselDiv>
+               
+                <Button 
+                  style={{ color: Colors.WHITE, background: "#242943", border: Colors.WHITE }} 
+                  fill={false} 
+                  rightIcon="arrow-right" 
+                  large={true} 
+                  onClick={this.props.auth.login}
+                  >Log in</Button>
+              </RightLanding>
+        </MainElements>
       )
     }
   }
