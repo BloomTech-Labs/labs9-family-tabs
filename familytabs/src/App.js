@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import ParentHome from "./Components/ParentHome";
+import ParentHome from "./Components/calendar/ParentHome";
 import LandingPage from "./Components/LandingPage";
-import Notifications from "./Components/Notifications";
+import Notifications from "./Components/notifications/Notifications";
 import Settings from "./Components/Settings";
-import Household from "./Components/Household";
+import Household from "./Components/household/Household";
 import Billing from "./Components/Billing";
 import Callback from "./Components/Callback";
 import PublicRoute from "./context/PublicRoute";
@@ -63,7 +63,6 @@ class App extends Component {
 
       <MediaStyles>
         <PrivateRoute path="/verify" component={VerifyProfile} />
-
         <PrivateRoute path="/home" component={NavBurger} />
         <AppStyles>
           <LogoStyles src={FTLogo3} alt="FTLogo3" />
@@ -81,26 +80,7 @@ class App extends Component {
           <PublicRoute path="/callback" component={Callback} />
         </AppStyles>
       </MediaStyles>
-      //end comment out
 
-      // //Uncomment these and comment the above to bypass login screen
-
-      //   <div>
-      //     <PublicRoute exact path="/" component={LandingPage} />
-      //     <PublicRoute path="/home" component={Navigation} />
-      //     <div className="home">
-      //       <PublicRoute exact path="/home/tabs" component={ParentHome} />
-      //       <PublicRoute
-      //         exact
-      //         path="/home/notifications"
-      //         component={Notifications}
-      //       />
-      //       <PublicRoute exact path="/home/settings" component={Settings} />
-      //       <PublicRoute exact path="/home/household" component={Household} />
-      //       <PublicRoute exact path="/home/billing" component={Billing} />
-      //       <PublicRoute path="/callback" component={Callback} />
-      //     </div>
-      //   </div>
     );
   }
 }
