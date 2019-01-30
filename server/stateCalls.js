@@ -123,7 +123,12 @@ const getState = (app,db) => {
           "scheduledEvent.id",
           "location.location_name",
           "location.address",
-          "eventType.eventType_name"
+          "eventType.eventType_name",
+          "scheduledEvent.pendingApproval",
+          "scheduledEvent.declined",
+          "scheduledEvent.approved",
+          'scheduledEvent.createdBy'
+
         );
 
       return res.status(200).json(condenseUsers(familyEvents));
