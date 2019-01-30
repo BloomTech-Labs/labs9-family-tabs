@@ -141,6 +141,7 @@ const StyledCalendar = styled(Calendar)`
   }
 `;
 
+
 const Event = ({ event }) => {
   return (
     <span>
@@ -212,6 +213,7 @@ class CalendarComponent extends Component {
     events.map((event, i) => {
       const {
         address,
+        id,
         scheduledEvent_name,
         location_name,
         eventType_name,
@@ -232,6 +234,7 @@ class CalendarComponent extends Component {
         participants: `${userName.join(", ")}`,
         particulars: `${eventType_name} event at ${location_name} ${address}`,
         userID,
+        id,
         pendingApproval,
         declined
       };
@@ -273,13 +276,47 @@ class CalendarComponent extends Component {
         eventStart: moment(addedEvent.data[0].eventStart, "YYYYMMDD hh:mm a"),
         eventEnd: moment(addedEvent.data[0].eventEnd, "YYYYMMDD hh:mm a")
       };
-      console.log(addedEvent)
       return addedEvent;
     } catch (err) {
       console.log(err);
     }
   };
 
+  eventStyleGetter = (event, start, end, isSelected) =>{
+    console.log(event);
+    let backgroundColor = `#00A3CF`
+    if (event.declined){
+      backgroundColor = '#aa0101'
+    }
+    if (event.pendingApproval){
+      backgroundColor = '#c4a403'
+    }
+    const style = {
+        backgroundColor,
+    };
+    return {
+        style: style
+    };
+}
+
+  
+  editedToCalendar = async eventData => {
+    try {
+      let editedEvent = 
+      await axios.put(
+        `${process.env.REACT_APP_API_URL}/event/edit${eventData.id}`,
+        eventData
+      );
+      editedEvent = {
+        ...editedEvent.data[0],
+        eventStart: moment(editedEvent.data[0].eventStart, "YYYYMMDD hh:mm a"),
+        eventEnd: moment(editedEvent.data[0].eventEnd, "YYYYMMDD hh:mm a")
+      };
+      return editedEvent;
+    } catch (err) {
+      console.log(err);
+    }
+  };
   
   render() {
     console.log(this.state)
@@ -293,8 +330,10 @@ class CalendarComponent extends Component {
               day={1}
               localizer={localizer}
               defaultDate={new Date()}
+              onSelectEvent={e =>console.log(e)}
               defaultView="month"
               events={events}
+              eventPropGetter={this.eventStyleGetter}
               components={{
                 event: Event
               }}
