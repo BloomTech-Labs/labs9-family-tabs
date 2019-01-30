@@ -42,8 +42,9 @@ class VerifyProfile extends Component {
           phone: this.state.phone
         }
       );
+      console.log(familyID)
       this.props.loadState(familyID);
-      this.props.setProfile({ profile: userResponse.data });
+      this.props.setProfile( userResponse.data);
       return;
     } catch (err) {
       console.log(userResponse.data);
