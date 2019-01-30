@@ -99,6 +99,9 @@ export default class Notifications extends Component {
                 .filter(x => x.pendingApproval)
                 .map(eventData => (
                   <EventCard
+                  //every event that is pending approval will pass these props to the event card component
+                  //the word pending here by itself gives the event cards that are pending approval the prop pending===true
+                  pending
                     key={eventData.id}
                     eventData={eventData}
                     family={this.props.family}
