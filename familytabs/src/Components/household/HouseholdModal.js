@@ -37,7 +37,7 @@ export default class HouseholdModal extends Component {
   render() {
     return (
       <StyledFormWrapper>
-        <form onSubmit={this.props.memberAdder}>
+        <form onSubmit={this.props.addOrEdit}>
           <input
             type="text"
             name="userName"
@@ -72,7 +72,7 @@ export default class HouseholdModal extends Component {
             onChange={this.props.onInputChange}
           />
 
-          <button>Add Household Member</button>
+          <button>{this.props.edit ? 'Edit':'Add'} Household Member</button>
         </form>
         <button onClick={this.props.toggleForm}>Exit</button>
       </StyledFormWrapper>
