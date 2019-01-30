@@ -30,9 +30,6 @@ const LogoContainer = styled.div`
 `;
 
 const ImageStyling = styled.img`
-    /* display: flex;
-    align-items: center;
-    border: 2px solid brown; */
     width: 25%;
     height: 10%;
     border-radius: 10px;;
