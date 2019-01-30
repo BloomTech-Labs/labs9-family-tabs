@@ -3,7 +3,6 @@ import InfoCarousel from './InfoCarousel';
 import styled from "styled-components";
 import { Button, Colors} from "@blueprintjs/core";
 
-
 const MainContainer = styled.div`
 
   max-height: 100%;
@@ -70,6 +69,7 @@ margin: 50px 20px 0px 0px;
 const StartContainer = styled.div`
 
 display: flex;
+
 justify-content: flex-end;
 padding-right: 20px;
 
@@ -103,6 +103,7 @@ const TitleContent = styled.p `
 
 `;
 
+
 class LandingPage extends Component { 
   componentDidMount(){
     localStorage.removeItem("access_token");
@@ -119,7 +120,9 @@ class LandingPage extends Component {
       return (
         <MainContainer>
         <ButtonContainer>
-          
+
+        
+
         <Button 
             style={{ color: Colors.WHITE, background: "#242943", border: "2px solid #ffffff", padding: "15px 50px 15px 50px", width:"200px", height: "50px"}} 
             fill={false} 
