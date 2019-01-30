@@ -7,40 +7,42 @@ import "react-tabs/style/react-tabs.css";
 
 
 const StyledMain = styled.div`
-  border: 5px solid orange;
   padding: 0 150px 0 150px;
-  height: 800px;
 
   @media (min-width: 320px) and (max-width: 481px) {
-    display: flex;
-    flex-direction: column-reverse;
-    padding: 0;
+
   }
 `;
 
 const StyledTabs = styled(Tabs)`
-    border: 5px solid purple;
-    margin: 0 10px;
-    padding-top: 15px;
+    height: 100%;
 `;
 
 const StyledTabList = styled(TabList)`
-    border: 5px solid grey;
     color: white;
     display: flex;
 `;
 
 const StyledTab = styled(Tab)`
-    border: 5px solid yellow;
+    border-top: 1px solid #64AAC4;
+    border-right: 1px solid #64AAC4;
+    border-left: 1px solid #64AAC4;
     color: white;
+    background-color: #68659E;
+    padding: 5px 10px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    :hover {
+      color: #68659E;
+      background-color: white;
+      cursor: pointer;
+    }
 `;
 
 const StyledTabPanel = styled(TabPanel)`
-    border: 5px solid red;
-    margin: 0 10px;
-    padding-top: 15px;
-    color: white;
-    font-family: "Lato", sans-serif;
+    background-color: #68659E;
+    padding: 15px;
+    
 
 `;
 
