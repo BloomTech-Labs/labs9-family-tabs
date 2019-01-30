@@ -7,6 +7,7 @@ exports.seed = function(knex, Promise) {
       return knex('eventType').insert([
         {eventType_name: 'baseball', familyID: 1},
         {eventType_name: 'figure skating', familyID: 2},
+        {eventType_name: 'skateboarding', familyID: 1}
       ]);
     });
 };

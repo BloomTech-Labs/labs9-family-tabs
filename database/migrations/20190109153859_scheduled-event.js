@@ -26,6 +26,11 @@ exports.up = function(knex, Promise) {
           .references('eventType.id')
           .notNullable()
 
+          scheduledEvent
+          .integer('createdBy')
+          .references('user.id')
+          .notNullable()
+
         scheduledEvent
           .integer('locationID')
           .references('location.id')
@@ -38,19 +43,15 @@ exports.up = function(knex, Promise) {
 
         scheduledEvent
           .boolean('approved')
-          .notNullable()
           .defaultTo(false)
-
 
         scheduledEvent
           .boolean('declined')
-          .notNullable()
           .defaultTo(false)
 
         scheduledEvent
-          .boolean('createdByAdmin')
-          .notNullable()
-          .defaultTo(false)
+          .boolean('pendingApproval').defaultTo(false)
+          
         });
 };
 
