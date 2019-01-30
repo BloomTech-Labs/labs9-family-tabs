@@ -1,16 +1,22 @@
 import React, { Component } from 'react'
 import styled from 'styled-components';
 import axios from 'axios';
-import { text } from 'body-parser';
+
 
 const FormContainer = styled.div`
- border: 1px solid  black;
+ border: 2px solid  yellow;
  display: flex;
+ justify-content: center;
+ width: 100%;
+ height: 900px;
 
 `;
 
 const BasicInfo = styled.div`
-  border: 1px solid red;
+  border: 2px solid red;
+  color: #ffffff;
+  width: 500px;
+  height: 400px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -18,16 +24,70 @@ const BasicInfo = styled.div`
 
 const NotificationOptions = styled.div`
  border: 1px solid blue;
- display: flex;
- justify-content: space-evenly;
+ color: #3985ac;
 `;
 
-const PasswordChange = styled.div`
-  border: 1px solid green;
+
+
+const Title = styled.h1`
+
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  justify-content: center;
+  color: #ffffff;
+  font-size: 60px;
+
+  font-weight: 500; 
+
 `;
+
+const LabelStylying = styled.label`
+    background-color: #242943;
+    display: flex;
+    font-size: 25px;
+    Margin: 0px 0px 20px 0px;
+
+
+
+
+`;
+
+const InputStyling = styled.input`
+background-color: #242943;
+border: 1px solid #3985ac;
+color: #ffffff;
+font-size: 18px;
+width: 400px;
+height: 40px;
+padding-left: 20px;
+
+
+
+
+
+`;
+
+const AccountInfoTitle=styled.p `
+        display: flex;
+        justify-content: center;
+        color: #ffffff;
+`;
+
+const FieldsStyling = styled.div `
+display: flex;
+flex-direction: column;
+margin: 40px 0px 0px 20px;
+
+`;
+
+const NotificationBox = styled.input `
+
+`;
+
+const NotificationText = styled.input `
+
+
+`;
+
 
 export default class Settings extends Component {
   constructor () {
@@ -97,48 +157,60 @@ onSaveHandler = async (e) => {
 
         return (
           <div>
-            <h1>Settings</h1>
+            <Title>Settings</Title>
+            <AccountInfoTitle>Change Account Information</AccountInfoTitle>
             <FormContainer>
             <form onSubmit={this.onSaveHandler}>
             <BasicInfo>
-                <label>
-                  Name: 
-                  <input 
+                <FieldsStyling>
+                <LabelStylying>
+                  NAME 
+                  
+                </LabelStylying>
+                <InputStyling 
                   type="text" 
                   name="userName" 
                   onChange={this.inputHandler}
                   value={this.state.userName} 
                   />
-                </label>
-                <label>
-                  Email: 
-                  <input 
+                  </FieldsStyling>
+                  <FieldsStyling>
+                <LabelStylying>
+                  EMAIL
+                  
+                </LabelStylying>
+                <InputStyling 
                   type="text" 
                   name="email" 
                   value={this.props.profile.email} 
                   />
-                </label>
-                <label>
-                  Phone: 
-                  <input 
+                  </FieldsStyling>
+                  <FieldsStyling>
+                <LabelStylying>
+                  PHONE 
+                  
+                </LabelStylying>
+                <InputStyling 
                   type="text" 
                   name="phone"
                   onChange={this.inputHandler}
                   value={this.state.phone} 
                   />
-                </label>
+                  </FieldsStyling>
               </BasicInfo>
               <NotificationOptions>
-                <label>
-                  Texts?
-                  <input 
+              <NotificationBox 
                   type="checkbox" 
                   name="textCheckbox" 
                   onChange={this.inputHandler}
                   checked={this.state.textCheckbox}
                   value={this.state.textCheckbox}
                   />
-                </label>
+                <NotificationText>
+                  TEXTS?
+                </NotificationText>
+               
+              
               </NotificationOptions>
                 <button>Save</button>
             </form>
