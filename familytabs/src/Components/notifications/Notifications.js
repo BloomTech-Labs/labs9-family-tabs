@@ -71,6 +71,7 @@ export default class Notifications extends Component {
                     eventData={eventData}
                     pending
                     family={this.props.family}
+                    isAdmin ={this.props.profile.isAdmin}
                     approveClick={this.approveClick}
                     declineClick={this.declineClick}
                   />

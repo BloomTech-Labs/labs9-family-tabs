@@ -1,10 +1,11 @@
-import React from 'react';
+import React, {Component} from 'react';
 import {Link} from 'react-router-dom'
 import styled from "styled-components";
+import {AnchorButton, Colors} from "@blueprintjs/core";;
 
 const Buttons = styled.button`
     border: 4px solid orange;
-    background-color: skyblue;
+    background-color: #242943;
     font-family: 'Lato', sans-serif;
     display: flex;
     align-items: center;
@@ -25,7 +26,7 @@ const NavBarStyling = styled.div`
     display: flex;
     flex-direction: column;
     width: 280px;
-    background-color: skyblue;
+    background-color: #242943;
     border: 1px solid rgb(122, 122, 122);
     border-radius: 0.1rem;
     /* position: fixed; */
@@ -53,7 +54,7 @@ const NavButtonsContainer = styled.div`
 `;
 
 const StyledH1 = styled.h1`
-   font-family: 'Fredoka One';
+   font-family: 'Roboto';
    color: white;
    font-size: 18px;
    width: 100%;
@@ -63,19 +64,19 @@ const StyledH1 = styled.h1`
    display: flex;
 `;
 
-class Navigation extends React.Component {
+class Navigation extends Component {
+
 
     render(){
-       
     return (
       <NavBarStyling>
        <StyledH1>Family Tabs</StyledH1>
         <NavButtonsContainer>
-            <Links to='/home/tabs'>Family Tabs</Links>
-            <Links to='/home/notifications'>Notifications</Links>
-            <Links to='/home/settings'>Settings</Links>
-            <Links to='/home/household'>Household</Links>
-            <Links to='/home/billing' className="nav_button">Billing</Links>
+            <AnchorButton style={{ color: Colors.WHITE, background: "#242943", border: "2px solid #ffffff", width:"100%", height: "50px"}} href="/home/tabs" text="Family Tabs" />
+            <AnchorButton style={{ color: Colors.WHITE, background: "#242943", border: "2px solid #ffffff", width:"100%", height: "50px"}} href="/home/notifications" text="Notifications" />
+            <AnchorButton style={{ color: Colors.WHITE, background: "#242943", border: "2px solid #ffffff", width:"100%", height: "50px"}} href="/home/settings" text="Settings" />
+            <AnchorButton style={{ color: Colors.WHITE, background: "#242943", border: "2px solid #ffffff", width:"100%", height: "50px"}} href="/home/household" text="Household" />
+            <AnchorButton style={{ color: Colors.WHITE, background: "#242943", border: "2px solid #ffffff", width:"100%", height: "50px"}} href="/home/billing" text="Billing" />
         </NavButtonsContainer>
        <Buttons onClick={this.props.auth.logout}>Log out</Buttons>
         </NavBarStyling>

@@ -46,14 +46,9 @@ const AppStyles = styled.div`
   font-family: "Lato", sans-serif;
   text-align: center;
   max-width: 100%;
-  height: 900px;
+  /* height: 900px; */
   background-color: #242943;
 
-`;
-
-const LogoStyles = styled.img`
-  height: 10%;
-  width: 10%;
 `;
 
 class App extends Component {

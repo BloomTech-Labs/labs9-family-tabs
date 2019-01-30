@@ -45,7 +45,8 @@ render(){
         <p>Created By: {this.props.family.find(person => person.id === this.props.eventData.createdBy).userName}</p>
         
       </Info>
-      {this.props.pending ? (
+      {/* {this.props.isAdmin ? <button>Edit</button>: ''} */}
+      {(this.props.pending && this.props.isAdmin) ? (
         <>
           <button onClick={this.props.approveClick} id={this.props.eventData.id}>
             Approve
