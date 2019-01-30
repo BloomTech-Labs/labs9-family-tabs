@@ -1,19 +1,49 @@
 import React, { Component } from "react";
 import EventCard from "./EventCard";
 import axios from "axios";
-//import moment from 'moment';
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import styled from "styled-components";
 import "react-tabs/style/react-tabs.css";
 
-const StyledTabs = styled(Tabs)`
-  .react-tabs__tab-list {
-    border: 2px solid red;
+
+const StyledMain = styled.div`
+  border: 5px solid orange;
+  padding: 0 150px 0 150px;
+  height: 800px;
+
+  @media (min-width: 320px) and (max-width: 481px) {
     display: flex;
-    margin: 0 0 10px;
-    padding-top: 15px;
+    flex-direction: column-reverse;
+    padding: 0;
   }
 `;
+
+const StyledTabs = styled(Tabs)`
+    border: 5px solid purple;
+    margin: 0 10px;
+    padding-top: 15px;
+`;
+
+const StyledTabList = styled(TabList)`
+    border: 5px solid grey;
+    color: white;
+    display: flex;
+`;
+
+const StyledTab = styled(Tab)`
+    border: 5px solid yellow;
+    color: white;
+`;
+
+const StyledTabPanel = styled(TabPanel)`
+    border: 5px solid red;
+    margin: 0 10px;
+    padding-top: 15px;
+    color: white;
+    font-family: "Lato", sans-serif;
+
+`;
+
 
 export default class Notifications extends Component {
 
@@ -51,49 +81,49 @@ export default class Notifications extends Component {
     if(!this.props.family){
       return <h1>loading...</h1>
     }
-    return (
-      <div>
-        <h1>I am the Notifications page</h1>
-        <StyledTabs>
-          <Tabs>
-            <TabList>
-              <Tab>Pending</Tab>
-              <Tab>Approved</Tab>
-              <Tab>Declined</Tab>
-            </TabList>
 
-            <TabPanel>
+    return (
+      <StyledMain>
+        <h1>Notifications</h1>
+        <StyledTabs>
+            <StyledTabList>
+              <StyledTab>Pending</StyledTab>
+              <StyledTab>Approved</StyledTab>
+              <StyledTab>Declined</StyledTab>
+            </StyledTabList>
+
+            <StyledTabPanel>
               {this.props.familyEvents
                 .filter(x => x.pendingApproval)
                 .map(eventData => (
                   <EventCard
                     key={eventData.id}
                     eventData={eventData}
-                    pending
                     family={this.props.family}
-                    isAdmin ={this.props.profile.isAdmin}
+                    isAdmin={this.props.profile.isAdmin}
                     approveClick={this.approveClick}
                     declineClick={this.declineClick}
                   />
                 ))}
-            </TabPanel>
-            <TabPanel>
+            </StyledTabPanel>
+
+            <StyledTabPanel>
               {this.props.familyEvents
                 .filter(x => x.approved)
                 .map(eventData => (
                   <EventCard key={eventData.id} family={this.props.family} eventData={eventData} />
                 ))}
-            </TabPanel>
-            <TabPanel>
+            </StyledTabPanel>
+
+            <StyledTabPanel>
               {this.props.familyEvents
                 .filter(x => x.declined)
                 .map(eventData => (
                   <EventCard key={eventData.id} family={this.props.family} eventData={eventData} />
                 ))}
-            </TabPanel>
-          </Tabs>
+            </StyledTabPanel>
         </StyledTabs>
-      </div>
+      </StyledMain>
     );
   }
 }
