@@ -35,7 +35,7 @@ class NavBurger extends Component {
         height={24}
         strokeWidth={3}
         rotate={0}
-        color='black'
+        color='#3985ac'
         borderRadius={0}
         animationDuration={0.5}
       />
