@@ -15,59 +15,48 @@ import NavBurger from "./Components/NavBurger";
 
 
 const MediaStyles = styled.div`
-  @media (max-width: 1281px) {
-    background: palevioletred;
-  }
+    max-width: 100%;
+    background-color: #242943;
+    height: 100vh;
 
-  @media (min-width: 1025px) and (max-width: 1280px) {
-    background: salmon;
+  @media (min-width: 1024px) and (max-width: 1281px) {
+    max-width: 100%;
+
   }
 
   @media (min-width: 768px) and (max-width: 1024px) {
-    background: palegreen;
+    max-width: 100%;
   }
 
-  @media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
-    background: gray;
+  @media (min-width: 320px) and (max-width: 768px) {
+    max-width: 100%;
   }
 
-  @media (min-width: 481px) and (max-width: 767px) {
-    background: bisque;
-    margin: auto;
-  }
-
-  @media (min-width: 320px) and (max-width: 480px) {
-    background: lightseagreen;
-  }
 `;
 
 const AppStyles = styled.div`
-  border: 2px solid orange;
   font-family: "Lato", sans-serif;
   text-align: center;
   max-width: 100%;
-  /* height: 900px; */
   background-color: #242943;
 
 `;
+
 
 class App extends Component {
   render() {
     return (
       // start comment out
-
       <MediaStyles>
-        <PrivateRoute path="/verify" component={VerifyProfile} />
-        <PrivateRoute path="/home" component={NavBurger} />
+        <div>
+          <PrivateRoute path="/verify" component={VerifyProfile} />
+          <PrivateRoute path="/home" component={NavBurger} />
+        </div>
         <AppStyles>
           <PublicRoute exact path="/" component={LandingPage} />
           <PublicRoute exact path="/signup" component={SignUp} />
           <PrivateRoute exact path="/home/tabs" component={ParentHome} />
-          <PrivateRoute
-            exact
-            path="/home/notifications"
-            component={Notifications}
-          />
+          <PrivateRoute exact path="/home/notifications" component={Notifications}/>
           <PrivateRoute exact path="/home/settings" component={Settings} />
           <PrivateRoute exact path="/home/household" component={Household} />
           <PrivateRoute exact path="/home/billing" component={Billing} />
