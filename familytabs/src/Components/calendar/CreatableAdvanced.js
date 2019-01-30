@@ -16,6 +16,7 @@ export default class CreatableAdvanced extends Component{
   };
   handleCreate = async (inputValue) => {
       const {name, familyID} = this.props
+      console.log(name, familyID)
     this.setState({ isLoading: true });
     let response = await axios.post(`${process.env.REACT_APP_API_URL}/${this.props.name}/create`, {[`${name}_name`]:inputValue, familyID})
     this.props.addOption(this.props.name, response.data[0])

@@ -121,7 +121,9 @@ class AddEvent extends React.Component {
   };
 
   render() {
-    const { locations, eventTypes, addOption, familyID } = this.props.state;
+    const { locations, eventTypes} = this.props.state;
+    const {addOption} = this.props
+    console.log( addOption, locations )
     const {
       scheduledEvent_name,
       eventTypeID,
@@ -181,7 +183,7 @@ class AddEvent extends React.Component {
             value={eventTypeID}
             setValue={this.setEventID}
             addOption={addOption}
-            familyID={familyID}
+            familyID={this.props.profile.familyID}
           />
 
           <CreatableAdvanced
@@ -191,7 +193,7 @@ class AddEvent extends React.Component {
             value={locationID}
             setValue={this.setLocationID}
             addOption={addOption}
-            familyID={familyID}
+            familyID={this.props.profile.familyID}
           />
 
           <Select

@@ -316,7 +316,6 @@ class CalendarComponent extends Component {
                 />
               ) : (
                 <Button 
-                  onmou
                   onClick={this.toggleForm}
                   style={{color: Colors.WHITE, 
                           background: "#242943", 
