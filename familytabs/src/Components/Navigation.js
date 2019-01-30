@@ -32,7 +32,7 @@ const NavBarStyling = styled.div`
     flex-direction: column;
     align-content: center;
     width: 280px;
-    background-color: #242943;
+    background-color: #77BBD3;
     border: 1px solid rgb(122, 122, 122);
     border-radius: 0.1rem;
     top: 0;
@@ -50,7 +50,7 @@ const NavLinksContainer = styled.div`
 
 const NavLink = styled(Link) `
     color: white;
-    background: #242943;
+    background: #77BBD3;
     display: flex;
     justify-content: center;
     width: 100%; 
@@ -64,7 +64,7 @@ const NavLink = styled(Link) `
 
 const LogoutButton = styled.button`
     color: white;
-    background: #242943;
+    background: #77BBD3;
     display: flex;
     justify-content: center;
     border: none;
