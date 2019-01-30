@@ -119,6 +119,7 @@ class LandingPage extends Component {
       return (
         <MainContainer>
         <ButtonContainer>
+          
         <Button 
             style={{ color: Colors.WHITE, background: "#242943", border: "2px solid #ffffff", padding: "15px 50px 15px 50px", width:"200px", height: "50px"}} 
             fill={false} 
