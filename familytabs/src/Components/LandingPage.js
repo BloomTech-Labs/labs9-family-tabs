@@ -14,10 +14,10 @@ const MainElements = styled.div`
   display: flex;
   justify-content: space-between;
   opacity: 100%;
-  color: #ffffff;
+  color: #242943;
   font-family:'Roboto', sans-serif;
   margin: 150px 150px 150px 150px;
-  border: 2px solid red;
+
 `;
 
 const LeftLanding = styled.div`
@@ -25,52 +25,33 @@ const LeftLanding = styled.div`
   flex-direction: column;
   width: 35%;
   margin: 15px;
-  border: 2px solid orange;
+  color: #ffffff;
+
 `;
 
 const Title = styled.h1`
-  margin: 50px 0 0 0;
+  margin: 0 0 0 0;
   display: flex;
   justify-content: center;
   color: #ffffff;
   font-size: 60px;
   padding:0;
   font-weight: 700;
-  /* border: 2px solid green; */
+
 `;
 
 const BottomBorder = styled.div`
   border-bottom: 2px solid white;
   height: 20px;
   width: 100%;
-  /* border: 2px solid yellow; */
+ 
 `;
 
-// const LandingText = styled.div`
-
-//     display: flex;
-//     flex-direction: column;
-//     align-items: flex-start; 
-//     padding-bottom: 10px;
-//     border: 2px solid brown;
-// `;
-
-
-// const Card = styled.div`
-//     border: 2px solid yellow;
- 
-//     display: flex;
-//     flex-direction: row;
-//     /* align-items: flex-start;   */
-//     line-height: 2;
-//     font-family: 'Roboto', sans-serif;
-//     /* margin: 28px; */
-// `;
 const RightLanding = styled.div`
   display: flex;
   width: 65%;
   margin: 15px;
-  border: 2px solid lightblue;
+
 `;
 
 const CarouselDiv = styled.div`
@@ -78,21 +59,47 @@ const CarouselDiv = styled.div`
 `;
 
 const ButtonContainer = styled.div`
-border: 2px solid lightcoral;
+
 display: flex;
 justify-content: flex-end;
-margin-right: 20px;
-margin-top: 20px;
+margin: 50px 20px 0px 0px;
 
 
 `;
 
 const StartContainer = styled.div`
-border: 2px solid lightcoral;
+
 display: flex;
-justify-content: center;
+justify-content: flex-end;
+padding-right: 20px;
 
 
+
+`;
+
+
+
+const Content = styled.p `
+    text-align: left;
+    color: #ffffff;
+    font-size: 18px;
+    line-height: 1.5;
+    padding: 20px 20px 20px 0;
+    margin: 60px 0 20px 0;
+
+`;
+
+const TitleContent = styled.p `
+   display: flex;
+   justify-content: flex-end;
+    color: #ffffff;
+    font-size: 16px;
+    margin: 30px 0px 10px 20px;
+    padding-right: 15px;
+   
+    color: #3985ac;
+
+  
 
 `;
 
@@ -118,22 +125,29 @@ class LandingPage extends Component {
             rightIcon="arrow-right" 
             large={true} 
             onClick={this.props.auth.login}
-            >Log in</Button>
+            >LOG IN</Button>
         </ButtonContainer>
         <MainElements>
             
 
               <LeftLanding>
-                <Title>Family Tabs</Title>
+                <TitleContent>keep tabs on the whole family with</TitleContent>
+                <Title>Family Tabs.</Title>
                 <BottomBorder></BottomBorder>
+               
+                  <Content>
+                  SOME VERY LOUD TEXT IN CAPS DESCRIBING OUR SUPER COOL APP. REALLY DRAW THOSE PEOPLE IN, AND TAKE AAALLLL THEIR MONEY! THEN, WE ARE BUYING THE ISLAND. WE CAN GET SOME ISLAND CATS TOO. THAT SOUNDS SO GREAT!
+                  </Content>
+
+               
                 <StartContainer>
                 <Button 
-                style={{ color: Colors.WHITE, background: "#242943", border: "2px solid #ffffff", padding: "10px 30px 10px 30px", width: "200px", height: "50px"}} 
+                style={{ color: Colors.WHITE, background: "#242943", border: "2px solid #ffffff", padding: "10px 30px 10px 30px", width: "200px", height: "50px", }} 
                 fill={false} 
                 rightIcon="arrow-right" 
                 large={true} 
                 onClick={this.signUpLink}
-              >Get Started!</Button>
+              >GET STARTED!</Button>
               </StartContainer>
               </LeftLanding>
 
