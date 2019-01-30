@@ -239,6 +239,7 @@ class CalendarComponent extends Component {
     .filter(event=>{
       const {participants} = this.state
       if(participants.length && typeof participants[0].value===`string`){
+        //checks for pending or declined status and then filters by pending or declined and removes family filters.
         if(participants.some(x => x.value === 'pending') && event.pendingApproval){
           return true
         }
@@ -247,12 +248,15 @@ class CalendarComponent extends Component {
         }
         return false
       }
+      //if pending or declined isn't selected in filter. Pending and declined events removed.
       if(event.pendingApproval || event.declined){
         return false
       }
+      //if nothing selected, all non pending and non declined events display
       if(!participants.length){
         return true
       }
+      //otherwise checks events to see if users corespond with people in the filter
       let currentFamilyIDs = participants.map(person => person.value)
       return currentFamilyIDs.some(id => event.userID.includes(id))
     });

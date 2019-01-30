@@ -36,19 +36,19 @@ export default class Household extends Component {
   memberAdder = async e => {
     e.preventDefault();
     const { userName, phone, email, isAdmin } = this.state;
-    console.log(isAdmin.value)
+    console.log(isAdmin.value);
     const { familyID } = this.props;
     const newProfile = {
       userName,
       phone,
       email,
       isAdmin: isAdmin.value,
-      familyID,
+      familyID
       //textCheckbox: 0
     };
 
     try {
-      console.log(newProfile)
+      console.log(newProfile);
       let res = await axios.post(
         `${process.env.REACT_APP_API_URL}/profile/create`,
         newProfile
@@ -59,27 +59,29 @@ export default class Household extends Component {
         userName: "",
         phone: "",
         email: "",
-        isAdmin: null,
         showForm: false
-      })
+      });
     } catch (err) {
       console.error(err);
     }
   };
 
   render() {
-    if (this.props.profile === null) {
+    if (!this.props.profile) {
       return <div>Loading...</div>;
     }
     return (
       <div>
-        <div>
-          <h1>Household</h1>
-        </div>
+
 
         <CardList>
           {this.props.family.map(familydata => (
-            <HouseholdFamily key={familydata.id} familydata={familydata} />
+            <HouseholdFamily
+              key={familydata.id}
+              familydata={familydata}
+              profile={this.props.profile}
+              loadState={this.props.loadState}
+            />
           ))}
         </CardList>
         {this.props.profile.isAdmin ? (
@@ -93,7 +95,7 @@ export default class Household extends Component {
             inputHandler={this.inputHandler}
             onInputChange={this.onInputChange}
             {...this.state}
-            memberAdder={this.memberAdder}
+            addOrEdit={this.memberAdder}
           />
         ) : (
           ""
