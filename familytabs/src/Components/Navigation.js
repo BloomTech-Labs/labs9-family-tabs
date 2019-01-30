@@ -14,6 +14,8 @@ const LogoStyles = styled.a`
     width: 30%;
     height: 30%;
     margin-bottom: 10px;
+
+
     :hover {
         cursor: pointer;
     }
@@ -35,13 +37,12 @@ const NavBarStyling = styled.div`
     background-color: #77BBD3;
     border: 1px solid rgb(122, 122, 122);
     border-radius: 0.1rem;
-    top: 0;
     height: 100%;
 `;
 
 
 const NavLinksContainer = styled.div`
-    margin: 0.5rem 0 0 0;
+    margin: 50px 0 0 0;
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
@@ -56,10 +57,13 @@ const NavLink = styled(Link) `
     width: 100%; 
     height: 50px;
     margin-bottom: 6.5px;
+    border-bottom: 1px solid white;
+    margin-top: 25px;
+
     :hover {
-    text-decoration: none;
-    color: #3985ac;
-}
+        text-decoration: none;
+        color: #3985ac;
+    }
 `;
 
 const LogoutButton = styled.button`
@@ -71,6 +75,8 @@ const LogoutButton = styled.button`
     width: 100%; 
     height: 50px;
     margin-bottom: 6.5px;
+    padding: 25px;
+
     :hover {
       cursor: pointer;
       color: #3985ac;
@@ -89,13 +95,13 @@ class Navigation extends Component {
        </LogoStyles>
        </ImgWrapper>
         <NavLinksContainer>
-            <NavLink to='/home/tabs'>Family Tabs</NavLink>
-            <NavLink to='/home/notifications'>Notifications</NavLink>
-            <NavLink to='/home/settings'>Settings</NavLink>
-            <NavLink to='/home/household'>Household</NavLink>
-            <NavLink to='/home/billing'>Billing</NavLink>
+            <NavLink to='/home/tabs'>FAMILY TABS</NavLink>
+            <NavLink to='/home/notifications'>NOTIFICATIONS</NavLink>
+            <NavLink to='/home/settings'>SETTINGS</NavLink>
+            <NavLink to='/home/household'>HOUSEHOLD</NavLink>
+            <NavLink to='/home/billing'>BILLING</NavLink>
         </NavLinksContainer>
-       <LogoutButton onClick={this.props.auth.logout}>Log out</LogoutButton>
+             <LogoutButton onClick={this.props.auth.logout}>LOG OUT</LogoutButton>
         </NavBarStyling>
     )
   }
