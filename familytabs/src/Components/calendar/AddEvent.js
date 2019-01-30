@@ -91,8 +91,9 @@ class AddEvent extends React.Component {
       eventEnd: moment(eventEnd).format("YYYYMMDD hh:mm a"),
       eventTypeID,
       locationID,
-      familyID: this.props.familyID,
-      createdByAdmin: this.props.isAdmin ? 1 : 0
+      familyID: this.props.profile.familyID,
+      createdBy: this.props.profile.id,
+      pendingApproval: this.props.profile.isAdmin ? false : true
     };
     try {
       let eventResponse = await this.props.addToCalendar(newEvent);
@@ -129,7 +130,6 @@ class AddEvent extends React.Component {
       eventEnd,
       participants
     } = this.state;
-    console.log(participants);
     return (
       <StyledFormWrapper>
         <form onSubmit={this.addEventHandler}>

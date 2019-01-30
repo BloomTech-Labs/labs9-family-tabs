@@ -13,7 +13,6 @@ class ParentHome extends Component {
       // }
       return (
         <>
-            <h1>Parent Homepage</h1>
             <CalendarComponent {...this.props}/>
             
         </>

@@ -154,7 +154,6 @@ class CalendarComponent extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      events: [],
       eventTypes: [],
       locations: [],
       participants:[],
@@ -170,10 +169,16 @@ class CalendarComponent extends Component {
     options
       .map(option => {
         return { value: option.id, label: option.userName };
-      })
+      }).concat([{value:'pending', label:'Events Pending Approval'},{value:'declined', label:'Declined Events'}])
+      
 
   onInputChange = (inputValue, { action }) => {
-    this.setState({ participants: inputValue });
+    if(!inputValue.length){
+      this.setState({participants:[]})
+      return
+    }
+    let lastType = typeof inputValue[inputValue.length-1].value
+    this.setState({ participants: inputValue.filter(input => typeof input.value === lastType) });
   };
 
   addOption = (name, option) => {
@@ -182,16 +187,12 @@ class CalendarComponent extends Component {
 
   toggleForm = () => {
     this.loadState();
-    const { familyEvents } = this.props;
-    if (familyEvents > this.state.events) {
-      this.setState({ events: this.mapToCalendar(familyEvents) });
-    }
     this.setState({ showForm: !this.state.showForm });
   };
 
   loadState = async () => {
-    const { familyEvents, familyID } = this.props;
-    let { locations, eventTypes, events } = this.state;
+    const {  familyID } = this.props;
+    let { locations, eventTypes } = this.state;
     if (!locations.length) {
       locations = await axios.get(
         `${process.env.REACT_APP_API_URL}/location/byfamily/${familyID}`
@@ -204,8 +205,7 @@ class CalendarComponent extends Component {
       );
       this.setState({ eventTypes: eventTypes.data });
     }
-    events = this.mapToCalendar(familyEvents);
-    this.setState({ events });
+
   };
 
   mapToCalendar = events =>
@@ -218,7 +218,9 @@ class CalendarComponent extends Component {
         eventStart,
         eventEnd,
         userName,
-        userID
+        userID,
+        pendingApproval,
+        declined
       } = event;
 
       let startTime = new Date(moment(eventStart, "YYYYMMDD hh:mm a"));
@@ -229,21 +231,36 @@ class CalendarComponent extends Component {
         end: endTime,
         participants: `${userName.join(", ")}`,
         particulars: `${eventType_name} event at ${location_name} ${address}`,
-        userID
-        //allDay:true
+        userID,
+        pendingApproval,
+        declined
       };
     })
     .filter(event=>{
-      if(!this.state.participants.length){
+      const {participants} = this.state
+      if(participants.length && typeof participants[0].value===`string`){
+        if(participants.some(x => x.value === 'pending') && event.pendingApproval){
+          return true
+        }
+        if(participants.some(x => x.value === 'declined') && event.declined){
+          return true
+        }
+        return false
+      }
+      if(event.pendingApproval || event.declined){
+        return false
+      }
+      if(!participants.length){
         return true
       }
-      let currentFamilyIDs = this.state.participants.map(person => person.value)
+      let currentFamilyIDs = participants.map(person => person.value)
       return currentFamilyIDs.some(id => event.userID.includes(id))
     });
 
   addToCalendar = async eventData => {
     try {
-      let addedEvent = await axios.post(
+      let addedEvent = 
+      await axios.post(
         `${process.env.REACT_APP_API_URL}/event/create`,
         eventData
       );
@@ -252,7 +269,7 @@ class CalendarComponent extends Component {
         eventStart: moment(addedEvent.data[0].eventStart, "YYYYMMDD hh:mm a"),
         eventEnd: moment(addedEvent.data[0].eventEnd, "YYYYMMDD hh:mm a")
       };
-      this.setState({ events: [...this.state.events, addedEvent] });
+      console.log(addedEvent)
       return addedEvent;
     } catch (err) {
       console.log(err);
@@ -261,11 +278,11 @@ class CalendarComponent extends Component {
 
   
   render() {
-    let events;
-    if (!this.state.events.length) {
-      events = this.mapToCalendar(this.props.familyEvents);
-    }
+    console.log(this.state)
+    let events  = this.mapToCalendar(this.props.familyEvents);;
+
     return (
+
       <MainStyled>
         <LeftSide>
            <StyledCalendar
@@ -273,7 +290,7 @@ class CalendarComponent extends Component {
               localizer={localizer}
               defaultDate={new Date()}
               defaultView="month"
-              events={this.state.events.length ? this.state.events : events}
+              events={events}
               components={{
                 event: Event
               }}
@@ -284,15 +301,14 @@ class CalendarComponent extends Component {
             <div>
               {this.state.showForm ? (
                 <AddEvent
-                  toggleForm={this.toggleForm}
-                  addToCalendar={this.addToCalendar}
-                  state={this.state}
-                  addOption={this.addOption}
-                  familyID={this.props.familyID}
-                  isAdmin={this.props.profile.isAdmin}
-                  family={this.props.family}
-                  loadGlobal={this.props.loadState}
-                  history={this.props.history}
+                toggleForm={this.toggleForm}
+                addToCalendar={this.addToCalendar}
+                state={this.state}
+                addOption={this.addOption}
+                profile={this.props.profile}
+                family={this.props.family}
+                loadGlobal={this.props.loadState}
+                history={this.props.history}
                 />
               ) : (
                 <Button 
@@ -310,7 +326,7 @@ class CalendarComponent extends Component {
             </div>
 
           <SelectStyled
-                placeholder="Family Members"
+                placeholder="Filter Events"
                 name="participants"
                 defaultValue={this.state.participants}
                 isMulti
