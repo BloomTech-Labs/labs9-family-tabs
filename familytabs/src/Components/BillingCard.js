@@ -23,10 +23,16 @@ const CardStyle = styled(Card)`
     h2 {
         font-weight: bold;
         color: #242943;
-        margin: 25px;
+        margin-top: 25px;
+        margin-bottom: 15px;
+        
     }
     p {
-        color: #242943
+        color: #242943;
+        line-height: 1.6;
+        margin-bottom: 25px;
+        margin-left: 30px;
+        margin-right: 30px;
     }
 `;
 
