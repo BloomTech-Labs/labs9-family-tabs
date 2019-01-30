@@ -122,8 +122,8 @@ class AddEvent extends React.Component {
 
   render() {
     const { locations, eventTypes} = this.props.state;
-    const {addOption} = this.props
-    console.log( addOption, locations )
+    const {addOption, profile} = this.props
+    console.log(profile.familyID)
     const {
       scheduledEvent_name,
       eventTypeID,
