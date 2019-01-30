@@ -1,23 +1,19 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom'
 import styled from "styled-components";
-import {AnchorButton, Colors} from "@blueprintjs/core";;
+import {AnchorButton, Button, Colors} from "@blueprintjs/core";
+import FTLogo3 from './images/FT_Logo_3.jpg';
 
-const Buttons = styled.button`
-    border: 4px solid orange;
-    background-color: #242943;
-    font-family: 'Lato', sans-serif;
+const ImageStyles = styled.img `
+    width: 25%;
+    height: 10%;
+    border-radius: 25%;
+`;
+
+const ImgWrapper = styled.div`
     display: flex;
-    align-items: center;
-    color: white;
-    font-weight: 300;
-    border: 1px solid #86AEB1;
-    width: 100%;
-    height: 30px;
-    padding-left: 15px;
-    border-radius: 0.1rem;
-    text-decoration: none;
-    font-size: 12px;
+    justify-content: center;
+    margin-top: 7.5px;
 `;
 
 const NavBarStyling = styled.div`
@@ -53,16 +49,6 @@ const NavButtonsContainer = styled.div`
     flex-direction: column;
 `;
 
-const StyledH1 = styled.h1`
-   font-family: 'Roboto';
-   color: white;
-   font-size: 18px;
-   width: 100%;
-   height: 60px;
-   padding-left: 15px;
-   padding-top: 30px;
-   display: flex;
-`;
 
 class Navigation extends Component {
 
@@ -70,15 +56,17 @@ class Navigation extends Component {
     render(){
     return (
       <NavBarStyling>
-       <StyledH1>Family Tabs</StyledH1>
+       <ImgWrapper>
+       <ImageStyles src={FTLogo3} alt="FTLogo3"></ImageStyles>
+       </ImgWrapper>
         <NavButtonsContainer>
-            <AnchorButton style={{ color: Colors.WHITE, background: "#242943", border: "2px solid #ffffff", width:"100%", height: "50px"}} href="/home/tabs" text="Family Tabs" />
-            <AnchorButton style={{ color: Colors.WHITE, background: "#242943", border: "2px solid #ffffff", width:"100%", height: "50px"}} href="/home/notifications" text="Notifications" />
-            <AnchorButton style={{ color: Colors.WHITE, background: "#242943", border: "2px solid #ffffff", width:"100%", height: "50px"}} href="/home/settings" text="Settings" />
-            <AnchorButton style={{ color: Colors.WHITE, background: "#242943", border: "2px solid #ffffff", width:"100%", height: "50px"}} href="/home/household" text="Household" />
-            <AnchorButton style={{ color: Colors.WHITE, background: "#242943", border: "2px solid #ffffff", width:"100%", height: "50px"}} href="/home/billing" text="Billing" />
+            <AnchorButton minimal={true} style={{ color: Colors.WHITE, background: "#242943",  width:"100%", height: "50px", marginBottom: "6.5px"}} href="/home/tabs" text="Family Tabs" />
+            <AnchorButton minimal={true} style={{ color: Colors.WHITE, background: "#242943",  width:"100%", height: "50px", marginBottom: "6.5px"}} href="/home/notifications" text="Notifications" />
+            <AnchorButton minimal={true} style={{ color: Colors.WHITE, background: "#242943",  width:"100%", height: "50px", marginBottom: "6.5px"}} href="/home/settings" text="Settings" />
+            <AnchorButton minimal={true} style={{ color: Colors.WHITE, background: "#242943",  width:"100%", height: "50px", marginBottom: "6.5px"}} href="/home/household" text="Household" />
+            <AnchorButton minimal={true} style={{ color: Colors.WHITE, background: "#242943",  width:"100%", height: "50px", marginBottom: "6.5px"}} href="/home/billing" text="Billing" />
         </NavButtonsContainer>
-       <Buttons onClick={this.props.auth.logout}>Log out</Buttons>
+       <Button minimal={true} style={{ color: Colors.WHITE, background: "#242943", width:"100%", height: "50px"}} onClick={this.props.auth.logout}>Log out</Button>
         </NavBarStyling>
     )
   }
