@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import InfoCarousel from './InfoCarousel';
 import styled from "styled-components";
 import { Button, Colors} from "@blueprintjs/core";
-import FT_Logo_3 from './images/FT_Logo_3.jpg';
+import  FT_Logo_3 from './images/FT_Logo_3.jpg';
 
 
 const MainContainer = styled.div`
