@@ -39,8 +39,12 @@ const AppStyles = styled.div`
   text-align: center;
   max-width: 100%;
   background-color: #242943;
-
 `;
+
+const StyleMain = styled.div`
+  padding: 15px;
+`;
+
 
 
 class App extends Component {
@@ -48,10 +52,10 @@ class App extends Component {
     return (
       // start comment out
       <MediaStyles>
-        <div>
+        <StyleMain>
           <PrivateRoute path="/verify" component={VerifyProfile} />
           <PrivateRoute path="/home" component={NavBurger} />
-        </div>
+        </StyleMain>
         <AppStyles>
           <PublicRoute exact path="/" component={LandingPage} />
           <PublicRoute exact path="/signup" component={SignUp} />

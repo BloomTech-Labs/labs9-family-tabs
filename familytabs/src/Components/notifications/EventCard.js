@@ -4,7 +4,8 @@ import moment from 'moment';
 
 const Card = styled.div`
   border: 2px solid lightgrey;
-  width: 380px;
+  width: 400px;
+  height: 200px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -15,8 +16,7 @@ const Card = styled.div`
 `;
 
 const Header = styled.div`
-  /* border: 1px solid red; */
-  font-family: "Fredoka One";
+  font-family: "Roboto", sans-serif;
   color: black;
   font-size: 18px;
   width: 100%;
@@ -27,6 +27,7 @@ const Header = styled.div`
 `;
 
 const Info = styled.div`
+  font-family: "Lato", sans-serif;
   padding-left: 20px;
   display: flex;
   flex-direction: column;
