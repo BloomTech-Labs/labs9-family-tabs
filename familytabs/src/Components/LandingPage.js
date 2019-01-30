@@ -3,9 +3,11 @@ import InfoCarousel from './InfoCarousel';
 import styled from "styled-components";
 import { Button, Colors} from "@blueprintjs/core";
 
+
 const MainContainer = styled.div`
 
   max-height: 100%;
+
 
 `;
 
@@ -40,7 +42,7 @@ const Title = styled.h1`
 `;
 
 const BottomBorder = styled.div`
-  border-bottom: 2px solid white;
+  border-bottom: 2px solid #D4B36E;
   height: 20px;
   width: 100%;
  
@@ -69,7 +71,6 @@ margin: 50px 20px 0px 0px;
 const StartContainer = styled.div`
 
 display: flex;
-
 justify-content: flex-end;
 padding-right: 20px;
 
@@ -96,12 +97,40 @@ const TitleContent = styled.p `
     font-size: 16px;
     margin: 30px 0px 10px 20px;
     padding-right: 15px;
-   
     color: #3985ac;
 
   
 
 `;
+
+const NewButton = styled.button `
+    color: white;
+    background: #242943;
+    border: 2px solid #ffffff; 
+    padding: 15px 50px 15px 50px;
+    width: 200px; 
+    height: 50px;
+    :hover {
+   border-color: #3985ac;
+   color: #3985ac;
+}
+
+`;
+
+const GoButton = styled.button `
+    color: white;
+    background: #242943;
+    border: 2px solid #ffffff; 
+    padding: 15px 50px 15px 50px;
+    width: 250px; 
+    height: 50px;
+    :hover {
+    border-color: #3985ac;
+    color: #3985ac;
+}
+
+`;
+
 
 
 class LandingPage extends Component { 
@@ -120,16 +149,7 @@ class LandingPage extends Component {
       return (
         <MainContainer>
         <ButtonContainer>
-
-        
-
-        <Button 
-            style={{ color: Colors.WHITE, background: "#242943", border: "2px solid #ffffff", padding: "15px 50px 15px 50px", width:"200px", height: "50px"}} 
-            fill={false} 
-            rightIcon="arrow-right" 
-            large={true} 
-            onClick={this.props.auth.login}
-            >LOG IN</Button>
+           <NewButton onClick={this.props.auth.login}> LOGIN</NewButton>
         </ButtonContainer>
         <MainElements>
             
@@ -145,13 +165,7 @@ class LandingPage extends Component {
 
                
                 <StartContainer>
-                <Button 
-                style={{ color: Colors.WHITE, background: "#242943", border: "2px solid #ffffff", padding: "10px 30px 10px 30px", width: "200px", height: "50px", }} 
-                fill={false} 
-                rightIcon="arrow-right" 
-                large={true} 
-                onClick={this.signUpLink}
-              >GET STARTED!</Button>
+                <GoButton onClick={this.signUpLink}>GET STARTED!</GoButton>
               </StartContainer>
               </LeftLanding>
 
