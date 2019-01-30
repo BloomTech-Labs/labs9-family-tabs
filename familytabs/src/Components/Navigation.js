@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom'
 import styled from "styled-components";
 import {AnchorButton, Button, Colors} from "@blueprintjs/core";
-import FTLogo3 from './images/FT_Logo_3.jpg';
+import FTLogo4 from './images/FT_Logo_4.jpg';
 
 const ImageStyles = styled.img `
     width: 25%;
@@ -30,19 +30,6 @@ const NavBarStyling = styled.div`
     height: 100%;
 `;
 
-const Links = styled(Link)`
-    border: 4px solid orange;
-    display: flex;
-    align-items: center;
-    color: white;
-    font-weight: 300;
-    border: 1px solid #86AEB1;
-    width: 100%;
-    height: 60px;
-    padding-left: 15px;
-    border-radius: 0.1rem;
-    text-decoration: none;
-`;
 
 const NavButtonsContainer = styled.div`
     margin: 0.5rem 0 0 0;
@@ -57,16 +44,16 @@ class Navigation extends Component {
     return (
       <NavBarStyling>
        <ImgWrapper>
-       <ImageStyles src={FTLogo3} alt="FTLogo3"></ImageStyles>
+       <ImageStyles src={FTLogo4} alt="FTLogo3"></ImageStyles>
        </ImgWrapper>
         <NavButtonsContainer>
-            <AnchorButton minimal={true} style={{ color: Colors.WHITE, background: "#242943",  width:"100%", height: "50px", marginBottom: "6.5px"}} href="/home/tabs" text="Family Tabs" />
-            <AnchorButton minimal={true} style={{ color: Colors.WHITE, background: "#242943",  width:"100%", height: "50px", marginBottom: "6.5px"}} href="/home/notifications" text="Notifications" />
-            <AnchorButton minimal={true} style={{ color: Colors.WHITE, background: "#242943",  width:"100%", height: "50px", marginBottom: "6.5px"}} href="/home/settings" text="Settings" />
-            <AnchorButton minimal={true} style={{ color: Colors.WHITE, background: "#242943",  width:"100%", height: "50px", marginBottom: "6.5px"}} href="/home/household" text="Household" />
-            <AnchorButton minimal={true} style={{ color: Colors.WHITE, background: "#242943",  width:"100%", height: "50px", marginBottom: "6.5px"}} href="/home/billing" text="Billing" />
+            <AnchorButton minimal={true} style={{ color: Colors.WHITE, colorbackground: "#242943",  width:"100%", height: "50px", marginBottom: "6.5px"}} href="/home/tabs" text="Family Tabs" />
+            <AnchorButton minimal={true} style={{ color: Colors.WHITE, colorbackground: "#242943",  width:"100%", height: "50px", marginBottom: "6.5px"}} href="/home/notifications" text="Notifications" />
+            <AnchorButton minimal={true} style={{ color: Colors.WHITE, colorbackground: "#242943",  width:"100%", height: "50px", marginBottom: "6.5px"}} href="/home/settings" text="Settings" />
+            <AnchorButton minimal={true} style={{ color: Colors.WHITE, colorbackground: "#242943",  width:"100%", height: "50px", marginBottom: "6.5px"}} href="/home/household" text="Household" />
+            <AnchorButton minimal={true} style={{ color: Colors.WHITE, colorbackground: "#242943",  width:"100%", height: "50px", marginBottom: "6.5px"}} href="/home/billing" text="Billing" />
         </NavButtonsContainer>
-       <Button minimal={true} style={{ color: Colors.WHITE, background: "#242943", width:"100%", height: "50px"}} onClick={this.props.auth.logout}>Log out</Button>
+       <Button minimal={true} style={{ color: Colors.WHITE, colorbackground: "#242943", width:"100%", height: "50px"}} onClick={this.props.auth.logout}>Log out</Button>
         </NavBarStyling>
     )
   }

@@ -3,7 +3,6 @@ import InfoCarousel from './InfoCarousel';
 import styled from "styled-components";
 import { Button, Colors} from "@blueprintjs/core";
 
-
 const MainContainer = styled.div`
 
   max-height: 100%;
@@ -91,10 +90,9 @@ const StartContainer = styled.div`
 border: 2px solid lightcoral;
 display: flex;
 justify-content: center;
-
-
-
 `;
+
+
 
 class LandingPage extends Component { 
   componentDidMount(){
@@ -112,6 +110,7 @@ class LandingPage extends Component {
       return (
         <MainContainer>
         <ButtonContainer>
+        {/* <ImageStyling src={FT_Logo_4} alt="FT Logo"/> */}
         <Button 
             style={{ color: Colors.WHITE, background: "#242943", border: "2px solid #ffffff", padding: "15px 50px 15px 50px", width:"200px", height: "50px"}} 
             fill={false} 
