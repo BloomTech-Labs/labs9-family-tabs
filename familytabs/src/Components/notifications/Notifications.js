@@ -24,14 +24,13 @@ const StyledTabList = styled(TabList)`
 `;
 
 const StyledTab = styled(Tab)`
-    border-top: 1px solid #64AAC4;
-    border-right: 1px solid #64AAC4;
-    border-left: 1px solid #64AAC4;
+    border-left: 1px solid #22263C;
+    border-right: 1px solid #22263C;
     color: white;
     background-color: #68659E;
     padding: 5px 10px;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
     :hover {
       color: #68659E;
       background-color: white;
@@ -42,6 +41,8 @@ const StyledTab = styled(Tab)`
 const StyledTabPanel = styled(TabPanel)`
     background-color: #68659E;
     padding: 15px;
+    border-left: 1px solid #22263C;
+    border-right: 1px solid #22263C;
     
 
 `;
