@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import InfoCarousel from './InfoCarousel';
 import styled from "styled-components";
 import { Button, Colors} from "@blueprintjs/core";
+import FT_Logo_3 from './images/FT_Logo_3.jpg';
 
 
 const MainContainer = styled.div`
@@ -91,9 +92,14 @@ const StartContainer = styled.div`
 border: 2px solid lightcoral;
 display: flex;
 justify-content: center;
+`;
 
-
-
+const ImageStyling = styled.img`
+    opacity: 0.5;
+    width: 25%;
+    height: 10%;
+    border-radius: 10px;;
+    margin-top: 10px;
 `;
 
 class LandingPage extends Component { 
@@ -112,6 +118,7 @@ class LandingPage extends Component {
       return (
         <MainContainer>
         <ButtonContainer>
+        {/* <ImageStyling src={FT_Logo_3} alt="FT Logo"/> */}
         <Button 
             style={{ color: Colors.WHITE, background: "#242943", border: "2px solid #ffffff", padding: "15px 50px 15px 50px", width:"200px", height: "50px"}} 
             fill={false} 

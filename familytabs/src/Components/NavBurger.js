@@ -3,6 +3,8 @@ import CheeseburgerMenu from 'cheeseburger-menu'
 import HamburgerMenu from 'react-hamburger-menu'
 import Navigation from './Navigation'
 
+
+
 class NavBurger extends Component {
   constructor(props) {
     super(props)

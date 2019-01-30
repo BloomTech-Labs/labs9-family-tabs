@@ -58,8 +58,8 @@ class App extends Component {
 
       <MediaStyles>
         <PrivateRoute path="/verify" component={VerifyProfile} />
-        <PrivateRoute path="/home" component={NavBurger} />
         <AppStyles>
+        <PrivateRoute path="/home" component={NavBurger} />
           <PublicRoute exact path="/" component={LandingPage} />
           <PublicRoute exact path="/signup" component={SignUp} />
           <PrivateRoute exact path="/home/tabs" component={ParentHome} />
