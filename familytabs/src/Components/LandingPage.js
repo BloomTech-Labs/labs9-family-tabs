@@ -16,7 +16,8 @@ const MainElements = styled.div`
     color: #242943;
     font-family:'Roboto', sans-serif;
     margin: 0 150px 0 150px;
-;'
+;`
+
 const LeftLanding = styled.div`
     display: flex ; 
     flex-direction: column;
@@ -130,11 +131,6 @@ class LandingPage extends Component {
     render() {
       return (
         <MainContainer>
-
-          <ButtonContainer>
-            <NewButton onClick={this.props.auth.login}> LOGIN</NewButton>
-          </ButtonContainer>
-
           <MainElements>
               <LeftLanding>
                 <TitleContent>Keep tabs on the whole family with</TitleContent>
@@ -152,7 +148,6 @@ class LandingPage extends Component {
                 <StartContainer>
                 <ButtonContainer>
                     <GoButton onClick={this.signUpLink}>GET STARTED!</GoButton>
-                    <NewButton onClick={this.props.auth.login}> LOGIN</NewButton>
                 </ButtonContainer>
               </StartContainer>
               </LeftLanding>
