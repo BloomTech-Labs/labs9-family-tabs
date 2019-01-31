@@ -142,11 +142,14 @@ export default class Household extends Component {
             )}
             {this.state.showForm ? (
               <HouseholdModal
-                toggleForm={this.toggleForm}
-                inputHandler={this.inputHandler}
-                onInputChange={this.onInputChange}
-                {...this.state}
-                addOrEdit={this.memberAdder}
+            toggleForm={this.toggleForm}
+            inputHandler={this.inputHandler}
+            onInputChange={this.onInputChange}
+            {...this.state}
+            addOrEdit={this.memberAdder}
+            handleNotificationChange={this.handleNotificationChange}
+            notification={this.state.notification}
+            handleAdminChange={this.handleAdminChange}
               />
             ) : (
               ""
