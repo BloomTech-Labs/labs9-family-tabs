@@ -2,60 +2,78 @@ import React, { Component } from 'react'
 import BillingCard from './BillingCard';
 import styled from "styled-components";
 
-const StyledMain = styled.div`
-  padding: 0 150px 0 150px;
-  display: flex;
-  flex-direction: column;
-
-  @media (min-width: 320px) and (max-width: 481px) {
-
-  }
-`;
-
-const StyledTop = styled.div`
-  color: white;
-  font-size: 64px;
-  margin: 0 0 25px 0;
-  font-family: "Merriweather", sans-serif;
-`;
-
-const StyledBottom = styled.div`
-  display: flex;
-  flex-direction: row;
-`;
-
 const Title = styled.h1`
-    display: flex;
-    justify-content: center;
-    color: #ffffff;
-    font-size: 60px;
-    font-weight: 700;
+  margin: 0 0 0 0;
+  display: flex;
+  justify-content: center;
+  color: #ffffff;
+  font-size: 60px;
+  padding:0;
+  font-weight: 700;
+
+
 `;
 
 const BottomBorder = styled.div`
-    border-bottom: 2px solid #D4B36E;
-    height: 20px;
-    width: 100%;
-    margin: 0 0 50px 0;
+  border-bottom: 2px solid #D4B36E;
+  height: 20px;
+  width: 20%;
+  margin: 0px 0px 50px 0px;
+ 
+
 `;
+const TitleContent = styled.p `
+   display: flex;
+ 
+    color: #ffffff;
+    font-size: 16px;
+    padding-right: 15px;
+    color: #3985ac;
+    width: 20%;
+    margin: 0px 0px 10px 125px; 
+  
+
+  
+
+`;
+
+const BillingWrapper=styled.div `
+
+
+
+`;
+
+const BillingTitle = styled.div `
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+
+
+`;
+
+const CardContainer = styled.div `
+    border: 2px solid yellow;
+    display: flex;
+    justify-content: center;
+`;
+
+
 
 export default class Billing extends Component {
   render() {
     return (
-      <StyledMain>
+    <BillingWrapper>
+        <BillingTitle>
+        <TitleContent>upgrade to a premium account</TitleContent>
+        <Title>Billing</Title>
+        <BottomBorder></BottomBorder>
+        </BillingTitle>
+      <CardContainer>
+      <BillingCard />
 
-        <StyledTop>
-            <Title>Billing</Title>
-            <BottomBorder></BottomBorder>
-        </StyledTop>
- 
-        <StyledBottom>
-            <div BillingPageWrapper>
-              <BillingCard />
-            </div>
-        </StyledBottom>
-
-      </StyledMain>
+      </CardContainer>
+      </BillingWrapper>
     )
   }
 }

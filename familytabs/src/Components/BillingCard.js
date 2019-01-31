@@ -1,80 +1,67 @@
 import React from 'react';
 import styled from "styled-components";
 import Checkout from './Checkout';
-import { Card, Elevation } from "@blueprintjs/core";
+
+
 
 
 const BillingWrapper = styled.div`
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-`;
-
-const CardStyle = styled(Card)`
+    color: #ffffff;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+ 
     width: 50%;
-    height: 65%;
-    /* border: 2px solid red; */
-    border-radius: 25px;
-    background: #BFBFBF;
-    margin-bottom: 20px
-    h2 {
-        font-weight: bold;
-        color: #242943;
-        margin-top: 25px;
-        margin-bottom: 15px;
-        
-    }
-    p {
-        color: #242943;
-        line-height: 1.6;
-        margin-bottom: 25px;
-        margin-left: 30px;
-        margin-right: 30px;
-    }
+
+  
+
+`;
+const Title = styled.div `
+ text-align: left;
+ font-size: 20px;
+ margin: 30px 0px 30px 0px;
+
+`;
+const Content = styled.p `
+   
+    text-align: left;
+    margin: 30px 0px 60px 0px;
+
+`;
+const ButtonWrapper = styled.div `
+    width: 50%;
+    margin-left: -16%;
+    
+
 `;
 
 
 function BillingCard(props) {
     
     return (
-    <div>
+
     <BillingWrapper>
-    <CardStyle interactive={true} elevation={Elevation.TWO}>
-        <h2>Family Tabs - Premium</h2>
-        <p>    Family Tabs free accounts automatically offers a single parent account with up to
-               three children.  For only 9.99 a month the Premium account includes three admins
-               and and unlimited amount of children accounts.  Your information is always safe with
-               us, and will never be sold to third parties under any circumstances.  With Family Tabs
-               we make it easy to keep tabs on the whole family!
-               </p>
-    </CardStyle>
-    {/* <Card >
-         <Header>Billing</Header>
-         
-         <Header>Subscription Info</Header>
-           <Info>
-           <p>Family Tabs free accounts automatically offers a single parent account with up to
-               three children.  For only 9.99 a month the Premium account includes three admins
-               and and unlimited amount of children accounts.  Your information is always safe with
-               us, and will never be sold to third parties under any circumstances.  With Family Tabs
-               we make it easy to keep tabs on the whole family!
-           </p>
-           </Info>
-       </Card > */}
-   
-      <div>
+        <Title>
+            <h2>FAMILY TABS PREMIUM</h2>
+        </Title>
+
+        <Content>
+               FOR ONLY $9.99 A MONTH THE PREMIUM ACCOUNT INCLUDES THREE ADMINS AND AN UNLIMITED AMOUNT OF CHILDREN ACCOUNTS. YOUR INFORMATION IS ALWAYS SAFE WITH US, AND WILL NEVER BE SOLD TO THIRD PARTIES. WITH FAMILY TABS PREMIUM. IT GETS EVEN EASIER TO KEEP TABS ON THE WHOLE FAMILY! 
+        </Content>
+
+    <div>
       <p className="App-intro"> 
     </p>
     </div>
-    </BillingWrapper>
+    <ButtonWrapper>
+
+
     <Checkout
         name={'Family Tabs'}
         description={'Monthy Subscription'}
         amount={9.99} />
-    </div>
+    </ButtonWrapper>
+        </BillingWrapper>
+
     );
 }
 
