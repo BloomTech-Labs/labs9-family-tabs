@@ -16,7 +16,7 @@ const MainElements = styled.div`
     color: #242943;
     font-family:'Roboto', sans-serif;
     margin: 0 150px 0 150px;
-`
+;'
 const LeftLanding = styled.div`
     display: flex ; 
     flex-direction: column;
