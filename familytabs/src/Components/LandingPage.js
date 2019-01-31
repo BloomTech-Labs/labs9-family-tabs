@@ -1,21 +1,21 @@
 import React, { Component } from 'react';
 import InfoCarousel from './InfoCarousel';
 import styled from "styled-components";
-import { Button, Colors} from "@blueprintjs/core";
+
+
 
 
 const MainContainer = styled.div`
-    max-height: 100%;
+
 `;
 
 const MainElements = styled.div`
-  display: flex;
-  justify-content: space-between;
-  opacity: 100%;
-  color: #242943;
-  font-family:'Roboto', sans-serif;
-  margin: 0px 150px 0px 150px;
-`;
+    display: flex;
+    justify-content: space-between;
+    opacity: 100%;
+    color: #242943;
+    font-family:'Roboto', sans-serif;
+    margin: 0 150px 0 150px;
 
 const LeftLanding = styled.div`
     display: flex; 
@@ -30,7 +30,7 @@ const Title = styled.h1`
     display: flex;
     justify-content: center;
     color: #ffffff;
-    font-size: 60px;
+    font-size: 92px;
     padding:0;
     font-weight: 700;
 `;
@@ -66,13 +66,13 @@ const Content = styled.p `
     color: #ffffff;
     font-size: 18px;
     line-height: 1.5;
-    padding: 20px 20px 20px 0;
-    margin: 60px 0 20px 0;
+    padding: 20px 20px 0 20px;
+    margin: 30px 0 0 0;
 `;
 
 const TitleContent = styled.p `
     display: flex;
-    justify-content: flex-end;
+    justify-content: flex;
     color: #ffffff;
     font-size: 16px;
     margin: 30px 0px 10px 20px;
@@ -85,6 +85,7 @@ const NewButton = styled.button `
     background: #242943;
     border: 2px solid #ffffff; 
     padding: 15px 50px 15px 50px;
+    margin: 0 0 50px 0;
     width: 200px; 
     height: 50px;
     margin-left: 5px;
@@ -101,12 +102,14 @@ const GoButton = styled.button `
     background: #242943;
     border: 2px solid #ffffff; 
     padding: 15px 50px 15px 50px;
+    margin: 25px 0 0 0;
     width: 250px; 
     height: 50px;
     margin-right: 5px;
     :hover {
     border-color: #3985ac;
     color: #3985ac;
+    cursor: pointer;
     }
 `;
 
@@ -128,15 +131,23 @@ class LandingPage extends Component {
       return (
         <MainContainer>
 
-        <MainElements>
-            
+          <ButtonContainer>
+            <NewButton onClick={this.props.auth.login}> LOGIN</NewButton>
+          </ButtonContainer>
 
+          <MainElements>
               <LeftLanding>
                 <TitleContent>Keep tabs on the whole family with</TitleContent>
-                <Title>Family Tabs.</Title>
+                <Title>Family Tabs</Title>
                 <BottomBorder></BottomBorder>
                   <Content>
-                  SOME VERY LOUD TEXT IN CAPS DESCRIBING OUR SUPER COOL APP. REALLY DRAW THOSE PEOPLE IN, AND TAKE AAALLLL THEIR MONEY! THEN, WE ARE BUYING THE ISLAND. WE CAN GET SOME ISLAND CATS TOO. THAT SOUNDS SO GREAT!
+                  - KEEP TRACK OF YOUR CHILDREN'S EVENTS! 
+                  </Content>
+                  <Content>
+                  - NEVER MISS ANOTHER GAME! 
+                  </Content>
+                  <Content>
+                  - PUT THE KIDS IN CONTROL!
                   </Content>
                 <StartContainer>
                 <ButtonContainer>
@@ -153,8 +164,7 @@ class LandingPage extends Component {
                
                 
               </RightLanding>
-  
-        </MainElements>
+          </MainElements>
         </MainContainer>
       )
     }
