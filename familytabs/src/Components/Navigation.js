@@ -15,7 +15,6 @@ const LogoStyles = styled.a`
     height: 30%;
     margin-bottom: 10px;
 
-
     :hover {
         cursor: pointer;
     }
@@ -39,7 +38,6 @@ const NavBarStyling = styled.div`
     border-radius: 0.1rem;
     height: 100%;
 `;
-
 
 const NavLinksContainer = styled.div`
     margin: 50px 0 0 0;
@@ -80,7 +78,7 @@ const LogoutButton = styled.button`
     :hover {
       cursor: pointer;
       color: #3985ac;
-}
+    }
 `;
 
 
