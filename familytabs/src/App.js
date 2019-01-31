@@ -12,6 +12,7 @@ import styled from "styled-components";
 import SignUp from "./Components/SignUp";
 import NavBurger from "./Components/NavBurger";
 import FTLogo5 from './Components/images/FT_Logo_5.jpg';
+import LoginButton from "./Components/LoginButton";
 
 
 const MediaStyles = styled.div`
@@ -89,6 +90,7 @@ class App extends Component {
             <LogoImage src={FTLogo5} alt="FTLogo5"></LogoImage>
           </ImageWrapper>
           <BurgerWrapper>
+            <PublicRoute exact path='/' component={LoginButton}></PublicRoute>
             <PrivateRoute path="/home" component={NavBurger} />
           </BurgerWrapper>
         </TopWrapper>
