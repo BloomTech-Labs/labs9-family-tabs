@@ -81,7 +81,8 @@ const getState = (app,db) => {
           "user.phone",
           "user.email",
           "user.isAdmin",
-          "user.familyID"
+          "user.familyID",
+          "user.textCheckbox"
         );
       if (!familyMembers.length) {
         return res.status(400).json({ err: "no family at that id" });

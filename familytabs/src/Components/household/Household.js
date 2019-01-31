@@ -53,9 +53,18 @@ export default class Household extends Component {
       userName: "",
       phone: "",
       email: "",
-      isAdmin: null,
+      notification: false,
+      isAdmin: false,
       showForm: false
     };
+  }
+
+  handleAdminChange=(isAdmin) =>{
+    this.setState({ isAdmin });
+  }
+
+  handleNotificationChange=(notification) =>{
+    this.setState({ notification });
   }
 
   onInputChange = (inputValue, { action }) => {
@@ -72,16 +81,15 @@ export default class Household extends Component {
 
   memberAdder = async e => {
     e.preventDefault();
-    const { userName, phone, email, isAdmin } = this.state;
-    console.log(isAdmin.value);
+    const { userName, phone, email, isAdmin, notification } = this.state;
     const { familyID } = this.props;
     const newProfile = {
       userName,
       phone,
       email,
-      isAdmin: isAdmin.value,
-      familyID
-      //textCheckbox: 0
+      isAdmin,
+      familyID,
+      textCheckbox: notification
     };
 
     try {
@@ -96,7 +104,8 @@ export default class Household extends Component {
         userName: "",
         phone: "",
         email: "",
-        showForm: false
+        showForm: false,
+        notification:false
       });
     } catch (err) {
       console.error(err);
