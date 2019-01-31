@@ -41,11 +41,20 @@ class HouseholdFamily extends React.Component {
     userName: "",
     phone: "",
     email: "",
-    isAdmin: null,
-    showForm: false
+    isAdmin: false,
+    showForm: false,
+    notification:false
   };
   componentDidMount() {
-    this.setState({ ...this.props.familydata });
+    this.setState({ ...this.props.familydata, notification : this.props.familydata.textCheckbox });
+  }
+
+  handleNotificationChange=(notification) =>{
+    this.setState({ notification });
+  }
+
+  handleAdminChange=(isAdmin) =>{
+    this.setState({ isAdmin });
   }
 
   inputHandler = e => {
@@ -62,14 +71,14 @@ class HouseholdFamily extends React.Component {
 
   memberEdit = async e => {
     e.preventDefault();
-    const { userName, phone, email, isAdmin } = this.state;
+    const { userName, phone, email, isAdmin , notification} = this.state;
     const { familyID, id } = this.props.familydata;
     const newProfile = {
       userName,
       phone,
       email,
-      isAdmin: isAdmin.value
-      //textCheckbox: 0
+      isAdmin,
+      textCheckbox: notification
     };
 
     try {
@@ -96,7 +105,8 @@ class HouseholdFamily extends React.Component {
             <p>Username: {userName}</p>
             <p>Phone: {phone}</p>
             <p>Email: {email}</p>
-            <p>Admin: {this.props.familydata.isAdmin}</p>
+            <p>Admin: {this.props.familydata.isAdmin ? 'Yes':'No'}</p>
+            <p>Notifications: {this.props.familydata.textCheckbox ? 'On':'Off'}</p>
           </Info>
           {this.props.profile.isAdmin ? (
             <button onClick={this.toggleForm}>Edit</button>
@@ -113,6 +123,8 @@ class HouseholdFamily extends React.Component {
             onInputChange={this.onInputChange}
             {...this.state}
             addOrEdit={this.memberEdit}
+            handleNotificationChange={this.handleNotificationChange}
+            handleAdminChange={this.handleAdminChange}
           />
         ) : (
           ""
