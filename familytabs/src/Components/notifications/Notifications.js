@@ -12,8 +12,8 @@ const StyledMain = styled.div`
   display: flex;
   flex-direction: column;
 
-  @media (min-width: 320px) and (max-width: 481px) {
-
+  @media (max-width: 1000px) {
+    padding:0;
   }
 `;
 
@@ -27,24 +27,36 @@ const StyledTop = styled.div`
 const StyledBottom = styled.div`
   display: flex;
   flex-direction: row;
-`;
-
-const StyledLeft = styled.div`
-  width: 40%;
-`;
-
-const StyledRight = styled.div`
-  width: 60%;
+  align-items:flex-start;
+  width:100%;
+  justify-content:space-between;
+  @media (max-width:1220px){
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 
 const ImageStyles = styled.img `
-    width: 600px;
-    height: 450px;
-    margin: 50px 0 0 50px;
+    width: 400px;
+    height: auto;
+    margin: 50px 0 0 0;
+    @media (max-width:1220px){
+      width:100%;
+    }
+    @media (max-width:800px){
+      display:none;
+    }
 `;
 
 const StyledTabs = styled(Tabs)`
     height: 100%;
+    width: 468px;
+    padding:0;
+    @media (max-width:500px) {
+      width:98%;
+      margin:0 auto;
+      
+    }
 `;
 
 const StyledTabList = styled(TabList)`
@@ -71,26 +83,26 @@ const StyledTab = styled(Tab)`
     }
 `;
 
-const StyledPendingPanel = styled(TabPanel)`
+const StyledPanel = styled(TabPanel)`
     background-color: #68659E;
     padding: 15px;
     border-left: 1px solid #22263C;
     border-right: 1px solid #22263C;
 `;
 
-const StyledApprovedPanel = styled(TabPanel)`
-    background-color: #68659E;
-    padding: 1px 15px 75px;
-    border-left: 1px solid #22263C;
-    border-right: 1px solid #22263C;
-`;
+// const StyledPanel = styled(TabPanel)`
+//     background-color: #68659E;
+//     padding: 1px 15px 75px;
+//     border-left: 1px solid #22263C;
+//     border-right: 1px solid #22263C;
+// `;
 
-const StyledDeclinedPanel = styled(TabPanel)`
-    background-color: #68659E;
-    padding: 1px 15px 75px;
-    border-left: 1px solid #22263C;
-    border-right: 1px solid #22263C;
-`;
+// const StyledDeclinedPanel = styled(TabPanel)`
+//     background-color: #68659E;
+//     padding: 1px 15px 75px;
+//     border-left: 1px solid #22263C;
+//     border-right: 1px solid #22263C;
+// `;
 
 
 const Title = styled.h1`
@@ -157,7 +169,7 @@ export default class Notifications extends Component {
         </StyledTop>
         
         <StyledBottom>
-          <StyledLeft>
+          
           <StyledTabs>
               <StyledTabList>
                 <StyledTab>PENDING</StyledTab>
@@ -165,7 +177,7 @@ export default class Notifications extends Component {
                 <StyledTab>DECLINED</StyledTab>
               </StyledTabList>
               
-              <StyledPendingPanel>
+              <StyledPanel>
                 {this.props.familyEvents
                   .filter(x => x.pendingApproval)
                   .map(eventData => (
@@ -181,29 +193,26 @@ export default class Notifications extends Component {
                       declineClick={this.declineClick}
                     />
                   ))}
-              </StyledPendingPanel>
+              </StyledPanel>
 
-              <StyledApprovedPanel>
+              <StyledPanel>
                 {this.props.familyEvents
                   .filter(x => x.approved)
                   .map(eventData => (
                     <EventCard key={eventData.id} family={this.props.family} eventData={eventData} />
                   ))}
-              </StyledApprovedPanel>
+              </StyledPanel>
 
-              <StyledDeclinedPanel>
+              <StyledPanel>
                 {this.props.familyEvents
                   .filter(x => x.declined)
                   .map(eventData => (
                     <EventCard key={eventData.id} family={this.props.family} eventData={eventData} />
                   ))}
-              </StyledDeclinedPanel>
+              </StyledPanel>
           </StyledTabs>
-          </StyledLeft>
 
-          <StyledRight>
             <ImageStyles src={BaseballGirl} alt="Little girl playing baseball"></ImageStyles>
-          </StyledRight>
         </StyledBottom>
       </StyledMain>
     );
