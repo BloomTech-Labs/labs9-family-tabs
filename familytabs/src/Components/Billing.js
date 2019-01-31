@@ -39,6 +39,17 @@ const TitleContent = styled.p `
 
 const BillingWrapper=styled.div `
   padding: 0 150px 0 150px;
+  @media (min-width: 1024px) and (max-width: 1281px) {
+    padding: 0;
+  }
+
+  @media (min-width: 768px) and (max-width: 1024px) {
+    padding: 0;
+  }
+
+  @media (min-width: 320px) and (max-width: 768px) {
+    padding: 0;
+  }
 
 
 `;

@@ -14,15 +14,23 @@ const StyledMain = styled.div`
   display: flex;
   flex-direction: column;
 
-  @media (min-width: 320px) and (max-width: 481px) {
-
+  @media (min-width: 1024px) and (max-width: 1281px) {
+    padding: 0;
   }
+
+  @media (min-width: 768px) and (max-width: 1024px) {
+    padding: 0;
+  }
+
+  @media (min-width: 320px) and (max-width: 768px) {
+    padding: 0;
+  }
+
 `;
 
 const StyledTop = styled.div`
   color: white;
   font-size: 64px;
-  margin: 0 0 0px 0;
   font-family: "Merriweather", sans-serif;
  
 `;
@@ -57,7 +65,7 @@ const StyledButton = styled.button`
     margin: 0 0 50px 0;
     width: 300px; 
     height: 50px;
-    margin-left: 5px;
+    margin-left: 5px; 
 
     :hover {
       border-color: #3985ac;
