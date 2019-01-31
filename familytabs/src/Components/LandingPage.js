@@ -17,8 +17,7 @@ const MainElements = styled.div`
   opacity: 100%;
   color: #242943;
   font-family:'Roboto', sans-serif;
-  margin: 150px 150px 150px 150px;
-
+  margin: 0px 150px 0px 150px;
 `;
 
 const LeftLanding = styled.div`
@@ -62,7 +61,6 @@ const CarouselDiv = styled.div`
 const ButtonContainer = styled.div`
 
 display: flex;
-justify-content: flex-end;
 margin: 50px 20px 0px 0px;
 
 
@@ -110,6 +108,7 @@ const NewButton = styled.button `
     padding: 15px 50px 15px 50px;
     width: 200px; 
     height: 50px;
+    margin-left: 5px;
     :hover {
    border-color: #3985ac;
    color: #3985ac;
@@ -124,6 +123,7 @@ const GoButton = styled.button `
     padding: 15px 50px 15px 50px;
     width: 250px; 
     height: 50px;
+    margin-right: 5px;
     :hover {
     border-color: #3985ac;
     color: #3985ac;
@@ -148,9 +148,7 @@ class LandingPage extends Component {
     render() {
       return (
         <MainContainer>
-        <ButtonContainer>
-           <NewButton onClick={this.props.auth.login}> LOGIN</NewButton>
-        </ButtonContainer>
+
         <MainElements>
             
 
@@ -158,14 +156,14 @@ class LandingPage extends Component {
                 <TitleContent>keep tabs on the whole family with</TitleContent>
                 <Title>Family Tabs.</Title>
                 <BottomBorder></BottomBorder>
-               
                   <Content>
                   SOME VERY LOUD TEXT IN CAPS DESCRIBING OUR SUPER COOL APP. REALLY DRAW THOSE PEOPLE IN, AND TAKE AAALLLL THEIR MONEY! THEN, WE ARE BUYING THE ISLAND. WE CAN GET SOME ISLAND CATS TOO. THAT SOUNDS SO GREAT!
                   </Content>
-
-               
                 <StartContainer>
-                <GoButton onClick={this.signUpLink}>GET STARTED!</GoButton>
+                <ButtonContainer>
+                    <GoButton onClick={this.signUpLink}>GET STARTED!</GoButton>
+                    <NewButton onClick={this.props.auth.login}> LOGIN</NewButton>
+                </ButtonContainer>
               </StartContainer>
               </LeftLanding>
 

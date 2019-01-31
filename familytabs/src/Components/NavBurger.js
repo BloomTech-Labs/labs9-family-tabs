@@ -23,6 +23,7 @@ class NavBurger extends Component {
   render() {
     return <div>
       <CheeseburgerMenu
+        // right={true}
         isOpen={this.state.menuOpen}
         closeCallback={this.closeMenu.bind(this)}>
         <Navigation auth={this.props.auth} closeCallback={this.closeMenu.bind(this)}/>
