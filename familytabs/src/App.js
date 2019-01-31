@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import ParentHome from "./Components/calendar/ParentHome";
 import LandingPage from "./Components/LandingPage";
 import Notifications from "./Components/notifications/Notifications";
-import Settings from "./Components/Settings";
 import Household from "./Components/household/Household";
 import Billing from "./Components/Billing";
 import Callback from "./Components/Callback";
@@ -84,7 +83,6 @@ const LogoImage = styled.img`
 class App extends Component {
   render() {
     return (
-      // start comment out
       <MediaStyles>
         <TopWrapper>
           <ImageWrapper>
@@ -95,18 +93,18 @@ class App extends Component {
           </BurgerWrapper>
         </TopWrapper>
         <StyleMain>
-          <PrivateRoute path="/verify" component={VerifyProfile} />
+          
         </StyleMain>
         <AppStyles>
           <PublicRoute exact path="/" component={LandingPage} />
           <PublicRoute exact path="/signup" component={SignUp} />
           <PrivateRoute exact path="/home/tabs" component={ParentHome} />
           <PrivateRoute exact path="/home/notifications" component={Notifications}/>
-          <PrivateRoute exact path="/home/settings" component={Settings} />
           <PrivateRoute exact path="/home/household" component={Household} />
           <PrivateRoute exact path="/home/billing" component={Billing} />
           <PublicRoute path="/callback" component={Callback} />
         </AppStyles>
+        <PrivateRoute path="/verify" component={VerifyProfile} />
       </MediaStyles>
 
     );

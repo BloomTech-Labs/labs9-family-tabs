@@ -95,7 +95,6 @@ class Navigation extends Component {
         <NavLinksContainer>
             <NavLink to='/home/tabs'>FAMILY TABS</NavLink>
             <NavLink to='/home/notifications'>NOTIFICATIONS</NavLink>
-            <NavLink to='/home/settings'>SETTINGS</NavLink>
             <NavLink to='/home/household'>HOUSEHOLD</NavLink>
             <NavLink to='/home/billing'>BILLING</NavLink>
         </NavLinksContainer>
