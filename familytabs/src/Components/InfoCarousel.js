@@ -2,6 +2,12 @@ import React, { Component } from 'react';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
 import styled from 'styled-components';
+import Family1 from './images/Family_Play_1.jpg';
+import Family2 from './images/Family_Play_2.jpg';
+import Family3 from './images/Family_Play_3.jpg';
+import Family4 from './images/Family_Play_4.jpg';
+import Family5 from './images/Family_Play_5.jpg';
+
 
 const StyledCarousel = styled(Carousel)`
     /* height: 45%;
@@ -13,16 +19,24 @@ class InfoCarousel extends Component {
         return (
             <StyledCarousel  showArrows={true} >
                 <div>
-                     <img src ="https://www.thesprucepets.com/thmb/810a_HYIb2E8DxkedI6V-3gtkys=/450x0/filters:no_upscale():max_bytes(150000):strip_icc()/kitten-looking-at-camera-521981437-57d840213df78c583374be3b.jpg"/>
-                    <p className="legend">Legend 1</p>
+                     <img src={Family1}/>
+                    <p className="legend">Time for Play!</p>
                 </div>
                 <div>
-                    <img src="https://www.thesprucepets.com/thmb/810a_HYIb2E8DxkedI6V-3gtkys=/450x0/filters:no_upscale():max_bytes(150000):strip_icc()/kitten-looking-at-camera-521981437-57d840213df78c583374be3b.jpg" />
-                    <p className="legend">Legend 2</p>
+                     <img src={Family2}/>
+                    <p className="legend">Time for Hanging Out!</p>
                 </div>
                 <div>
-                    <img src="https://www.thesprucepets.com/thmb/810a_HYIb2E8DxkedI6V-3gtkys=/450x0/filters:no_upscale():max_bytes(150000):strip_icc()/kitten-looking-at-camera-521981437-57d840213df78c583374be3b.jpg" />
-                    <p className="legend">Legend 3</p>
+                     <img src={Family3}/>
+                    <p className="legend">Time for Learning!</p>
+                </div>
+                <div>
+                     <img src={Family4}/>
+                    <p className="legend">Time for Activities!</p>
+                </div>
+                <div>
+                     <img src={Family5}/>
+                    <p className="legend">Keep Tabs on the Whole Family!</p>
                 </div>
             </StyledCarousel>
         );
