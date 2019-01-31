@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Select from "react-select";
+import Switch from "react-switch";
 import styled from "styled-components";
 
 const StyledFormWrapper = styled.div`
@@ -20,20 +20,23 @@ const StyledFormWrapper = styled.div`
     background: white;
     display: flex;
     flex-direction: column;
+    .switchbox {
+      margin: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+    }
   }
 `;
 
 export default class HouseholdModal extends Component {
-  state = {
-    adminOptions: [
-      {
-        value: true,
-        label:
-          "Yes. Reminder, additional parent accounts only available with subscription"
-      },
-      { value: false, label: "No." }
-    ]
-  };
+
+  componentDidMount() {
+    if (this.props.edit) {
+      this.props.handleNotificationChange(this.props.notification);
+    }
+  }
+
   render() {
     return (
       <StyledFormWrapper>
@@ -50,8 +53,8 @@ export default class HouseholdModal extends Component {
             type="text"
             name="phone"
             placeholder="Phone"
-           onChange={this.props.inputHandler}
-           value={this.props.phone}
+            onChange={this.props.inputHandler}
+            value={this.props.phone}
           />
 
           <input
@@ -62,17 +65,26 @@ export default class HouseholdModal extends Component {
             value={this.props.email}
           />
 
-          <Select
-            placeholder="Parent Account?"
-            name="isAdmin"
-            defaultValue={null}
+          <div className="switchbox">
+            <label>Admin</label>
+            <Switch
+              onChange={this.props.handleAdminChange}
+              checked={!!this.props.isAdmin}
+              className="react-switch"
+              id="normal-switch"
+            />
+          </div>
+          <div className="switchbox">
+            <label>Notifications</label>
+            <Switch
+              onChange={this.props.handleNotificationChange}
+              checked={!!this.props.notification}
+              className="react-switch"
+              id="normal-switch"
+            />
+          </div>
 
-            options={this.state.adminOptions}
-            value={this.props.isAdmin}
-            onChange={this.props.onInputChange}
-          />
-
-          <button>{this.props.edit ? 'Edit':'Add'} Household Member</button>
+          <button>{this.props.edit ? "Edit" : "Add"} Household Member</button>
         </form>
         <button onClick={this.props.toggleForm}>Exit</button>
       </StyledFormWrapper>

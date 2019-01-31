@@ -15,7 +15,7 @@ const MainElements = styled.div`
     color: #242943;
     font-family:'Roboto', sans-serif;
     margin: 0 150px 0 150px;
-`;
+
 
 const LeftLanding = styled.div`
     display: flex; 
@@ -51,9 +51,8 @@ const CarouselDiv = styled.div`
 `;
 
 const ButtonContainer = styled.div`
-    display: flex;
-    justify-content: flex-end;
-    margin: 50px 20px 0px 0px;
+  display: flex;
+  margin: 50px 20px 0px 0px;
 `;
 
 const StartContainer = styled.div`
@@ -89,7 +88,8 @@ const NewButton = styled.button `
     margin: 0 0 50px 0;
     width: 200px; 
     height: 50px;
-   
+    margin-left: 5px;
+
     :hover {
       border-color: #3985ac;
       color: #3985ac;
@@ -105,7 +105,7 @@ const GoButton = styled.button `
     margin: 25px 0 0 0;
     width: 250px; 
     height: 50px;
-
+    margin-right: 5px;
     :hover {
     border-color: #3985ac;
     color: #3985ac;
@@ -136,13 +136,10 @@ class LandingPage extends Component {
           </ButtonContainer>
 
           <MainElements>
-            
-
               <LeftLanding>
                 <TitleContent>Keep tabs on the whole family with</TitleContent>
                 <Title>Family Tabs</Title>
                 <BottomBorder></BottomBorder>
-               
                   <Content>
                   - KEEP TRACK OF YOUR CHILDREN'S EVENTS! 
                   </Content>
@@ -152,10 +149,11 @@ class LandingPage extends Component {
                   <Content>
                   - PUT THE KIDS IN CONTROL!
                   </Content>
-
-               
                 <StartContainer>
-                <GoButton onClick={this.signUpLink}>GET STARTED!</GoButton>
+                <ButtonContainer>
+                    <GoButton onClick={this.signUpLink}>GET STARTED!</GoButton>
+                    <NewButton onClick={this.props.auth.login}> LOGIN</NewButton>
+                </ButtonContainer>
               </StartContainer>
               </LeftLanding>
 
