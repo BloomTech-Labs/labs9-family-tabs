@@ -24,13 +24,13 @@ const BottomBorder = styled.div`
 `;
 const TitleContent = styled.p `
    display: flex;
- 
+  
     color: #ffffff;
     font-size: 16px;
     padding-left: 5px;
     color: #3985ac;
-    width: 20%;
-    margin: 0px 0px 10px 125px; 
+    width: 30%;
+    margin: 0% 0% 1% 13%; 
   
 
   
@@ -38,7 +38,7 @@ const TitleContent = styled.p `
 `;
 
 const BillingWrapper=styled.div `
-
+  padding: 0 150px 0 150px;
 
 
 `;
