@@ -4,19 +4,20 @@ import HamburgerMenu from 'react-hamburger-menu'
 import Navigation from './Navigation'
 import styled from 'styled-components'
 
-const LogoutButton = styled.button`
+const NewButton = styled.button `
     color: white;
     background: #242943;
-    display: flex;
-    justify-content: center;
-    border: none; 
+    border: 2px solid #ffffff; 
+    padding: 15px 50px 15px 50px;
+    margin: 0 0 50px 0;
+    width: 200px; 
     height: 50px;
-    margin-bottom: 6.5px;
-    padding: 25px;
+    margin-left: 5px;
 
     :hover {
-      cursor: pointer;
+      border-color: #3985ac;
       color: #3985ac;
+      cursor: pointer;
     }
 `;
 
@@ -59,7 +60,7 @@ class NavBurger extends Component {
         borderRadius={0}
         animationDuration={0.5}
       />
-      </div> : <LogoutButton onClick={this.props.auth.logout}>LOG OUT</LogoutButton>)
+      </div> : <NewButton onClick={this.props.auth.logout}>LOG OUT</NewButton>)
   }
 }
 
