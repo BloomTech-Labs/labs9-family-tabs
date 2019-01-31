@@ -4,6 +4,7 @@ import styled from "styled-components";
 
 
 
+
 const MainContainer = styled.div`
 
 `;
@@ -15,7 +16,6 @@ const MainElements = styled.div`
     color: #242943;
     font-family:'Roboto', sans-serif;
     margin: 0 150px 0 150px;
-
 
 const LeftLanding = styled.div`
     display: flex; 
@@ -51,8 +51,8 @@ const CarouselDiv = styled.div`
 `;
 
 const ButtonContainer = styled.div`
-  display: flex;
-  margin: 50px 20px 0px 0px;
+    display: flex;
+    margin: 50px 20px 0px 0px;
 `;
 
 const StartContainer = styled.div`
