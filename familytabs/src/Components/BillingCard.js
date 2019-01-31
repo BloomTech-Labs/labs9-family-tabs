@@ -29,7 +29,7 @@ const Content = styled.p `
 `;
 const ButtonWrapper = styled.div `
     width: 50%;
-    margin-left: -16%;
+    margin-left: -12%;
     
 
 `;

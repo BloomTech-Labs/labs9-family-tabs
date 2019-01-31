@@ -39,10 +39,9 @@ const StyledButton = styled.button `
     color: white;
     background: #68659E;
     border: 2px solid #ffffff; 
-    /* padding: 15px 50px 15px 50px; */
     width: 100px; 
     height: 25px;
-    margin-left: 5px;
+    margin-left: 20px;
     
     :hover {
       border-color: #3985ac;

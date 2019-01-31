@@ -22,13 +22,15 @@ const StyledMain = styled.div`
 const StyledTop = styled.div`
   color: white;
   font-size: 64px;
-  margin: 0 0 25px 0;
+  margin: 0 0 0px 0;
   font-family: "Merriweather", sans-serif;
+ 
 `;
 
 const StyledBottom = styled.div`
   display: flex;
   flex-direction: row;
+
 `;
 
 const Title = styled.h1`
@@ -37,6 +39,7 @@ const Title = styled.h1`
     color: #ffffff;
     font-size: 60px;
     font-weight: 700;
+  
 `;
 
 const BottomBorder = styled.div`
@@ -46,6 +49,30 @@ const BottomBorder = styled.div`
     margin: 0 0 50px 0;
 `;
 
+const StyledButton = styled.button`
+    color: white;
+    background: #242943;
+    border: 2px solid #ffffff; 
+    padding: 15px 50px 15px 50px;
+    margin: 0 0 50px 0;
+    width: 300px; 
+    height: 50px;
+    margin-left: 5px;
+
+    :hover {
+      border-color: #3985ac;
+      color: #3985ac;
+      cursor: pointer;
+    }
+`;
+
+const ButtonContainer = styled.div `
+
+  margin-top: 0;
+
+
+
+`;
 export default class Household extends Component {
   constructor() {
     super();
@@ -123,11 +150,13 @@ export default class Household extends Component {
           <Title>Household</Title>
           <BottomBorder></BottomBorder>
       </StyledTop>
+      <ButtonContainer>
       {this.props.profile.isAdmin ? (
-              <button onClick={this.toggleForm}>+</button>
+              <StyledButton onClick={this.toggleForm}>ADD FAMILY MEMBER</StyledButton>
             ) : (
               ""
             )}
+      </ButtonContainer>
       <StyledBottom>
             <CardList>
               {this.props.family.map(familydata => (
