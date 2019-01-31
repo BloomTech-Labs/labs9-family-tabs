@@ -11,7 +11,12 @@ const Card = styled.div`
   align-items: flex-start;
   line-height: 2;
   background: #68659E;
-  margin: 28px;
+  margin: 28px; 
+
+  @media (min-width: 320px) and (max-width: 768px) {
+    margin-left: 7px;
+  }
+
 `;
 
 const Header = styled.div`
