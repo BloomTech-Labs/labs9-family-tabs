@@ -123,7 +123,11 @@ export default class Household extends Component {
           <Title>Household</Title>
           <BottomBorder></BottomBorder>
       </StyledTop>
-       
+      {this.props.profile.isAdmin ? (
+              <button onClick={this.toggleForm}>+</button>
+            ) : (
+              ""
+            )}
       <StyledBottom>
             <CardList>
               {this.props.family.map(familydata => (
@@ -135,11 +139,7 @@ export default class Household extends Component {
                 />
               ))}
             </CardList>
-            {this.props.profile.isAdmin ? (
-              <button onClick={this.toggleForm}>+</button>
-            ) : (
-              ""
-            )}
+            
             {this.state.showForm ? (
               <HouseholdModal
             toggleForm={this.toggleForm}

@@ -10,16 +10,14 @@ const Card = styled.div`
   flex-direction: column;
   align-items: flex-start;
   line-height: 2;
-  background: #ffffff;
-  font-family: "Roboto", sans-serif;
+  background: #68659E;
   margin: 28px;
 `;
 
 const Header = styled.div`
-  /* border: 1px solid red; */
-  font-family: "Fredoka One";
-  color: black;
-  font-size: 18px;
+  color: #ffffff;
+  font-size: 30px;
+  font-weight: 500;
   width: 100%;
   height: 60px;
   justify-content: center;
@@ -33,6 +31,24 @@ const Info = styled.div`
   flex-direction: column;
   align-items: flex-start;
   padding-bottom: 10px;
+  color: #ffffff;
+`;
+
+const StyledButton = styled.button `
+    margin: 10px 0px 20px 10px;
+    color: white;
+    background: #68659E;
+    border: 2px solid #ffffff; 
+    /* padding: 15px 50px 15px 50px; */
+    width: 100px; 
+    height: 25px;
+    margin-left: 5px;
+    
+    :hover {
+      border-color: #3985ac;
+      color: #3985ac;
+      cursor: pointer;
+    }
 `;
 
 class HouseholdFamily extends React.Component {
@@ -100,19 +116,20 @@ class HouseholdFamily extends React.Component {
     return (
       <div className="ParentHomepage">
         <Card>
-          <Header>Family: {family_name}</Header>
+          <Header>{family_name}</Header>
           <Info>
-            <p>Username: {userName}</p>
-            <p>Phone: {phone}</p>
-            <p>Email: {email}</p>
-            <p>Admin: {this.props.familydata.isAdmin ? 'Yes':'No'}</p>
-            <p>Notifications: {this.props.familydata.textCheckbox ? 'On':'Off'}</p>
+            <p>USERNAME: {userName}</p>
+            <p>PHONE: {phone}</p>
+            <p>EMAIL: {email}</p>
+            <p>ADMIN: {this.props.familydata.isAdmin ? 'yes':'no'}</p>
+            <p>NOTIFICATIONS: {this.props.familydata.textCheckbox ? 'on':'off'}</p>
           </Info>
           {this.props.profile.isAdmin ? (
-            <button onClick={this.toggleForm}>Edit</button>
+            <StyledButton onClick={this.toggleForm}>EDIT</StyledButton>
           ) : (
             ""
           )}
+         
         </Card>
 
         {this.state.showForm ? (
