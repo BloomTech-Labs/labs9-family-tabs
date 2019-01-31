@@ -15,21 +15,49 @@ const StyledMain = styled.div`
   display: flex;
   flex-direction: column;
 
-  @media (min-width: 320px) and (max-width: 481px) {
-
+  @media (min-width: 1024px) and (max-width: 1281px) {
+    padding: 0;
   }
+
+  @media (min-width: 768px) and (max-width: 1024px) {
+    padding: 0;
+  }
+
+  @media (min-width: 320px) and (max-width: 768px) {
+    padding: 0;
+  }
+
 `;
 
 const StyledTop = styled.div`
-  color: white;
-  font-size: 64px;
-  margin: 0 0 25px 0;
-  font-family: "Merriweather", sans-serif;
+    color: white;
+    font-size: 64px;
+    margin: 0 0 25px 0;
+    font-family: "Merriweather", sans-serif;
 `;
 
 const StyledBottom = styled.div`
-  display: flex;
-  flex-direction: row;
+    display: flex;
+    flex-direction: row;
+
+  @media (min-width: 1024px) and (max-width: 1281px) {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+  }
+
+  @media (min-width: 768px) and (max-width: 1024px) {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+  }
+
+  @media (min-width: 320px) and (max-width: 768px) {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+  }
+
 `;
 
 const Title = styled.h1`
@@ -50,8 +78,16 @@ const BottomBorder = styled.div`
 const LeftSide = styled.div`
   width: 85%;
   
-  @media (min-width: 320px) and (max-width: 481px) {
-   width: 100%;
+  @media (min-width: 1024px) and (max-width: 1281px) {
+  width: 100%
+  }
+
+  @media (min-width: 768px) and (max-width: 1024px) {
+    width: 100%
+  }
+
+  @media (min-width: 320px) and (max-width: 768px) {
+    width: 100%
   }
 `;
 
@@ -61,13 +97,19 @@ const RightSide = styled.div`
   width: 15%;
   margin: 75px 0 75px 15px;
 
-  @media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
-    margin: 95px 0 75px 15px;
+  @media (min-width: 1024px) and (max-width: 1281px) {
+    margin: 0 0 25px 0;
+    width: 100%;
   }
 
-  @media (min-width: 320px) and (max-width: 481px) {
-    width: 100%;
+  @media (min-width: 768px) and (max-width: 1024px) {
     margin: 0 0 25px 0;
+    width: 100%;
+  }
+
+  @media (min-width: 320px) and (max-width: 768px) {
+    margin: 0 0 25px 0;
+    width: 100%;
   }
 `;
 
@@ -78,26 +120,38 @@ const Button = styled.button `
     padding: 15px 50px 15px 50px;
     width: 200px; 
     height: 50px;
+
    
     :hover {
       border-color: #3985ac;
       color: #3985ac;
       cursor: pointer;
     }
+    
 `;
 
 
 const SelectStyled = styled(Select) `
-  margin: 50px 15px 0 15px;
+  margin: 50px 15px 0 0;
+  width: 250px;
 
-  @media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
-    width: 200px;
-  }
-  
-  @media (min-width: 320px) and (max-width: 481px) {
-    margin: 0 25px 0 25px;
+  @media (min-width: 1024px) and (max-width: 1281px) {
+    margin: auto;
+    margin-top: 25px;
+    width: 350px;
   }
 
+  @media (min-width: 768px) and (max-width: 1024px) {
+    margin: auto;
+    margin-top: 25px;
+    width: 350px;
+  }
+
+  @media (min-width: 320px) and (max-width: 768px) {
+    margin: auto;
+    margin-top: 25px;
+    width: 350px;
+  }
 `;
 
 const StyledCalendar = styled(Calendar)`
