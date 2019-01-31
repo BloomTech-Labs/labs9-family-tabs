@@ -5,80 +5,62 @@ import { Button, Colors} from "@blueprintjs/core";
 
 
 const MainContainer = styled.div`
-
-  max-height: 100%;
-
-
+    max-height: 100%;
 `;
 
 const MainElements = styled.div`
-  display: flex;
-  justify-content: space-between;
-  opacity: 100%;
-  color: #242943;
-  font-family:'Roboto', sans-serif;
-  margin: 150px 150px 150px 150px;
-
+    display: flex;
+    justify-content: space-between;
+    opacity: 100%;
+    color: #242943;
+    font-family:'Roboto', sans-serif;
+    margin: 150px 150px 150px 150px;
 `;
 
 const LeftLanding = styled.div`
-  display: flex; 
-  flex-direction: column;
-  width: 35%;
-  margin: 15px;
-  color: #ffffff;
-
+    display: flex; 
+    flex-direction: column;
+    width: 35%;
+    margin: 15px;
+    color: #ffffff;
 `;
 
 const Title = styled.h1`
-  margin: 0 0 0 0;
-  display: flex;
-  justify-content: center;
-  color: #ffffff;
-  font-size: 60px;
-  padding:0;
-  font-weight: 700;
-
+    margin: 0 0 0 0;
+    display: flex;
+    justify-content: center;
+    color: #ffffff;
+    font-size: 60px;
+    padding:0;
+    font-weight: 700;
 `;
 
 const BottomBorder = styled.div`
-  border-bottom: 2px solid #D4B36E;
-  height: 20px;
-  width: 100%;
- 
+    border-bottom: 2px solid #D4B36E;
+    height: 20px;
+    width: 100%;
 `;
 
 const RightLanding = styled.div`
-  display: flex;
-  width: 65%;
-  margin: 15px;
-
+    display: flex;
+    width: 65%;
+    margin: 15px;
 `;
 
 const CarouselDiv = styled.div`
-
 `;
 
 const ButtonContainer = styled.div`
-
-display: flex;
-justify-content: flex-end;
-margin: 50px 20px 0px 0px;
-
-
+    display: flex;
+    justify-content: flex-end;
+    margin: 50px 20px 0px 0px;
 `;
 
 const StartContainer = styled.div`
-
-display: flex;
-justify-content: flex-end;
-padding-right: 20px;
-
-
-
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 20px;
 `;
-
-
 
 const Content = styled.p `
     text-align: left;
@@ -87,20 +69,16 @@ const Content = styled.p `
     line-height: 1.5;
     padding: 20px 20px 20px 0;
     margin: 60px 0 20px 0;
-
 `;
 
 const TitleContent = styled.p `
-   display: flex;
-   justify-content: flex-end;
+    display: flex;
+    justify-content: flex-end;
     color: #ffffff;
     font-size: 16px;
     margin: 30px 0px 10px 20px;
     padding-right: 15px;
     color: #3985ac;
-
-  
-
 `;
 
 const NewButton = styled.button `
@@ -110,11 +88,12 @@ const NewButton = styled.button `
     padding: 15px 50px 15px 50px;
     width: 200px; 
     height: 50px;
+   
     :hover {
-   border-color: #3985ac;
-   color: #3985ac;
-}
-
+      border-color: #3985ac;
+      color: #3985ac;
+      cursor: pointer;
+    }
 `;
 
 const GoButton = styled.button `
@@ -127,8 +106,7 @@ const GoButton = styled.button `
     :hover {
     border-color: #3985ac;
     color: #3985ac;
-}
-
+    }
 `;
 
 
@@ -155,7 +133,7 @@ class LandingPage extends Component {
             
 
               <LeftLanding>
-                <TitleContent>keep tabs on the whole family with</TitleContent>
+                <TitleContent>Keep tabs on the whole family with</TitleContent>
                 <Title>Family Tabs.</Title>
                 <BottomBorder></BottomBorder>
                

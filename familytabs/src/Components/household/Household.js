@@ -9,6 +9,43 @@ const CardList = styled.div`
   flex-wrap: wrap;
 `;
 
+const StyledMain = styled.div`
+  padding: 0 150px 0 150px;
+  display: flex;
+  flex-direction: column;
+
+  @media (min-width: 320px) and (max-width: 481px) {
+
+  }
+`;
+
+const StyledTop = styled.div`
+  color: white;
+  font-size: 64px;
+  margin: 0 0 25px 0;
+  font-family: "Merriweather", sans-serif;
+`;
+
+const StyledBottom = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+
+const Title = styled.h1`
+    display: flex;
+    justify-content: center;
+    color: #ffffff;
+    font-size: 60px;
+    font-weight: 700;
+`;
+
+const BottomBorder = styled.div`
+    border-bottom: 2px solid #D4B36E;
+    height: 20px;
+    width: 100%;
+    margin: 0 0 50px 0;
+`;
+
 export default class Household extends Component {
   constructor() {
     super();
@@ -71,36 +108,42 @@ export default class Household extends Component {
       return <div>Loading...</div>;
     }
     return (
-      <div>
+      <StyledMain>
 
-
-        <CardList>
-          {this.props.family.map(familydata => (
-            <HouseholdFamily
-              key={familydata.id}
-              familydata={familydata}
-              profile={this.props.profile}
-              loadState={this.props.loadState}
-            />
-          ))}
-        </CardList>
-        {this.props.profile.isAdmin ? (
-          <button onClick={this.toggleForm}>+</button>
-        ) : (
-          ""
-        )}
-        {this.state.showForm ? (
-          <HouseholdModal
-            toggleForm={this.toggleForm}
-            inputHandler={this.inputHandler}
-            onInputChange={this.onInputChange}
-            {...this.state}
-            addOrEdit={this.memberAdder}
-          />
-        ) : (
-          ""
-        )}
-      </div>
+      <StyledTop>
+          <Title>Household</Title>
+          <BottomBorder></BottomBorder>
+      </StyledTop>
+       
+      <StyledBottom>
+            <CardList>
+              {this.props.family.map(familydata => (
+                <HouseholdFamily
+                  key={familydata.id}
+                  familydata={familydata}
+                  profile={this.props.profile}
+                  loadState={this.props.loadState}
+                />
+              ))}
+            </CardList>
+            {this.props.profile.isAdmin ? (
+              <button onClick={this.toggleForm}>+</button>
+            ) : (
+              ""
+            )}
+            {this.state.showForm ? (
+              <HouseholdModal
+                toggleForm={this.toggleForm}
+                inputHandler={this.inputHandler}
+                onInputChange={this.onInputChange}
+                {...this.state}
+                addOrEdit={this.memberAdder}
+              />
+            ) : (
+              ""
+            )}
+        </StyledBottom>
+      </StyledMain>
     );
   }
 }

@@ -5,22 +5,46 @@ import styled from "styled-components";
 import axios from "axios";
 import Select from "react-select";
 import AddEvent from "./AddEvent";
-import {Button, Colors} from "@blueprintjs/core";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 
 const localizer = Calendar.momentLocalizer(moment);
 
 
-const MainStyled = styled.div`
-  display: flex;
+const StyledMain = styled.div`
   padding: 0 150px 0 150px;
-
+  display: flex;
+  flex-direction: column;
 
   @media (min-width: 320px) and (max-width: 481px) {
-    display: flex;
-    flex-direction: column-reverse;
-    padding: 0;
+
   }
+`;
+
+const StyledTop = styled.div`
+  color: white;
+  font-size: 64px;
+  margin: 0 0 25px 0;
+  font-family: "Merriweather", sans-serif;
+`;
+
+const StyledBottom = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+
+const Title = styled.h1`
+    display: flex;
+    justify-content: center;
+    color: #ffffff;
+    font-size: 60px;
+    font-weight: 700;
+`;
+
+const BottomBorder = styled.div`
+    border-bottom: 2px solid #D4B36E;
+    height: 20px;
+    width: 100%;
+    margin: 0 0 50px 0;
 `;
 
 const LeftSide = styled.div`
@@ -46,6 +70,22 @@ const RightSide = styled.div`
     margin: 0 0 25px 0;
   }
 `;
+
+const Button = styled.button `
+    color: white;
+    background: #242943;
+    border: 2px solid #ffffff; 
+    padding: 15px 50px 15px 50px;
+    width: 200px; 
+    height: 50px;
+   
+    :hover {
+      border-color: #3985ac;
+      color: #3985ac;
+      cursor: pointer;
+    }
+`;
+
 
 const SelectStyled = styled(Select) `
   margin: 50px 15px 0 15px;
@@ -324,60 +364,62 @@ class CalendarComponent extends Component {
 
     return (
 
-      <MainStyled>
-        <LeftSide>
-           <StyledCalendar
-              day={1}
-              localizer={localizer}
-              defaultDate={new Date()}
-              onSelectEvent={e =>console.log(e)}
-              defaultView="month"
-              events={events}
-              eventPropGetter={this.eventStyleGetter}
-              components={{
-                event: Event
-              }}
-            />
-        </LeftSide>
+      <StyledMain>
+        <StyledTop>
+            <Title>Family Tabs</Title>
+            <BottomBorder></BottomBorder>
+        </StyledTop>
 
-        <RightSide>
-            <div>
-              {this.state.showForm ? (
-                <AddEvent
-                toggleForm={this.toggleForm}
-                addToCalendar={this.addToCalendar}
-                state={this.state}
-                addOption={this.addOption}
-                profile={this.props.profile}
-                family={this.props.family}
-                loadGlobal={this.props.loadState}
-                history={this.props.history}
-                />
-              ) : (
-                <Button 
-                  onClick={this.toggleForm}
-                  style={{color: Colors.WHITE, 
-                          background: "#242943", 
-                          border: "1px solid #ffffff", 
-                          width:"150px", 
-                          height: "50px",
-                          margin: "15px",}}
-                  text="NEW EVENT">
-                </Button>
-              )}
-            </div>
-
-          <SelectStyled
-                placeholder="Filter Events"
-                name="participants"
-                defaultValue={this.state.participants}
-                isMulti
-                options={this.participantToOptions(this.props.family)}
-                value={this.state.participants}
-                onChange={this.onInputChange}
+         
+        <StyledBottom>
+          <LeftSide>
+            <StyledCalendar
+                day={1}
+                localizer={localizer}
+                defaultDate={new Date()}
+                onSelectEvent={e =>console.log(e)}
+                defaultView="month"
+                events={events}
+                eventPropGetter={this.eventStyleGetter}
+                components={{
+                  event: Event
+                }}
               />
-          </RightSide>
-      </MainStyled>
+          </LeftSide>
+
+          <RightSide>
+              <div>
+                {this.state.showForm ? (
+                  <AddEvent
+                  toggleForm={this.toggleForm}
+                  addToCalendar={this.addToCalendar}
+                  state={this.state}
+                  addOption={this.addOption}
+                  profile={this.props.profile}
+                  family={this.props.family}
+                  loadGlobal={this.props.loadState}
+                  history={this.props.history}
+                  />
+                ) : (
+                  <Button 
+                    onClick={this.toggleForm}>
+                    NEW EVENT
+                  </Button>
+                )}
+              </div>
+
+            <SelectStyled
+                  placeholder="Filter Events"
+                  name="participants"
+                  defaultValue={this.state.participants}
+                  isMulti
+                  options={this.participantToOptions(this.props.family)}
+                  value={this.state.participants}
+                  onChange={this.onInputChange}
+                />
+            </RightSide>
+          </StyledBottom>
+      </StyledMain>
     );
   }
 }
