@@ -1,36 +1,8 @@
 import React, { Component } from "react";
 import Switch from "react-switch";
-import styled from "styled-components";
-
-const StyledFormWrapper = styled.div`
-  height: 100vh;
-  z-index: 3000;
-  width: 100vw;
-  background: #00000080;
-  position: fixed;
-  top: 0;
-  left: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  form {
-    max-width: 600px;
-    margin: 100px, auto;
-    background: white;
-    display: flex;
-    flex-direction: column;
-    .switchbox {
-      margin: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: space-around;
-    }
-  }
-`;
+import { StyledFormWrapper } from "../styled/components";
 
 export default class HouseholdModal extends Component {
-
   componentDidMount() {
     if (this.props.edit) {
       this.props.handleNotificationChange(this.props.notification);
@@ -41,6 +13,7 @@ export default class HouseholdModal extends Component {
     return (
       <StyledFormWrapper>
         <form onSubmit={this.props.addOrEdit}>
+        <h2>{this.props.edit ? "Edit" : "Add"} Family Member</h2>
           <input
             type="text"
             name="userName"
@@ -71,7 +44,8 @@ export default class HouseholdModal extends Component {
               onChange={this.props.handleAdminChange}
               checked={!!this.props.isAdmin}
               className="react-switch"
-              id="normal-switch"
+              id="admin-switch"
+              onColor='#00A3CF'
             />
           </div>
           <div className="switchbox">
@@ -80,13 +54,15 @@ export default class HouseholdModal extends Component {
               onChange={this.props.handleNotificationChange}
               checked={!!this.props.notification}
               className="react-switch"
-              id="normal-switch"
+              id="notification-switch"
+              onColor='#00A3CF'
             />
           </div>
-
-          <button>{this.props.edit ? "Edit" : "Add"} Household Member</button>
+          <div className="button-box">
+            <button>Save {this.props.edit ? "Changes" : "Family Member"}</button>
+            <button onClick={this.props.toggleForm}>Exit</button>
+          </div>
         </form>
-        <button onClick={this.props.toggleForm}>Exit</button>
       </StyledFormWrapper>
     );
   }

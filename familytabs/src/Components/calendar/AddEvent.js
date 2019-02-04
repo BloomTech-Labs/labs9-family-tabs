@@ -1,32 +1,14 @@
 import React from "react";
 import DatePicker from "react-datepicker";
-import styled from "styled-components";
 import CreatableAdvanced from "./CreatableAdvanced";
 import Select from "react-select";
 import moment from "moment";
 import axios from "axios";
 import "react-datepicker/dist/react-datepicker.css";
+import setMinutes from "date-fns/setMinutes";
+import setHours from "date-fns/setHours";
+import {StyledFormWrapper} from '../styled/components'
 
-const StyledFormWrapper = styled.div`
-  height: 100vh;
-  z-index: 3000;
-  width: 100vw;
-  background: #00000080;
-  position: fixed;
-  top: 0;
-  left: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  form {
-    max-width: 600px;
-    margin: 100px, auto;
-    background: white;
-    display: flex;
-    flex-direction: column;
-  }
-`;
 
 class AddEvent extends React.Component {
   state = {
@@ -121,9 +103,8 @@ class AddEvent extends React.Component {
   };
 
   render() {
-    const { locations, eventTypes} = this.props.state;
-    const {addOption, profile} = this.props
-    console.log(profile.familyID)
+    const { locations, eventTypes } = this.props.state;
+    const { addOption, profile, family, toggleForm } = this.props;
     const {
       scheduledEvent_name,
       eventTypeID,
@@ -132,15 +113,20 @@ class AddEvent extends React.Component {
       eventEnd,
       participants
     } = this.state;
+    eventStart
+      ? console.log(new Date(eventStart).getMinutes())
+      : console.log(setHours(setMinutes(new Date(), 0), 17));
     return (
       <StyledFormWrapper>
         <form onSubmit={this.addEventHandler}>
+          <h2>New Event</h2>
           <input
             type="text"
             name="scheduledEvent_name"
             onChange={this.inputHandler}
             placeholder="Event Title"
             value={scheduledEvent_name}
+            autoComplete="new-password"
           />
 
           <DatePicker
@@ -155,7 +141,7 @@ class AddEvent extends React.Component {
             startDate={eventStart}
             endDate={eventEnd}
             onChange={this.setStart}
-            timeFormat="HH:mm"
+            timeFormat="h:mm aa"
             popperClassName="popper"
             popperPlacement="left-start"
           />
@@ -164,13 +150,13 @@ class AddEvent extends React.Component {
             name="eventEnd"
             value={eventEnd}
             selected={eventEnd}
-            minDate={eventStart || new Date()}
+            //minDate={eventStart || new Date()}
             selectsEnd
             showTimeSelect
             placeholderText="Event end"
             popperPlacement="right-start"
-            popperClassName="popper"
-            timeFormat="HH:mm"
+            popperClassName="popper-end"
+            timeFormat="h:mm aa"
             dateFormat="MMMM d, yyyy h:mm aa"
             startDate={eventStart}
             endDate={eventEnd}
@@ -183,7 +169,7 @@ class AddEvent extends React.Component {
             value={eventTypeID}
             setValue={this.setEventID}
             addOption={addOption}
-            familyID={this.props.profile.familyID}
+            familyID={profile.familyID}
           />
 
           <CreatableAdvanced
@@ -193,7 +179,7 @@ class AddEvent extends React.Component {
             value={locationID}
             setValue={this.setLocationID}
             addOption={addOption}
-            familyID={this.props.profile.familyID}
+            familyID={profile.familyID}
           />
 
           <Select
@@ -201,13 +187,15 @@ class AddEvent extends React.Component {
             name="participants"
             defaultValue={null}
             isMulti
-            options={this.participantToOptions(this.props.family)}
+            options={this.participantToOptions(family)}
             value={participants}
             onChange={this.onInputChange}
+            className="participants-input"
           />
-
-          <button type="submit">Add Event</button>
-          <button onClick={this.props.toggleForm}>Exit</button>
+          <div className="button-box">
+            <button type="submit">Add Event</button>
+            <button onClick={toggleForm}>Exit</button>
+          </div>
         </form>
       </StyledFormWrapper>
     );
