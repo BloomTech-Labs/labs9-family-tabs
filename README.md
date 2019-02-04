@@ -116,7 +116,73 @@ https://react-select.com/
 
 Stripe offers and easily integratable payment systems for applications in order to process subscription feeds | [View Dependency](https://stripe.com/docs/)
 
+### React-Switch
+
+Draggable toggle-switch component for react. | [View Dependency](https://www.npmjs.com/package/react-switch)
+
+### React-Tabs
+
+An accessible and easy tab component for ReactJS. | [View Dependency](https://github.com/reactjs/react-tabs)
+
+### Styled-Components
+
+Visual primitives for the component age. Use the best bits of ES6 and CSS to style your apps without stress. | [View Dependency](https://github.com/styled-components)
+
+
 ## Backend API
+
+### Axios
+
+This HTTP client is promise based and works very well with a REST API. | [View Dependency](https://www.npmjs.com/package/react-axios)
+
+### BCryptJS
+
+Optimized bcrypt in JavaScript with zero dependencies | [View Dependency](https://github.com/dcodeIO/bcrypt.js)
+
+### Cors
+Cors is a node.js package for providing a connect express middleware that can be used to enable cors with various options. | [View Dependency](https://github.com/expressjs/cors)
+
+### Cron
+Cron is a tool that allows you to execute something on a schedule. This is typically done using the cron syntax. You can execute a function whenever your scheduled job triggers. can also execute a job external to the javascript process using child_process. Additionally, this library goes beyond the basic cron syntax and allows you to supply a Date object. This will be used as the trigger for your callback. | [View Dependency] (https://github.com/kelektiv/node-cron)
+
+### Express
+Fast, unopinionated, minimalist web framework for node. | [View Dependency](https://github.com/expressjs/express)
+
+### JSONWebToken
+JSON Web Token (JWT) is a compact, URL-safe means of representing
+claims to be transferred between two parties.  The claims in a JWT
+are encoded as a JSON object that is used as the payload of a JSON
+Web Signature (JWS) structure or as the plaintext of a JSON Web
+Encryption (JWE) structure, enabling the claims to be digitally
+signed or integrity protected with a Message Authentication Code
+(MAC) and/or encrypted. | [View Dependency](https://github.com/auth0/node-jsonwebtoken)
+
+### Knex
+A batteries-included, multi-dialect (MSSQL, MySQL, PostgreSQL, SQLite3, Oracle (including Oracle Wallet Authentication)) query builder for Node.js. | [View Dependency](https://github.com/tgriesser/knex)
+
+### MomentJS
+
+Moment simplifies parsing, validating, manipulating, and displaying dates and times in JavaScript.  Moment is designed to work in the browser and NodeJS. [View Dependency](https://github.com/moment/moment/)
+
+### Nodemon
+
+Nodemon is a tool that helps develop node.js based applications by automatically restarting the node application when file changes in the directory are detected.
+
+Nodemon does not require any additional changes to your code or method of development. nodemon is a replacement wrapper for node, to use nodemon replace the word node on the command line when executing your script. | [View Dependency](https://github.com/remy/nodemon)
+
+### Node-Postgres
+
+Non-blocking PostgreSQL client for Node.js. Pure JavaScript and optional native libpq bindings. | [View Dependency](https://github.com/brianc/node-postgres)
+
+
+### SQLite3
+
+SQLite is a C-language library that implements a small, fast, self-contained, high-reliability, full-featured, SQL database engine. SQLite is the most used database engine in the world. It is built into all mobile phones and most computers and comes bundled inside countless other applications that people use every day.| [View Dependency](https://github.com/mapbox/node-sqlite3)
+
+### Twilio
+
+Reach customers using a flexible email API and marketing tools to increase customer engagement. | [View Dependency](https://github.com/twilio)
+
 
 
 ### Admin Routes
