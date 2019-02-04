@@ -3,21 +3,46 @@
 - [Tech-Stack](#tech-stack)
     - [Front-End Dependencies](#front-end-dependencies)
         - [React](#react)
+        - [BlueprintJS](#BlueprintJS)
+        - [MomentJS](#MomentJS)
+        - [Cheeseburger Menu](#Cheeseburger-Menu)
+        - [React Hamburger Menu](#React-Hamburger-Menu)
         - [Axios](#axios)
         - [Styled Components](#styled-components)
+        - [React Big Calendar](#react-big-calendar)
   - [Back-End Dependencies](#back-end-dependencies-production)
     - [ExpressJS](#expressjs)
+    - [Proptypes](#proptypes)
+    - [React Date Picker](#react-date-picker)
+    - [React DOM](#react-dom)
+    - [React Responsive Carousel](#react-responsive-carousel)
+    - [React Router](#react-router)
+    - [React Router DOM](#react-router-dom)
+    - [React Select](#react-select)
     - [Stripe](#stripe)
+    - [React Switch](#react-switch)
+    - [React Tabs](#react-tabs)
 
-- [Backend API](#backend-api)
-    - [Admin Routes](#admin-routes)
-      - [Create Event](#create-events)
-      - [Change Event](#change-events)
+  - [Backend API](#backend-api)
+    - [Axios](#axios)
+    - [bcryptjs](#bcryptjs)
+    - [Cors](#cors)
+    - [Cron](#cron)
+    - [Express](#express)
+    - [JSONWebToken](#JSONWebToken)
+    - [Knex](#knex)
+    - [MomentJS](#MomentJS)
+    - [Nodemon](#Nodemon)
+    - [Node Postgres](#node-postgres)
+    - [SQLite3](#sqlite3)
+    - [Twilio](#twilio)
+    - [Create Event](#create-events)
+    - [Change Event](#change-events)
       
-- [Environment Variables](#environment-variables)
-    -[Auth 0 Setup](#Auth0-set-up)
-    -[Stripe Setup](#Stripe-Setup)
-    -[Twilio Setup](#Twilio-Setup)
+  - [Environment Variables](#environment-variables)
+    - [Auth 0 Setup](#Auth0-set-up)
+    - [Stripe Setup](#Stripe-Setup)
+    - [Twilio Setup](#Twilio-Setup)
 
 # Family-Tabs
 
@@ -41,7 +66,7 @@ Blueprint is a React-based UI toolkit for the web. It is optimized for building 
 
 Moment simplifies parsing, validating, manipulating, and displaying dates and times in JavaScript.  Moment is designed to work in the browser and NodeJS. [View Dependency](https://github.com/moment/moment/)
 
-### Cheesburger-Menu
+### Cheeseburger-Menu
 
 A simple sliding menu component for React. 
 
@@ -129,10 +154,6 @@ Draggable toggle-switch component for react. | [View Dependency](https://www.npm
 
 An accessible and easy tab component for ReactJS. | [View Dependency](https://github.com/reactjs/react-tabs)
 
-### Styled-Components
-
-Visual primitives for the component age. Use the best bits of ES6 and CSS to style your apps without stress. | [View Dependency](https://github.com/styled-components)
-
 
 ## Backend API
 
@@ -143,9 +164,6 @@ This HTTP client is promise based and works very well with a REST API. | [View D
 ### BCryptJS
 
 Optimized bcrypt in JavaScript with zero dependencies | [View Dependency](https://github.com/dcodeIO/bcrypt.js)
-
-### Cors
-Cors is a node.js package for providing a connect express middleware that can be used to enable cors with various options. | [View Dependency](https://github.com/expressjs/cors)
 
 ### Cron
 Cron is a tool that allows you to execute something on a schedule. This is typically done using the cron syntax. You can execute a function whenever your scheduled job triggers. can also execute a job external to the javascript process using child_process. Additionally, this library goes beyond the basic cron syntax and allows you to supply a Date object. This will be used as the trigger for your callback. | [View Dependency] (https://github.com/kelektiv/node-cron)
@@ -227,7 +245,7 @@ Request body could include these fields:
 }
 ```
 
-#Environment-Variables
+# Environment-Variables
 
 To run this project locally, you will need to create two .env files. One in the CRA (familytabs) folder and one at the root.
 
@@ -252,7 +270,7 @@ TWILO_ACCOUNT_SID = *requires Twilo setup. See below*
 TWILO_AUTH_TOKEN = *requires Twilo setup. See below*
 STRIPE_SECRET_KEY= *requires Stripe setup. See below*
 
-Auth0-set-up
+# Auth0-set-up
 
 Log in or sign up for an account at Auth0.com.
 
@@ -348,7 +366,7 @@ To use our custom log in widget, go to the Hosted Pages tab, enable the Custom L
 ```
 
 
-Stripe-Setup
+# Stripe-Setup
 
 Login or create a stripe account at stripe.com
 
@@ -363,7 +381,7 @@ REACT_APP_SPK=Publishable key
 .env in root folder
 STRIPE_SECRET_KEY= Secret Key
 
-Twilio-Setup
+# Twilio-Setup
 
 Log in or register for twilio.
 
