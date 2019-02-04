@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from "styled-components";
 
 export const StyledFormWrapper = styled.div`
   height: 100vh;
@@ -37,14 +37,6 @@ export const StyledFormWrapper = styled.div`
       }
       border-style: none;
       background-color: #68659e;
-      .css-vj8t7z {
-        background-color: #68659e;
-        border-style: inherit;
-        .css-1hwfws3 {
-          background-color: #68659e;
-          border-style: inherit;
-        }
-      }
     }
     .participants-input {
       border-style: none;
@@ -62,6 +54,7 @@ export const StyledFormWrapper = styled.div`
       }
 
       .css-1hwfws3 {
+        /* event type location dropdown selected */
         max-width: 500px;
         display: flex;
         justify-content: flex-start;
@@ -72,6 +65,7 @@ export const StyledFormWrapper = styled.div`
       .css-vj8t7z,
       .css-bl6clz,
       .css-2o5izw {
+        /* event type location dropdown */
         border-style: inherit;
         background-color: inherit;
         width: 100%;
@@ -88,12 +82,12 @@ export const StyledFormWrapper = styled.div`
       }
     }
     .switchbox {
-        width:360px;
+      width: 360px;
       margin: 8px auto;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      color:white;
+      color: white;
     }
     .popper-end {
       .react-datepicker__month-container {
@@ -105,9 +99,9 @@ export const StyledFormWrapper = styled.div`
     }
     .button-box {
       width: 400px;
-      margin:0 auto;
+      margin: 0 auto;
       display: flex;
-      justify-content:space-between ;
+      justify-content: space-between;
       button {
         margin: 10px 0px 20px 10px;
         color: white;
@@ -123,6 +117,55 @@ export const StyledFormWrapper = styled.div`
           color: #3985ac;
           cursor: pointer;
         }
+      }
+    }
+  }
+`;
+
+export const StyledFamilyForm = styled.form`
+  width: 500px;
+  margin: 0 auto;
+  background: #68659e;
+  display: flex;
+  flex-direction: column;
+  h2 {
+    font-family: "Merriweather", sans-serif;
+    font-size: 32px;
+    color: white;
+    margin: 30px;
+  }
+  input {
+    background-color: #68659e;
+    cursor: text;
+    width: 400px;
+    margin: 10px auto;
+    padding: 0 20px;
+    height: 35px;
+    color: white;
+    ::placeholder {
+      color: whitesmoke;
+      opacity: 0.6;
+    }
+  }
+  .button-box {
+    width: 400px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    button {
+      margin: 10px 0px 20px 10px;
+      color: white;
+      background: #68659e;
+      border: 2px solid #ffffff;
+      /* padding: 15px 50px 15px 50px; */
+      min-width: 100px;
+      height: 25px;
+      margin-left: 5px;
+
+      :hover {
+        border-color: #3985ac;
+        color: #3985ac;
+        cursor: pointer;
       }
     }
   }

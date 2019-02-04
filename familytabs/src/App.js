@@ -12,7 +12,7 @@ import styled from "styled-components";
 import SignUp from "./Components/SignUp";
 import NavBurger from "./Components/NavBurger";
 import FTLogo5 from './Components/images/FT_Logo_5.jpg';
-import LoginButton from "./Components/LoginButton";
+import LoginButton from "./Components/styled/LoginButton";
 
 
 const MediaStyles = styled.div`
