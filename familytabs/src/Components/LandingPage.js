@@ -77,22 +77,22 @@ const TitleContent = styled.p `
     color: #3985ac;
 `;
 
-const NewButton = styled.button `
-    color: white;
-    background: #242943;
-    border: 2px solid #ffffff; 
-    padding: 15px 50px 15px 50px;
-    margin: 0 0 50px 0;
-    width: 200px; 
-    height: 50px;
-    margin-left: 5px;
+// const NewButton = styled.button `
+//     color: white;
+//     background: #242943;
+//     border: 2px solid #ffffff; 
+//     padding: 15px 50px 15px 50px;
+//     margin: 0 0 50px 0;
+//     width: 200px; 
+//     height: 50px;
+//     margin-left: 5px;
 
-    :hover {
-      border-color: #3985ac;
-      color: #3985ac;
-      cursor: pointer;
-    }
-`;
+//     :hover {
+//       border-color: #3985ac;
+//       color: #3985ac;
+//       cursor: pointer;
+//     }
+// `;
 
 const GoButton = styled.button `
     color: white;

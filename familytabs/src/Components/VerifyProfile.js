@@ -1,16 +1,36 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { Redirect } from "react-router-dom";
+import { StyledFamilyForm } from "./styled/components";
+import styled from 'styled-components'
+
+const IntroWrapper = styled.div`
+  display:flex;
+  .intro{
+    width:40%;
+    margin:30px;
+    color:white;
+    
+    h3{
+      font-size:35px;
+      margin-bottom:10px;
+    }
+    p{
+      margin-left:10px;
+      line-height:1.75;
+    font-size:18px;
+    }
+  }
+`
 
 class VerifyProfile extends Component {
   state = {
     error: "",
-    name: "",
-    email: "",
     userEmail: "",
     userName: "",
     family_name: "",
-    phone: ""
+    phone: "",
+    loaded: false
   };
 
   handleChange = e => {
@@ -42,9 +62,9 @@ class VerifyProfile extends Component {
           phone: this.state.phone
         }
       );
-      console.log(familyID)
+      console.log(familyID);
       this.props.loadState(familyID);
-      this.props.setProfile( userResponse.data);
+      this.props.setProfile(userResponse.data);
       return;
     } catch (err) {
       console.log(userResponse.data);
@@ -57,13 +77,13 @@ class VerifyProfile extends Component {
 
   loadAPIProfile() {
     this.props.auth.getProfile(async (profile, error) => {
-      let { email = profile.email.toLowerCase(), name } = profile;
-      this.setState({ userEmail: email, userName: name });
+      let { email = profile.email.toLowerCase() } = profile;
+      this.setState({ userEmail: email});
       try {
         let response = await axios.get(
           `${process.env.REACT_APP_API_URL}/profile/${this.state.userEmail}`
         );
-        console.log(response.data);
+        this.setState({ loaded: true });
         if (response.data.err) {
           return;
         }
@@ -76,14 +96,25 @@ class VerifyProfile extends Component {
   }
 
   render() {
+    const { loaded } = this.state;
+    console.log(this.state)
     return (
       <>
+        {!loaded ? (
+          <h2>Loading...</h2>
+        ) : (
+          <>
             {this.props.profile ? (
               <Redirect to="/home/tabs" />
             ) : (
-              <form onSubmit={this.familySubmitHandle}>
-                <h1>Register Family</h1>
-                <label>family name</label>
+              <IntroWrapper>
+                <div className='intro'>
+                <h3>Welcome to Family Tabs</h3>
+                <p>If you would like to register a new family, fill out the form. If you wanted to join an existing family, please log out and log in with the email address designated by your parent.</p>
+                </div>
+              
+              <StyledFamilyForm onSubmit={this.familySubmitHandle}>
+                <h2>Register Family</h2>
                 <input
                   type="text"
                   name="family_name"
@@ -91,7 +122,6 @@ class VerifyProfile extends Component {
                   value={this.state.family_name}
                   onChange={this.handleChange}
                 />
-                <label>name</label>
                 <input
                   type="text"
                   name="userName"
@@ -99,7 +129,6 @@ class VerifyProfile extends Component {
                   value={this.state.userName}
                   onChange={this.handleChange}
                 />
-                <label>phone</label>
                 <input
                   type="text"
                   name="phone"
@@ -107,13 +136,17 @@ class VerifyProfile extends Component {
                   value={this.state.phone}
                   onChange={this.handleChange}
                 />
-                <button type="submit">Submit</button>
-              </form>
+                <div className="button-box">
+                  <button type="submit">Submit</button>
+                  <button onClick={this.props.auth.logout}>Log out</button>
+                </div>
+              </StyledFamilyForm></IntroWrapper>
             )}
           </>
         )}
-
+      </>
+    );
   }
-
+}
 
 export default VerifyProfile;

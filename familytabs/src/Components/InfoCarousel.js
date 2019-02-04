@@ -19,23 +19,23 @@ class InfoCarousel extends Component {
         return (
             <StyledCarousel  showArrows={true} >
                 <div>
-                     <img src={Family1}/>
+                     <img src={Family1} alt='Time for Play!'/>
                     <p className="legend">Time for Play!</p>
                 </div>
                 <div>
-                     <img src={Family2}/>
+                     <img src={Family2} alt='Time for Hanging Out!'/>
                     <p className="legend">Time for Hanging Out!</p>
                 </div>
                 <div>
-                     <img src={Family3}/>
+                     <img src={Family3} alt='Time for Learning!'/>
                     <p className="legend">Time for Learning!</p>
                 </div>
                 <div>
-                     <img src={Family4}/>
+                     <img src={Family4} alt='Time for Activities!'/>
                     <p className="legend">Time for Activities!</p>
                 </div>
                 <div>
-                     <img src={Family5}/>
+                     <img src={Family5} alt='Keep Tabs on the Whole Family!'/>
                     <p className="legend">Keep Tabs on the Whole Family!</p>
                 </div>
             </StyledCarousel>
