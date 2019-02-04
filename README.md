@@ -245,6 +245,83 @@ Request body could include these fields:
 }
 ```
 
+### State Calls 
+
+
+POST `/newlogin`
+
+During the new user registration process, after a family name is entered, creates a new Admin user for the site. 
+
+```
+{
+    "userName": "this.state.userName",
+    "email": "this.state.userEmail",
+    "familyID",
+    "isAdmin": "1",
+    "phone": "this.state.phone"
+}
+```
+
+GET `/profile/:email`
+
+Pings auth0 to retrieve email generated during the sign up proccess. 
+
+```
+{
+    "user.id",
+    "user.email",
+    "user.userName",
+    "user.familyID",
+    "user.phone",
+    "user.isAdmin",
+    "family.family_name",
+    "user.textCheckbox"
+}
+```
+
+
+GET `/familymembers/:id`
+
+After login, displays all members of one family ID on the Household page. Gets the following information for each member, and displays selective information for each member on the Household page. 
+
+```
+{
+    "family.family_name",
+    "user.id",
+    "user.userName",
+    "user.phone",
+    "user.email",
+    "user.isAdmin",
+    "user.familyID",
+    "user.textCheckbox"
+}
+```
+
+GET `/fulleventsbyfamily/:id`
+
+After login, displays all event information for a specific family. Gets the following information for a family. Displays selective information on the Calendar located on the Family Tabs page. 
+
+```
+{
+    "family.family_name",
+    "user.userName",
+    "eventWithUsers.userID",
+    "scheduledEvent.scheduledEvent_name",
+    "scheduledEvent.eventStart",
+    "scheduledEvent.eventEnd",
+    "scheduledEvent.id",
+    "location.location_name",
+    "location.address",
+    "eventType.eventType_name",
+    "scheduledEvent.pendingApproval",
+    "scheduledEvent.declined",
+    "scheduledEvent.approved",
+    'scheduledEvent.createdBy'
+}
+```
+
+
+
 # Environment-Variables
 
 To run this project locally, you will need to create two .env files. One in the CRA (familytabs) folder and one at the root.
