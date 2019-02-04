@@ -47,11 +47,17 @@ A simple sliding menu component for React.
 Built for React, this is a handy UI component for a menu icon in a mobile site or application. [View Dependency](https://www.npmjs.com/package/react-hamburger-menu)
 
 ### Axios
+
 This HTTP client is promise based and works very well with a REST API. | [View Dependency](https://www.npmjs.com/package/react-axios)
 
 ### Styled Components
 
 This dependency allows the developer to directly style components within each file.  There is fantastic documentation, and an active community.  The syntax uses JavaScript component syntax, and therefore is easy to read for future developers on the project. | [View Dependency](https://www.styled-components.com/docs/)
+
+### React Big Calendar
+
+An events calendar component built for React and made for modern browsers (read: IE10+) and uses flexbox over the classic tables-ception approach.
+| [View Dependency](https://github.com/intljusticemission/react-big-calendar)
 
 ## Back-End Dependencies 
 
@@ -59,6 +65,52 @@ This dependency allows the developer to directly style components within each fi
 
 Express is a minimal, flexible and highly customizable framework using the JS language that we will be using on the front-end.  Knowing that all team members would be hopping back and forth between front end and back end made choosing a javascript framework the better choice for us.
 | [View Dependency](http://expressjs.com/)
+
+### Cors
+Cors is a node.js package for providing a connect express middleware that can be used to enable cors with various options. 
+| [View Dependency](https://github.com/expressjs/cors)
+
+### Proptypes
+
+ou can use prop-types to document the intended types of properties passed to components. React (and potentially other libraries—see the checkPropTypes() reference below) will check props passed to your components against those definitions, and warn in development if they don’t match.
+| [View Dependency](https://github.com/facebook/prop-types)
+
+### React Date Picker
+
+A simple and reusable Datepicker component for React.
+
+| [View Dependency](https://www.npmjs.com/package/react-datepicker)
+
+### React-dom
+
+This package serves as the entry point to the DOM and server renderers for React. It is intended to be paired with the generic React package, which is shipped as react to npm.
+
+| [View Dependency](https://github.com/facebook/react/tree/master/packages/react-dom)
+
+### React Responsive Carousel
+
+Powerful, lightweight and fully customizable carousel component for React apps.
+
+| [View Dependency](https://github.com/leandrowd/react-responsive-carousel)
+
+### React Router
+
+React Router is a collection of navigational components that compose declaratively with your application.
+
+| [View Dependency](https://reacttraining.com/react-router/)
+
+### React Router Dom
+
+React Router is a collection of navigational components that compose declaratively with your application.
+
+| [View Dependency](https://www.npmjs.com/package/react-router-dom)
+
+### React Select
+
+https://react-select.com/
+
+| [View Dependency](https://react-select.com/)
+
 
 ### Stripe
 
