@@ -19,11 +19,11 @@ const client = require("twilio")(
   process.env.TWILO_AUTH_TOKEN
 );
 
-cron();
+//cron();
 // ========= TWILIO =========//
 
 server.post("/text", (req, res) => {
-  console.log("RUNNING TWILIO")
+  //console.log("RUNNING TWILIO")
   const { phone, title, start, body } = req.body;
   client.messages
     .create({

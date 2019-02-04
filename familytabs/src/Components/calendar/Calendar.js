@@ -9,7 +9,6 @@ import "react-big-calendar/lib/css/react-big-calendar.css";
 
 const localizer = Calendar.momentLocalizer(moment);
 
-
 const StyledMain = styled.div`
   padding: 0 150px 0 150px;
   display: flex;
@@ -23,7 +22,7 @@ const StyledMain = styled.div`
     padding: 0;
   }
 
-  @media (min-width: 320px) and (max-width: 768px) {
+  @media (max-width: 768px) {
     padding: 0;
   }
 
@@ -52,7 +51,7 @@ const StyledBottom = styled.div`
     align-items: center;
   }
 
-  @media (min-width: 320px) and (max-width: 768px) {
+  @media (max-width: 768px) {
     display: flex;
     flex-direction: column-reverse;
     align-items: center;
@@ -86,7 +85,7 @@ const LeftSide = styled.div`
     width: 100%
   }
 
-  @media (min-width: 320px) and (max-width: 768px) {
+  @media (max-width: 768px) {
     width: 100%
   }
 `;
@@ -107,7 +106,7 @@ const RightSide = styled.div`
     width: 100%;
   }
 
-  @media (min-width: 320px) and (max-width: 768px) {
+  @media (max-width: 768px) {
     margin: 0 0 25px 0;
     width: 100%;
   }
@@ -147,7 +146,7 @@ const SelectStyled = styled(Select) `
     width: 350px;
   }
 
-  @media (min-width: 320px) and (max-width: 768px) {
+  @media (max-width: 768px) {
     margin: auto;
     margin-top: 25px;
     width: 350px;
@@ -168,12 +167,19 @@ const StyledCalendar = styled(Calendar)`
     z-index:0;
   }
 
+/* date number styles in here */
   .rbc-date-cell {
-    display: flex;
-    justify-content: center;
+    /* display: flex; */
+    /* justify-content: center; */
     font-family: "Lato", sans-serif;
-    font-size: 12px;
-    padding-top: 5px;
+    font-size: 17px;
+    padding: 5px; 
+  }
+
+  /* today's date */
+  .rbc-month-view .rbc-now{
+    background-color: #68659E;
+    color: white;
   }
 
   .rbc-toolbar-label {
@@ -211,6 +217,8 @@ const StyledCalendar = styled(Calendar)`
     background-color: white;
   }
 
+
+
   .rbc-calendar .rbc-agenda-view {
     color: white;
     margin: 10px;
@@ -226,7 +234,7 @@ const StyledCalendar = styled(Calendar)`
       justify-content: center;
     }
 
-  @media (min-width: 320px) and (max-width: 481px) {
+  @media (max-width: 481px) {
     .rbc-month-view {
       height: 80vh;
     }
@@ -326,7 +334,7 @@ class CalendarComponent extends Component {
         start: startTime,
         end: endTime,
         participants: `${userName.join(", ")}`,
-        particulars: `${eventType_name} event at ${location_name} ${address}`,
+        particulars: `${eventType_name} event at ${location_name} ${address ? address:''}`,
         userID,
         id,
         pendingApproval,
@@ -377,7 +385,6 @@ class CalendarComponent extends Component {
   };
 
   eventStyleGetter = (event, start, end, isSelected) =>{
-    console.log(event);
     let backgroundColor = `#00A3CF`
     if (event.declined){
       backgroundColor = '#aa0101'
@@ -413,7 +420,6 @@ class CalendarComponent extends Component {
   };
   
   render() {
-    console.log(this.state)
     let events  = this.mapToCalendar(this.props.familyEvents);;
 
     return (
@@ -428,6 +434,7 @@ class CalendarComponent extends Component {
         <StyledBottom>
           <LeftSide>
             <StyledCalendar
+                popup
                 day={1}
                 localizer={localizer}
                 defaultDate={new Date()}
