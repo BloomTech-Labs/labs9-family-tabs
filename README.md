@@ -28,6 +28,24 @@ Find us here: [Family Tabs!](https://family-tabs.netlify.com/)
 
 React offers reusable components that can be used on multiple pages, such as our individual Family Tabs.   It is scalable toward larger accounts, or even enterprise level accounts as an eventuality.  React has easier state management in that multiple dates and times will be added, edited and deleted in real time.  It also offers robust documentation and wide implementation makes react the more stable reliable choice.  | [View Dependency](https://reactjs.org/docs/getting-started.html)
 
+### BlueprintJS
+
+Blueprint is a React-based UI toolkit for the web. It is optimized for building complex data-dense interfaces for desktop web applications.  [View Dependency](https://github.com/palantir/blueprint)
+
+### MomentJS
+
+Moment simplifies parsing, validating, manipulating, and displaying dates and times in JavaScript.  Moment is designed to work in the browser and NodeJS. [View Dependency](https://github.com/moment/moment/)
+
+### Cheesburger-Menu
+
+A simple sliding menu component for React. 
+
+[View Dependency](https://www.npmjs.com/package/cheeseburger-menu)
+
+### React-Hamburger-Menu
+
+Built for React, this is a handy UI component for a menu icon in a mobile site or application. [View Dependency](https://www.npmjs.com/package/react-hamburger-menu)
+
 ### Axios
 This HTTP client is promise based and works very well with a REST API. | [View Dependency](https://www.npmjs.com/package/react-axios)
 
