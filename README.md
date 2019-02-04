@@ -10,7 +10,7 @@
         - [Axios](#axios)
         - [Styled Components](#styled-components)
         - [React Big Calendar](#react-big-calendar)
-  - [Back-End Dependencies](#back-end-dependencies-production)
+  - [Back-End Dependencies](#back-end-dependencies)
     - [ExpressJS](#expressjs)
     - [Proptypes](#proptypes)
     - [React Date Picker](#react-date-picker)
@@ -38,7 +38,11 @@
     - [Twilio](#twilio)
     - [Create Event](#create-events)
     - [Change Event](#change-events)
-      
+    - [State Calls](#state-calls)
+    - [Routmaker](#routemaker)
+
+  - [Running Scripts](#running-scripts)
+
   - [Environment Variables](#environment-variables)
     - [Auth 0 Setup](#Auth0-set-up)
     - [Stripe Setup](#Stripe-Setup)
@@ -320,6 +324,25 @@ After login, displays all event information for a specific family. Gets the foll
 }
 ```
 
+### Routemaker
+
+Routmaker contains generic endpoints that can be applied to any of the endpoints for the table listed in server.js in the server commented section. 
+
+E.g.  
+
+To edit a family use the family tablename endpoint found in server.js in combination with the endpoint edit/:id listed in routemaker. 
+
+PUT `/family/edit/:familyid`
+
+GET `/tablename/byfamily/:familyid`
+
+From here use code in server.js in server.use to reference required body content. 
+
+# Running Scripts
+
+`yarn start`: Runs only the front-end client.  Navigate to FamilyTabs in order to execute this script. 
+
+`yarn dev`: Runs only the back-end server.  Navigate to the root folder in order to execute this script. 
 
 
 # Environment-Variables
