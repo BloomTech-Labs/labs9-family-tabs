@@ -13,6 +13,11 @@
     - [Admin Routes](#admin-routes)
       - [Create Event](#create-events)
       - [Change Event](#change-events)
+      
+- [Environment Variables](#environment-variables)
+    -[Auth 0 Setup](#Auth0-set-up)
+    -[Stripe Setup](#Stripe-Setup)
+    -[Twilio Setup](#Twilio-Setup)
 
 # Family-Tabs
 
@@ -221,3 +226,151 @@ Request body could include these fields:
     
 }
 ```
+
+#Environment-Variables
+
+To run this project locally, you will need to create two .env files. One in the CRA (familytabs) folder and one at the root.
+
+The one in the familytabs folder requires the following keys.
+
+REACT_APP_AUTH0_DOMAIN= *requires Auth0 setup. See below*
+REACT_APP_AUTH0_CLIENT_ID=*requires Auth0 setup. See below*
+
+REACT_APP_ROOT = http://localhost:3000
+REACT_APP_AUTH0_CALLBACK_URL= http://localhost:3000/callback
+REACT_APP_AUTH0_AUDIENCE= http://localhost:5000
+REACT_APP_API_URL=http://localhost:5000
+REACT_APP_SSK=*requires Stripe setup. See below*
+REACT_APP_SPK=*requires Stripe setup. See below*
+
+PAYMENT_SERVER_URL=http://localhost:5000
+
+The env file at the root should have the following set up.
+
+SERVER_API_URL= http://localhost:5000
+TWILO_ACCOUNT_SID = *requires Twilo setup. See below*
+TWILO_AUTH_TOKEN = *requires Twilo setup. See below*
+STRIPE_SECRET_KEY= *requires Stripe setup. See below*
+
+Auth0-set-up
+
+Log in or sign up for an account at Auth0.com.
+
+Create a new tenant domain. You will be prompted to do so if this is a new account.
+
+Go to your dashboard and create a new single page web application.
+
+Go to the Applications tab and open your newly created App.
+
+Copy and paste the *domain* field into the REACT_APP_AUTH0_DOMAIN key.
+
+Copy and paste your *Client ID* field into the REACT_APP_AUTH0_CLIENT_ID key.
+
+Scroll down to the Allowed Callback URLs field. Enter *http://localhost:3000/callback*
+
+In the Allowed Web Origins field, the Allowed Logout URLs field, and the Allowed Origins(CORS) field, enter *http://localhost:3000*
+
+Under the APIs tab, create a new API. Use the identifier *http://localhost:5000*
+
+To use our custom log in widget, go to the Hosted Pages tab, enable the Custom Login Page switch and paste the following code over the existing widget code. 
+
+```
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Family Tabs Sign-in</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+<body>
+
+  <!--[if IE 8]>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/ie8/0.2.5/ie8.js"></script>
+  <![endif]-->
+
+  <!--[if lte IE 9]>
+  <script src="https://cdn.auth0.com/js/base64.js"></script>
+  <script src="https://cdn.auth0.com/js/es5-shim.min.js"></script>
+  <![endif]-->
+
+  <script src="https://cdn.auth0.com/js/lock/11.11/lock.min.js"></script>
+  <script>
+    // Decode utf8 characters properly
+    var config = JSON.parse(decodeURIComponent(escape(window.atob('@@config@@'))));
+    config.extraParams = config.extraParams || {};
+    var connection = config.connection;
+    var prompt = config.prompt;
+    var languageDictionary;
+    var language;
+    
+    if (config.dict && config.dict.signin && config.dict.signin.title) {
+      languageDictionary = { title: 'Family Tabs' };
+    } else if (typeof config.dict === 'string') {
+      language = config.dict;
+    }
+    var loginHint = config.extraParams.login_hint;
+    
+    // Available Lock configuration options: https://auth0.com/docs/libraries/lock/v11/configuration
+    var lock = new Auth0Lock(config.clientID, config.auth0Domain, {
+      auth: {
+        redirectUrl: config.callbackURL,
+        responseType: (config.internalOptions || {}).response_type ||
+          (config.callbackOnLocationHash ? 'token' : 'code'),
+        params: config.internalOptions
+      },
+      /* additional configuration needed for custom domains
+      configurationBaseUrl: config.clientConfigurationBaseUrl,
+      overrides: {
+        __tenant: config.auth0Tenant,
+        __token_issuer: 'YOUR_CUSTOM_DOMAIN'
+      }, */
+      assetsUrl:  config.assetsUrl,
+      allowedConnections: connection ? [connection] : null,
+      rememberLastLogin: !prompt,
+      language: language,
+      languageDictionary: languageDictionary,
+      theme: {
+        logo:            'https://raw.githubusercontent.com/Lambda-School-Labs/labs9-family-tabs/master/familytabs/src/Components/images/FT_Logo_4.jpg',
+        primaryColor:    '#242943'
+      },
+      prefill: loginHint ? { email: loginHint, username: loginHint } : null,
+      closable: false,
+      defaultADUsernameFromEmailPrefix: false,
+      // uncomment if you want small buttons for social providers
+      // socialButtonStyle: 'small'
+    });
+
+    lock.show();
+  </script>
+</body>
+</html>
+```
+
+
+Stripe-Setup
+
+Login or create a stripe account at stripe.com
+
+Under the Developers tab, select the Api keys sub tab.
+
+Find your Publishable and Secret keys. Use that data as follows.
+
+.env in familytabs folder
+REACT_APP_SSK=Secret Key
+REACT_APP_SPK=Publishable key
+
+.env in root folder
+STRIPE_SECRET_KEY= Secret Key
+
+Twilio-Setup
+
+Log in or register for twilio.
+
+Generate a free phone number. Paste that number into the from field in server/server.js line 31~
+
+Copy your account sid and auth tokens and paste them into the proper keys in the .env in root folder.
+
+TWILO_ACCOUNT_SID = *account sid*
+TWILO_AUTH_TOKEN = *auth token*
+
