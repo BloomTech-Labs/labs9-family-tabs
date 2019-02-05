@@ -5,6 +5,7 @@ import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import styled from "styled-components";
 import "react-tabs/style/react-tabs.css";
 import { Card } from "@blueprintjs/core";
+import NotificationsModal from "./NotificationsModal"
 
 
 const StyledMain = styled.div`
@@ -109,6 +110,22 @@ const BottomBorder = styled.div`
 
 
 export default class Notifications extends Component {
+  constructor() {
+    super();
+    this.state = {
+      showForm: false,
+      id: null,
+    };
+  }
+
+  toggleForm = (e=null) => {
+    console.log("E", e);
+    if(e === null) {
+      this.setState({ showForm: !this.state.showForm});  
+    } else if(e !== null){
+        this.setState({ showForm: !this.state.showForm, id: e.target.id });
+    }
+  };
 
   approveClick = async e => {
     e.preventDefault();
@@ -127,7 +144,8 @@ export default class Notifications extends Component {
 
   declineClick = async e => {
     e.preventDefault();
-    const id = e.target.id;
+    this.toggleForm(); 
+    const id = this.state.id;
     let decline = {
       declined: true,
       pendingApproval:false
@@ -141,7 +159,6 @@ export default class Notifications extends Component {
   };
 
   render() {
-    console.log(this.props.familyEvents);
     if(!this.props.family){
       return <h1>loading...</h1>
     } else if (!this.props.familyEvents.length) {
@@ -191,7 +208,7 @@ export default class Notifications extends Component {
                       family={this.props.family}
                       isAdmin={this.props.profile.isAdmin}
                       approveClick={this.approveClick}
-                      declineClick={this.declineClick}
+                      toggleForm={this.toggleForm}
                     />
                   ))}
               </StyledPanel>
@@ -212,6 +229,18 @@ export default class Notifications extends Component {
                   ))}
               </StyledPanel>
           </StyledTabs>
+
+          {this.state.showForm ? (
+              <NotificationsModal
+                  toggleForm={this.toggleForm}
+                  {...this.state}
+                  {...this.props}
+                  declineClick={this.declineClick}
+              />
+            ) : (
+              ""
+            )}
+
         </StyledBottom>
       </StyledMain>
     );
