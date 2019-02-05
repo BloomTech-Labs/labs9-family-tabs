@@ -75,7 +75,7 @@ const Info = styled.div`
   }
 `;
 
-const StyledButton = styled.button `
+const ApproveButton = styled.button `
     margin: 10px 0px 20px 10px;
     color: white;
     background: #68659E;
@@ -86,8 +86,25 @@ const StyledButton = styled.button `
     margin-left: 5px;
     
     :hover {
-      border-color: #3985ac;
-      color: #3985ac;
+      border-color: #f3845a;
+      color: #f3845a;
+      cursor: pointer;
+    }
+`;
+
+const DeclineButton = styled.button `
+    margin: 10px 0px 20px 10px;
+    color: white;
+    background: #68659E;
+    border: 2px solid #ffffff; 
+    /* padding: 15px 50px 15px 50px; */
+    width: 100px; 
+    height: 25px;
+    margin-left: 5px;
+    
+    :hover {
+      border-color: #4ec49d;
+      color: #4ec49d;
       cursor: pointer;
     }
 `;
@@ -129,18 +146,18 @@ class EventCard extends React.Component {
         If both of those tests our passed, the buttons will render. If not, the buttons will not display*/}
         {this.props.pending && this.props.isAdmin ? ( 
           <ButtonBox>
-            <StyledButton
+            <ApproveButton
               onClick={this.props.approveClick}
               id={this.props.eventData.id}
             >
               APPROVE
-            </StyledButton>
-            <StyledButton
+            </ApproveButton>
+            <DeclineButton
               onClick={this.props.declineClick}
               id={this.props.eventData.id}
             >
               DECLINE
-            </StyledButton>
+            </DeclineButton>
           </ButtonBox>
          )
         // everything before the colon will load if our tests pass. everything after the colon will load if they don't
