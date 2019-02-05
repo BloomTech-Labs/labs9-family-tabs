@@ -11,7 +11,7 @@ import VerifyProfile from "./Components/VerifyProfile";
 import styled from "styled-components";
 import SignUp from "./Components/SignUp";
 import NavBurger from "./Components/NavBurger";
-import FTLogo5 from './Components/images/FT_Logo_5.jpg';
+import FTLogo8 from './Components/images/FT_Logo_8.png';
 import LoginButton from "./Components/styled/LoginButton";
 
 
@@ -71,11 +71,12 @@ const BurgerWrapper = styled.div`
 `;
 
 const LogoImage = styled.img`
-  width: 7.5%;
+  width: 200px;
+  background-color: #242943;
   /* height: 25%; */
-  border-radius: 25%;
+  /* border-radius: 25%; */
   /* border: 2px solid red; */
-  opacity: 0.3;
+  opacity: 1;
   /* margin-right: 90%; */
 `;
 
@@ -87,7 +88,7 @@ class App extends Component {
       <MediaStyles>
         <TopWrapper>
           <ImageWrapper>
-            <LogoImage src={FTLogo5} alt="FTLogo5"></LogoImage>
+            <LogoImage src={FTLogo8} alt="FTLogo8"></LogoImage>
           </ImageWrapper>
           <BurgerWrapper>
             <PublicRoute exact path='/' component={LoginButton}></PublicRoute>
