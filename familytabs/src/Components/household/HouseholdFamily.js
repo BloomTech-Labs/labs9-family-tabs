@@ -143,6 +143,7 @@ class HouseholdFamily extends React.Component {
             inputHandler={this.inputHandler}
             onInputChange={this.onInputChange}
             {...this.state}
+            {...this.props}
             addOrEdit={this.memberEdit}
             handleNotificationChange={this.handleNotificationChange}
             handleAdminChange={this.handleAdminChange}
