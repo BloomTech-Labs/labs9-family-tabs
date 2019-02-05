@@ -4,7 +4,7 @@ import axios from "axios";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import styled from "styled-components";
 import "react-tabs/style/react-tabs.css";
-import BaseballGirl from "../images/baseballgirl.png";
+import { Card } from "@blueprintjs/core";
 
 
 const StyledMain = styled.div`
@@ -26,8 +26,8 @@ const StyledTop = styled.div`
 
 const StyledBottom = styled.div`
   display: flex;
-  flex-direction: row;
-  align-items:flex-start;
+  flex-direction: column;
+  align-items:center;
   width:100%;
   justify-content:space-between;
   @media (max-width:1220px){
@@ -36,22 +36,11 @@ const StyledBottom = styled.div`
   }
 `;
 
-const ImageStyles = styled.img `
-    width: 400px;
-    height: auto;
-    margin: 50px 0 0 0;
-    @media (max-width:1220px){
-      width:100%;
-    }
-    @media (max-width:800px){
-      display:none;
-    }
-`;
-
 const StyledTabs = styled(Tabs)`
     height: 100%;
     width: 468px;
     padding:0;
+    margin-bottom: 25px;
     @media (max-width:500px) {
       width:98%;
       margin:0 auto;
@@ -62,6 +51,7 @@ const StyledTabs = styled(Tabs)`
 const StyledTabList = styled(TabList)`
     color: white;
     display: flex;
+    justify-content: center;
     
 `;
 
@@ -83,27 +73,22 @@ const StyledTab = styled(Tab)`
     }
 `;
 
+const NoEventTab = styled(Card)`
+    font-family: "Roboto", sans-serif;
+    font-size: 24px;
+    font-weight: 10px;
+    background-color: #68659E;
+    padding: 100px 200px 100px 200px;
+    color: white;
+`;
+
 const StyledPanel = styled(TabPanel)`
     background-color: #68659E;
     padding: 15px;
     border-left: 1px solid #22263C;
     border-right: 1px solid #22263C;
+    border-radius: .5px;
 `;
-
-// const StyledPanel = styled(TabPanel)`
-//     background-color: #68659E;
-//     padding: 1px 15px 75px;
-//     border-left: 1px solid #22263C;
-//     border-right: 1px solid #22263C;
-// `;
-
-// const StyledDeclinedPanel = styled(TabPanel)`
-//     background-color: #68659E;
-//     padding: 1px 15px 75px;
-//     border-left: 1px solid #22263C;
-//     border-right: 1px solid #22263C;
-// `;
-
 
 const Title = styled.h1`
     margin: 0 0 0 0;
@@ -156,10 +141,26 @@ export default class Notifications extends Component {
   };
 
   render() {
+    console.log(this.props.familyEvents);
     if(!this.props.family){
       return <h1>loading...</h1>
-    }
-
+    } else if (!this.props.familyEvents.length) {
+      return (
+        <StyledMain>
+  
+          <StyledTop>
+            <Title>Notifications</Title>
+            <BottomBorder></BottomBorder>
+          </StyledTop>
+          
+          <StyledBottom>
+            <NoEventTab>
+                      <p>No Events to Display</p>
+            </NoEventTab>
+          </StyledBottom>
+        </StyledMain>
+      );
+    } else if (this.props.familyEvents){
     return (
       <StyledMain>
 
@@ -211,10 +212,9 @@ export default class Notifications extends Component {
                   ))}
               </StyledPanel>
           </StyledTabs>
-
-            <ImageStyles src={BaseballGirl} alt="Little girl playing baseball"></ImageStyles>
         </StyledBottom>
       </StyledMain>
     );
   }
+}
 }
