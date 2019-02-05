@@ -153,7 +153,7 @@ class EventCard extends React.Component {
               APPROVE
             </ApproveButton>
             <DeclineButton
-              onClick={this.props.declineClick}
+              onClick={this.props.toggleForm}
               id={this.props.eventData.id}
             >
               DECLINE
