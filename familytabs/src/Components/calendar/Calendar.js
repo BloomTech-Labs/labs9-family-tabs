@@ -67,6 +67,18 @@ const Title = styled.h1`
     font-weight: 700;
 `;
 
+const TitleContent = styled.p `
+  display: flex;
+  justify-content: flex-end;
+  color: #ffffff;
+  font-size: 16px;
+  padding-left: 5px;
+  color: #3985ac;
+  width: 30%;
+  margin: 0% 0% 1% 14%; 
+  border: 2px solid red;
+`;
+
 const BottomBorder = styled.div`
     border-bottom: 2px solid #D4B36E;
     height: 20px;
@@ -426,6 +438,7 @@ class CalendarComponent extends Component {
 
       <StyledMain>
         <StyledTop>
+            <TitleContent>Our calendar</TitleContent>
             <Title>Family Tabs</Title>
             <BottomBorder></BottomBorder>
         </StyledTop>
