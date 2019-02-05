@@ -183,6 +183,7 @@ export default class Household extends Component {
             inputHandler={this.inputHandler}
             onInputChange={this.onInputChange}
             {...this.state}
+            {...this.props}
             addOrEdit={this.memberAdder}
             handleNotificationChange={this.handleNotificationChange}
             notification={this.state.notification}
