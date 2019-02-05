@@ -449,7 +449,7 @@ To use our custom log in widget, go to the Hosted Pages tab, enable the Custom L
       language: language,
       languageDictionary: languageDictionary,
       theme: {
-        logo:            'https://raw.githubusercontent.com/Lambda-School-Labs/labs9-family-tabs/master/familytabs/src/Components/images/FT_Logo_4.jpg',
+        logo:'https://raw.githubusercontent.com/Lambda-School-Labs/labs9-family-tabs/master/familytabs/src/Components/images/FT_Logo_8.png',
         primaryColor:    '#242943'
       },
       prefill: loginHint ? { email: loginHint, username: loginHint } : null,
