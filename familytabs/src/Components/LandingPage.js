@@ -63,7 +63,7 @@ const Content = styled.p `
     color: #ffffff;
     font-size: 18px;
     line-height: 1.5;
-    padding: 20px 20px 0 20px;
+    padding: 15px 15px 0 15px;
     margin: 30px 0 0 0;
 `;
 
@@ -99,7 +99,7 @@ const GoButton = styled.button `
     background: #242943;
     border: 2px solid #ffffff; 
     padding: 15px 50px 15px 50px;
-    margin: 25px 0 0 0;
+    margin: 5px 0 0 0;
     width: 250px; 
     height: 50px;
     margin-right: 5px;
