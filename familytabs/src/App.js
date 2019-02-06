@@ -46,24 +46,20 @@ const StyleMain = styled.div`
   display: flex;
   justify-content: flex-end;
   padding: 15px;
-  /* border: 2px solid red; */
 `;
 
 const TopWrapper = styled.div`
   display: flex;
   justify-content: flex-end;
   width: 98%;
-  /* border: 2px solid red; */
   padding-top: 5px;
   margin-left: 10px;
 `;
 
 const ImageWrapper = styled.div`
-  /* border: 2px solid red; */
 `;
 
 const BurgerWrapper = styled.div`
-  /* border: 2px solid red; */
   display: flex;
   justify-content: flex-end;
   width: 100%;
@@ -73,11 +69,7 @@ const BurgerWrapper = styled.div`
 const LogoImage = styled.img`
   width: 200px;
   background-color: #242943;
-  /* height: 25%; */
-  /* border-radius: 25%; */
-  /* border: 2px solid red; */
   opacity: 1;
-  /* margin-right: 90%; */
 `;
 
 

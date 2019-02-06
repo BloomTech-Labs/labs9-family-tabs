@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import Switch from "react-switch";
 import { StyledFormWrapper } from "../styled/components";
-import styled from "styled-components";
 
 
 
