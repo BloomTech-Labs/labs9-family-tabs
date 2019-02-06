@@ -112,7 +112,6 @@ export const StyledFormWrapper = styled.div`
         color: white;
         background: #68659e;
         border: 2px solid #ffffff;
-        /* padding: 15px 50px 15px 50px; */
         min-width: 100px;
         height: 25px;
         margin-left: 5px;
@@ -165,7 +164,6 @@ export const StyledFamilyForm = styled.form`
       color: white;
       background: #68659e;
       border: 2px solid #ffffff;
-      /* padding: 15px 50px 15px 50px; */
       min-width: 100px;
       height: 25px;
       margin-left: 5px;

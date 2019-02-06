@@ -177,8 +177,6 @@ const StyledCalendar = styled(Calendar)`
 
   /* date number styles in here */
   .rbc-date-cell {
-    /* display: flex; */
-    /* justify-content: center; */
     font-family: "Lato", sans-serif;
     font-size: 17px;
     padding: 5px;
