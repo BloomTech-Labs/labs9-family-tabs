@@ -11,7 +11,7 @@ export default class HouseholdModal extends Component {
   }
 
   render() {
-    console.log("this.props.profile", this.props.profile);
+    console.log("this.props", this.props);
     
     return (
       this.props.profile.isSubscribed === 1 ?
