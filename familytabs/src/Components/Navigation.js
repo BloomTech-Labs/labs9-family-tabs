@@ -94,7 +94,7 @@ class Navigation extends Component {
        </ImgWrapper>
         <NavLinksContainer>
             <NavLink to='/home/tabs'>FAMILY TABS</NavLink>
-            <NavLink to='/home/notifications'>NOTIFICATIONS</NavLink>
+            <NavLink to='/home/notifications'>CHILD EVENTS</NavLink>
             <NavLink to='/home/household'>HOUSEHOLD</NavLink>
             <NavLink to='/home/billing'>BILLING</NavLink>
         </NavLinksContainer>

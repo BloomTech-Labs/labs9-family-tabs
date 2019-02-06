@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import HouseholdFamily from "./HouseholdFamily";
+import Header from "../Header";
 import styled from "styled-components";
 import axios from "axios";
 import HouseholdModal from "./HouseholdModal";
@@ -10,7 +11,6 @@ const CardList = styled.div`
 `;
 
 const StyledMain = styled.div`
-  padding: 0 150px 0 150px;
   display: flex;
   flex-direction: column;
 
@@ -25,48 +25,17 @@ const StyledMain = styled.div`
   @media (min-width: 320px) and (max-width: 768px) {
     padding: 0;
   }
-
 `;
 
 const StyledTop = styled.div`
   color: white;
-  font-size: 64px;
   font-family: "Merriweather", sans-serif;
- 
 `;
 
 const StyledBottom = styled.div`
+  padding: 25px 150px 0 150px;
   display: flex;
-  flex-direction: row;
-
-`;
-
-const Title = styled.h1`
-    display: flex;
-    justify-content: center;
-    color: #ffffff;
-    font-size: 60px;
-    font-weight: 700;
-  
-`;
-
-const TitleContent = styled.p `
-  display: flex;
-  justify-content: flex-end;
-  border: 2px solid red;
-  color: #ffffff;
-  font-size: 16px;
-  padding-left: 5px;
-  color: #3985ac;
-  width: 30%;
-  margin: 0% 0% 1% 26%; 
-`;
-
-const BottomBorder = styled.div`
-    border-bottom: 2px solid #D4B36E;
-    height: 20px;
-    width: 100%;
-    margin: 0 0 50px 0;
+  flex-direction: column;
 `;
 
 const StyledButton = styled.button`
@@ -87,12 +56,9 @@ const StyledButton = styled.button`
 `;
 
 const ButtonContainer = styled.div `
-
   margin-top: 0;
-
-
-
 `;
+
 export default class Household extends Component {
   constructor() {
     super();
@@ -167,18 +133,19 @@ export default class Household extends Component {
       <StyledMain>
 
       <StyledTop>
-      <TitleContent>View and add family members</TitleContent>
-          <Title>Household</Title>
- 
+          <Header title="Household" subTitle="View and add family members with"/>
       </StyledTop>
-      <ButtonContainer>
-      {this.props.profile.isAdmin ? (
-              <StyledButton onClick={this.toggleForm}>ADD FAMILY MEMBER</StyledButton>
-            ) : (
-              ""
-            )}
-      </ButtonContainer>
+
+
       <StyledBottom>
+
+          <ButtonContainer>
+          {this.props.profile.isAdmin ? (
+                  <StyledButton onClick={this.toggleForm}>ADD FAMILY MEMBER</StyledButton>
+                ) : (
+                  ""
+                )}
+          </ButtonContainer>
             <CardList>
               {this.props.family.map(familydata => (
                 <HouseholdFamily

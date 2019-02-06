@@ -22,7 +22,6 @@ const MediaStyles = styled.div`
 
   @media (min-width: 1024px) and (max-width: 1281px) {
     max-width: 100%;
-
   }
 
   @media (min-width: 768px) and (max-width: 1024px) {
@@ -39,7 +38,6 @@ const AppStyles = styled.div`
   text-align: center;
   max-width: 100%;
   background-color: #242943;
-  border: 2px solid red;
 `;
 
 const StyleMain = styled.div`
