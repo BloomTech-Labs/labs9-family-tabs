@@ -50,6 +50,18 @@ const Title = styled.h1`
   
 `;
 
+const TitleContent = styled.p `
+  display: flex;
+  justify-content: flex-end;
+  border: 2px solid red;
+  color: #ffffff;
+  font-size: 16px;
+  padding-left: 5px;
+  color: #3985ac;
+  width: 30%;
+  margin: 0% 0% 1% 26%; 
+`;
+
 const BottomBorder = styled.div`
     border-bottom: 2px solid #D4B36E;
     height: 20px;
@@ -155,6 +167,7 @@ export default class Household extends Component {
       <StyledMain>
 
       <StyledTop>
+      <TitleContent>View and add family members</TitleContent>
           <Title>Household</Title>
           <BottomBorder></BottomBorder>
       </StyledTop>
@@ -183,6 +196,7 @@ export default class Household extends Component {
             inputHandler={this.inputHandler}
             onInputChange={this.onInputChange}
             {...this.state}
+            {...this.props}
             addOrEdit={this.memberAdder}
             handleNotificationChange={this.handleNotificationChange}
             notification={this.state.notification}

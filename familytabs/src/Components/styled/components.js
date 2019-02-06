@@ -36,11 +36,10 @@ export const StyledFormWrapper = styled.div`
         color: whitesmoke;
         opacity: 0.6;
       }
-      border-style: none;
+      border: 1px solid white;
       background-color: #68659e;
     }
     .participants-input {
-      border-style: none;
       background-color: #68659e;
       width: 420px;
       margin: 10px auto;
@@ -56,6 +55,7 @@ export const StyledFormWrapper = styled.div`
 
       .css-1hwfws3 {
         /* event type location dropdown selected */
+        
         max-width: 500px;
         display: flex;
         justify-content: flex-start;
@@ -70,6 +70,7 @@ export const StyledFormWrapper = styled.div`
       .css-bl6clz,
       .css-2o5izw {
         /* event type location dropdown */
+        
         border-style: inherit;
         background-color: inherit;
         width: 100%;

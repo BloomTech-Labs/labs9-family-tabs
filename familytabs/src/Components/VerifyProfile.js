@@ -23,6 +23,10 @@ const IntroWrapper = styled.div`
   }
 `
 
+const Loading = styled.h2 `
+  color: #ffffff;
+`;
+
 class VerifyProfile extends Component {
   state = {
     error: "",
@@ -101,7 +105,7 @@ class VerifyProfile extends Component {
     return (
       <>
         {!loaded ? (
-          <h2>Loading...</h2>
+          <Loading>Loading...</Loading>
         ) : (
           <>
             {this.props.profile ? (

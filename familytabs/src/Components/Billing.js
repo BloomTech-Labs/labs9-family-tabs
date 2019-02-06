@@ -3,13 +3,11 @@ import BillingCard from './BillingCard';
 import styled from "styled-components";
 
 const Title = styled.h1`
-  margin: 0 0 0 0;
-  display: flex;
-  justify-content: center;
-  color: #ffffff;
-  font-size: 60px;
-  padding:0;
-  font-weight: 700;
+    display: flex;
+    justify-content: center;
+    color: #ffffff;
+    font-size: 60px;
+    font-weight: 700;
 
 
 `;
@@ -24,18 +22,17 @@ const BottomBorder = styled.div`
 `;
 const TitleContent = styled.p `
    display: flex;
-  
-    color: #ffffff;
-    font-size: 16px;
-    padding-left: 5px;
-    color: #3985ac;
-    width: 30%;
-    margin: 0% 0% 1% 13%; 
-  
-
-  
-
+  color: #ffffff;
+  font-size: 16px;
+  padding-left: 5px;
+  color: #3985ac;
+  width: 30%;
+  margin: 0% 0% 1% 16%; 
 `;
+
+  
+
+
 
 const BillingWrapper=styled.div `
   padding: 0 150px 0 150px;
@@ -76,7 +73,7 @@ export default class Billing extends Component {
     return (
     <BillingWrapper>
         <BillingTitle>
-        <TitleContent>upgrade to a premium account</TitleContent>
+        <TitleContent>Upgrade to a premium account</TitleContent>
         <Title>Billing</Title>
         <BottomBorder></BottomBorder>
         </BillingTitle>

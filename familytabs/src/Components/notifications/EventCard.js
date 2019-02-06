@@ -77,6 +77,7 @@ const Info = styled.div`
   }
 `;
 
+
 const StyledButton = styled.button`
   margin: 10px 0px 20px 10px;
   color: white;
@@ -138,6 +139,7 @@ class EventCard extends React.Component {
         </Info>
         {/* this ternary checks to see if this event card was created by one of the pending events. It also makes sure that the user is an admin. 
         If both of those tests our passed, the buttons will render. If not, the buttons will not display*/}
+
 
         <ButtonBox>
           <StyledButton color='#3985ac' onClick={this.toggleForm}>EDIT</StyledButton>

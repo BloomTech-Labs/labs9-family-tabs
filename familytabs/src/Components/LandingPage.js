@@ -11,7 +11,7 @@ const MainElements = styled.div`
     justify-content: space-between;
     opacity: 100%;
     color: #242943;
-    font-family:'Roboto', sans-serif;
+     font-family:'Roboto', sans-serif; 
     margin: 0 150px 0 150px;
 `;
 const LeftLanding = styled.div`
@@ -129,7 +129,7 @@ class LandingPage extends Component {
         <MainContainer>
           <MainElements>
               <LeftLanding>
-                <TitleContent>Keep tabs on the whole family with</TitleContent>
+                <TitleContent>keep tabs on the whole family with</TitleContent>
                 <Title>Family Tabs</Title>
                 <BottomBorder></BottomBorder>
                   <Content>

@@ -1,32 +1,37 @@
 const CronJob = require("cron").CronJob;
 const axios = require("axios");
 const moment = require("moment");
+const express = require("express");
+const server = express();
 
 // ========= NODE-CRON =========//
 
 //console.log("Before job instantiation");
 const cron = () =>{
-const job = new CronJob("*/10 * * * * *", function() {
- 
+
+
+
+
+
+  const job = new CronJob("*/10 * * * * *", function() {
+
 
   axios
-    .get(`${process.env.SERVER_API_URL}/event`)
+    .get(`${process.env.SERVER_API_URL}/scheduledEventNameWithUsers`)
     .then(events => {
-      //console.log(events.data);
+      console.log("EVENTS.DATA",events.data);
       events.data.map(event => {
         let today = moment();
         let eventDate = moment(event.eventStart, "YYYYMMDD, h:mm a");
         let eventReminder = {
           title: event.scheduledEvent_name,
           start: event.eventStart,
-          phone: "8133613402",
-          body: "test of event notification system",
+          phone: event.phone,
           allDay: true
         };
 
-        //console.log("EVENT", event);
-
-        if (eventDate.diff(today, "days") === 0 && event.dayAlert === 0) {
+        if (eventDate.diff(today, "days") === 0 && event.dayAlert === 0 && event.textCheckbox === 1) {
+          console.log("IF FIRING")
           axios
             .post(`${process.env.SERVER_API_URL}/text`, eventReminder)
             .then(resp => {

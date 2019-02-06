@@ -94,7 +94,7 @@ class AddEvent extends React.Component {
         locationID: null
       });
       await this.props.loadGlobal(familyID);
-      this.props.toggleForm();
+      // this.props.toggleForm();
     } catch (err) {
       console.log(err);
     }

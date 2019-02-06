@@ -19,15 +19,16 @@ const client = require("twilio")(
   process.env.TWILO_AUTH_TOKEN
 );
 
-//cron();
+// To activate text notifications, sign up for Twilio account and put in account phone number below.
+// cron(); <-----Uncomment to activate scheduler for text notifications
 // ========= TWILIO =========//
 
 server.post("/text", (req, res) => {
-  //console.log("RUNNING TWILIO")
+  console.log("RUNNING TWILIO")
   const { phone, title, start, body } = req.body;
   client.messages
     .create({
-      body: `Reminder that you have a ${title} starting on ${start}.\n\n Note: ${body} `,
+      body: `Reminder that you have a ${title} starting on ${start}.`,
       from: "+18338536427",
       to: `+1${phone}`
     })
@@ -39,6 +40,25 @@ server.post("/text", (req, res) => {
 
 server.get("/", (req, res) => {
   res.send("Family Tabs Api");
+});
+
+server.get("/scheduledEventNameWithUsers", async (req, res) => {
+  try {
+    const events = await db("scheduledEvent")
+      .join("eventWithUsers", "scheduledEvent.id", "=", "eventWithUsers.scheduledEventID")
+      .join("user", "eventWithUsers.userID", "=", "user.id")
+      .select(
+        "scheduledEvent.scheduledEvent_name",
+        "scheduledEvent.eventStart",
+        "scheduledEvent.eventEnd",
+        "scheduledEvent.dayAlert",
+        "user.phone",
+        "user.textCheckbox"
+      )
+    return res.status(200).json(events);
+  } catch (err) {console.log("ERROR", err)
+    res.json({ err });
+  }
 });
 
 
