@@ -7,14 +7,13 @@ import "react-tabs/style/react-tabs.css";
 import { Card } from "@blueprintjs/core";
 import NotificationsModal from "./NotificationsModal"
 
-
 const StyledMain = styled.div`
   padding: 0 150px 0 150px;
   display: flex;
   flex-direction: column;
 
   @media (max-width: 1000px) {
-    padding:0;
+    padding: 0;
   }
 `;
 
@@ -27,6 +26,7 @@ const StyledTop = styled.div`
 
 const StyledBottom = styled.div`
   display: flex;
+
   flex-direction: column;
   align-items:center;
   width:100%;
@@ -36,6 +36,7 @@ const StyledBottom = styled.div`
     align-items: center;
   }
 `;
+
 
 const StyledTabs = styled(Tabs)`
     height: 100%;
@@ -54,24 +55,25 @@ const StyledTabList = styled(TabList)`
     display: flex;
     justify-content: center;
     
+
 `;
 
 const StyledTab = styled(Tab)`
-    border-left: 1px solid #22263C;
-    border-right: 1px solid #22263C;
-    color: white;
-    background-color: #68659E;
-    padding: 10px 10px;
-    border-top-left-radius: 7px;
-    border-top-right-radius: 7px;
-    font-family: "Roboto", sans-serif;
-    font-size: 14px;
+  border-left: 1px solid #22263c;
+  border-right: 1px solid #22263c;
+  color: white;
+  background-color: #68659e;
+  padding: 10px 10px;
+  border-top-left-radius: 7px;
+  border-top-right-radius: 7px;
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
 
-    :hover {
-      color: #68659E;
-      background-color: white;
-      cursor: pointer;
-    }
+  :hover {
+    color: #68659e;
+    background-color: white;
+    cursor: pointer;
+  }
 `;
 
 const NoEventTab = styled(Card)`
@@ -84,6 +86,7 @@ const NoEventTab = styled(Card)`
 `;
 
 const StyledPanel = styled(TabPanel)`
+
     background-color: #68659E;
     padding: 15px;
     border-left: 1px solid #22263C;
@@ -92,13 +95,13 @@ const StyledPanel = styled(TabPanel)`
 `;
 
 const Title = styled.h1`
-    margin: 0 0 0 0;
-    display: flex;
-    justify-content: center;
-    color: #ffffff;
-    font-size: 60px;
-    padding:0;
-    font-weight: 700;
+  margin: 0 0 0 0;
+  display: flex;
+  justify-content: center;
+  color: #ffffff;
+  font-size: 60px;
+  padding: 0;
+  font-weight: 700;
 `;
 
 const TitleContent = styled.p `
@@ -117,43 +120,29 @@ const TitleContent = styled.p `
 `;
 
 const BottomBorder = styled.div`
-    border-bottom: 2px solid #D4B36E;
-    height: 20px;
-    width: 100%;
-    margin: 0 0 50px 0;
+  border-bottom: 2px solid #d4b36e;
+  height: 20px;
+  width: 100%;
+  margin: 0 0 50px 0;
 `;
 
-
 export default class Notifications extends Component {
-  constructor() {
-    super();
-    this.state = {
-      showForm: false,
-      id: null,
-    };
-  }
-
-  toggleForm = (e=null) => {
-    console.log("E", e);
-    if(e === null) {
-      this.setState({ showForm: !this.state.showForm});  
-    } else if(e !== null){
-        this.setState({ showForm: !this.state.showForm, id: e.target.id });
-    }
-  };
 
   approveClick = async e => {
     e.preventDefault();
     const id = e.target.id;
     let approve = {
       approved: true,
-      pendingApproval:false
+      pendingApproval: false
     };
-    try{
-      await axios.put(`${process.env.REACT_APP_API_URL}/event/edit/${id}`, approve)
-      this.props.loadState(this.props.familyID)
-    }catch(err){
-      console.log(err)
+    try {
+      await axios.put(
+        `${process.env.REACT_APP_API_URL}/event/edit/${id}`,
+        approve
+      );
+      this.props.loadState(this.props.familyID);
+    } catch (err) {
+      console.log(err);
     }
   };
 
@@ -163,17 +152,21 @@ export default class Notifications extends Component {
     const id = this.state.id;
     let decline = {
       declined: true,
-      pendingApproval:false
+      pendingApproval: false
     };
-    try{
-      await axios.put(`${process.env.REACT_APP_API_URL}/event/edit/${id}`, decline)
-      this.props.loadState(this.props.familyID)
-    }catch(err){
-      console.log(err)
+    try {
+      await axios.put(
+        `${process.env.REACT_APP_API_URL}/event/edit/${id}`,
+        decline
+      );
+      this.props.loadState(this.props.familyID);
+    } catch (err) {
+      console.log(err);
     }
   };
 
   render() {
+
     if(!this.props.family){
       return <h1>loading...</h1>
     } else if (!this.props.familyEvents.length) {
@@ -196,68 +189,68 @@ export default class Notifications extends Component {
     } else if (this.props.familyEvents){
     return (
       <StyledMain>
-
         <StyledTop>
         <TitleContent>Review pending events</TitleContent>
           <Title>Notifications</Title>
-          <BottomBorder></BottomBorder>
+          <BottomBorder />
         </StyledTop>
-        
+
         <StyledBottom>
-          
           <StyledTabs>
-              <StyledTabList>
-                <StyledTab>PENDING</StyledTab>
-                <StyledTab>APPROVED</StyledTab>
-                <StyledTab>DECLINED</StyledTab>
-              </StyledTabList>
-              
-              <StyledPanel>
-                {this.props.familyEvents
-                  .filter(x => x.pendingApproval)
-                  .map(eventData => (
-                    <EventCard
+            <StyledTabList>
+              <StyledTab>PENDING</StyledTab>
+              <StyledTab>APPROVED</StyledTab>
+              <StyledTab>DECLINED</StyledTab>
+            </StyledTabList>
+
+            <StyledPanel>
+              {this.props.familyEvents
+                .filter(x => x.pendingApproval)
+                .map(eventData => (
+                  <EventCard
                     //every event that is pending approval will pass these props to the event card component
                     //the word pending here by itself gives the event cards that are pending approval the prop pending===true
                     pending
-                      key={eventData.id}
-                      eventData={eventData}
-                      family={this.props.family}
-                      isAdmin={this.props.profile.isAdmin}
-                      approveClick={this.approveClick}
-                      toggleForm={this.toggleForm}
-                    />
-                  ))}
-              </StyledPanel>
+                    key={eventData.id}
+                    eventData={eventData}
+                    family={this.props.family}
+                    isAdmin={this.props.profile.isAdmin}
+                    approveClick={this.approveClick}
+                    declineClick={this.declineClick}
+                    loadState={this.props.loadState}
+                    profile={this.props.profile}
+                  />
+                ))}
+            </StyledPanel>
 
-              <StyledPanel>
-                {this.props.familyEvents
-                  .filter(x => x.approved)
-                  .map(eventData => (
-                    <EventCard key={eventData.id} family={this.props.family} eventData={eventData} />
-                  ))}
-              </StyledPanel>
+            <StyledPanel>
+              {this.props.familyEvents
+                .filter(x => x.approved)
+                .map(eventData => (
+                  <EventCard
+                    key={eventData.id}
+                    family={this.props.family}
+                    eventData={eventData}
+                    loadState={this.props.loadState}
+                    profile={this.props.profile}
+                  />
+                ))}
+            </StyledPanel>
 
-              <StyledPanel>
-                {this.props.familyEvents
-                  .filter(x => x.declined)
-                  .map(eventData => (
-                    <EventCard key={eventData.id} family={this.props.family} eventData={eventData} />
-                  ))}
-              </StyledPanel>
+            <StyledPanel>
+              {this.props.familyEvents
+                .filter(x => x.declined)
+                .map(eventData => (
+                  <EventCard
+                    key={eventData.id}
+                    family={this.props.family}
+                    eventData={eventData}
+                    loadState={this.props.loadState}
+                    profile={this.props.profile}
+                  />
+                ))}
+            </StyledPanel>
           </StyledTabs>
-
-          {this.state.showForm ? (
-              <NotificationsModal
-                  toggleForm={this.toggleForm}
-                  {...this.state}
-                  {...this.props}
-                  declineClick={this.declineClick}
-              />
-            ) : (
-              ""
-            )}
-
         </StyledBottom>
       </StyledMain>
     );

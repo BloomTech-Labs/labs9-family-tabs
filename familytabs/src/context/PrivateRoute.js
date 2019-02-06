@@ -3,7 +3,7 @@ import { Route } from "react-router-dom";
 import PropTypes from "prop-types";
 import { FamilyConsumer } from "./FamilyContext";
 
-const PrivateRoute = ({ component: Component, scopes,  ...rest }) => {
+const PrivateRoute = ({ component: Component,  ...rest }) => {
   return (
     <FamilyConsumer>
       {context => (
@@ -22,7 +22,6 @@ const PrivateRoute = ({ component: Component, scopes,  ...rest }) => {
 
 PrivateRoute.propTypes = {
   component: PropTypes.func.isRequired,
-  scopes: PropTypes.array
 };
 
 PrivateRoute.defaultProps = {

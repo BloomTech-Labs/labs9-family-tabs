@@ -11,7 +11,7 @@ export class FamilyProvider extends Component {
       profile: null,
       familyID: null,
       familyEvents: [],
-      family: [],
+      family: []
     };
   }
   testFunc = () => console.log("hello world");
@@ -60,7 +60,6 @@ export class FamilyProvider extends Component {
     await this.state.auth.getProfile( (profile, error) => {
       email = profile.email.toLowerCase() ;
     });
-    console.log(email)
     return email;
   };
 
@@ -72,7 +71,6 @@ export class FamilyProvider extends Component {
       let response = await axios.get(
         `${process.env.REACT_APP_API_URL}/profile/${email}`
       );
-      console.log(response.data);
       if (response.data.err) {
         return;
       }

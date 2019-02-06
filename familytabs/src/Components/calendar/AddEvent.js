@@ -1,12 +1,10 @@
 import React from "react";
 import DatePicker from "react-datepicker";
-import CreatableAdvanced from "./CreatableAdvanced";
+import CreatableAdvanced from "../styled/CreatableAdvanced";
 import Select from "react-select";
 import moment from "moment";
 import axios from "axios";
 import "react-datepicker/dist/react-datepicker.css";
-import setMinutes from "date-fns/setMinutes";
-import setHours from "date-fns/setHours";
 import {StyledFormWrapper} from '../styled/components'
 
 
@@ -113,9 +111,6 @@ class AddEvent extends React.Component {
       eventEnd,
       participants
     } = this.state;
-    eventStart
-      ? console.log(new Date(eventStart).getMinutes())
-      : console.log(setHours(setMinutes(new Date(), 0), 17));
     return (
       <StyledFormWrapper>
         <form onSubmit={this.addEventHandler}>
@@ -126,7 +121,6 @@ class AddEvent extends React.Component {
             onChange={this.inputHandler}
             placeholder="Event Title"
             value={scheduledEvent_name}
-            autoComplete="new-password"
           />
 
           <DatePicker
@@ -143,7 +137,7 @@ class AddEvent extends React.Component {
             onChange={this.setStart}
             timeFormat="h:mm aa"
             popperClassName="popper"
-            popperPlacement="left-start"
+            popperPlacement="top"
           />
 
           <DatePicker
@@ -154,8 +148,14 @@ class AddEvent extends React.Component {
             selectsEnd
             showTimeSelect
             placeholderText="Event end"
-            popperPlacement="right-start"
-            popperClassName="popper-end"
+            popperPlacement="top"
+            popperModifiers={{
+              offset: {
+                enabled: true,
+                offset: '100px,0'
+              }
+            }}
+            popperClassName="popper popper-end"
             timeFormat="h:mm aa"
             dateFormat="MMMM d, yyyy h:mm aa"
             startDate={eventStart}

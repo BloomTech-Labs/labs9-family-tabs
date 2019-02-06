@@ -1,44 +1,42 @@
-const condenseUsers = arr =>{
-    result = []
-    for (let i = 0; i < arr.length; i++){
-      let cur = arr[i]
-      let resultIndex = result.findIndex(x => x.id === cur.id)
-      if (resultIndex >= 0){
-        result[resultIndex].userName.push(cur.userName)
-        result[resultIndex].userID.push(cur.userID)
-      }
-      else{
-        result.push({...cur, userName: [cur.userName], userID:[cur.userID]})
-      }
+const condenseUsers = arr => {
+  result = [];
+  for (let i = 0; i < arr.length; i++) {
+    let cur = arr[i];
+    let resultIndex = result.findIndex(x => x.id === cur.id);
+    if (resultIndex >= 0) {
+      result[resultIndex].userName.push(cur.userName);
+      result[resultIndex].userID.push(cur.userID);
+    } else {
+      result.push({ ...cur, userName: [cur.userName], userID: [cur.userID] });
     }
-    return result
   }
+  return result;
+};
 
-const getState = (app,db) => {
-
-    app.post("/newlogin", async (req, res) => {
-        const body = req.body;
-        try {
-          let id = await db("user").insert(body);
-          id = id[0];
-          const newProfile = await db("user")
-            .join("family", "user.familyID", "family.id")
-            .where("user.id", id)
-            .select(
-              "user.id",
-              "user.email",
-              "user.userName",
-              "user.familyID",
-              "user.phone",
-              "user.isAdmin",
-              "family.family_name"
-            )
-            .first();
-          return res.status(201).json(newProfile);
-        } catch (err) {
-          res.json({ err });
-        }
-      });
+const getState = (app, db) => {
+  app.post("/newlogin", async (req, res) => {
+    const body = req.body;
+    try {
+      let id = await db("user").insert(body);
+      id = id[0];
+      const newProfile = await db("user")
+        .join("family", "user.familyID", "family.id")
+        .where("user.id", id)
+        .select(
+          "user.id",
+          "user.email",
+          "user.userName",
+          "user.familyID",
+          "user.phone",
+          "user.isAdmin",
+          "family.family_name"
+        )
+        .first();
+      return res.status(201).json(newProfile);
+    } catch (err) {
+      res.json({ err });
+    }
+  });
 
   app.get("/profile/:email", async (req, res) => {
     const { email } = req.params;
@@ -129,15 +127,31 @@ const getState = (app,db) => {
           "scheduledEvent.pendingApproval",
           "scheduledEvent.declined",
           "scheduledEvent.approved",
-          'scheduledEvent.createdBy'
-
+          "scheduledEvent.createdBy",
+          "scheduledEvent.locationID",
+          "scheduledEvent.eventTypeID"
         );
 
       return res.status(200).json(condenseUsers(familyEvents));
     } catch (err) {
-      res.status(500).json({ err: "broke" });
+      res.status(500).json({ err: "failed to get all events by family" });
     }
   });
+
+  app.get("/eventbyusers/:scheduledEventID", async (req, res) => {
+    const { scheduledEventID } = req.params;
+    try {
+     const eventByUsers= await db("eventWithUsers")
+        .where({ scheduledEventID })
+        .select("eventWithUsers.id", "eventWithUsers.userID");
+
+        return res.status(200).json(eventByUsers);
+
+    } catch (err) {
+      res.status(500).json({ err: "failed to get all users for scheduled event" })
+    }
+  });
+
   return app;
 };
 module.exports = getState;
