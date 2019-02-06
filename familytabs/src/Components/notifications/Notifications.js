@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import EventCard from "./EventCard";
+import Header from "../Header";
 import axios from "axios";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import styled from "styled-components";
@@ -8,7 +9,6 @@ import { Card } from "@blueprintjs/core";
 import NotificationsModal from "./NotificationsModal"
 
 const StyledMain = styled.div`
-  padding: 0 150px 0 150px;
   display: flex;
   flex-direction: column;
 
@@ -25,8 +25,8 @@ const StyledTop = styled.div`
 `;
 
 const StyledBottom = styled.div`
+  padding: 0 150px 0 150px;
   display: flex;
-
   flex-direction: column;
   align-items:center;
   width:100%;
@@ -45,8 +45,7 @@ const StyledTabs = styled(Tabs)`
     margin-bottom: 25px;
     @media (max-width:500px) {
       width:98%;
-      margin:0 auto;
-      
+      margin:0 auto; 
     }
 `;
 
@@ -54,8 +53,6 @@ const StyledTabList = styled(TabList)`
     color: white;
     display: flex;
     justify-content: center;
-    
-
 `;
 
 const StyledTab = styled(Tab)`
@@ -86,7 +83,6 @@ const NoEventTab = styled(Card)`
 `;
 
 const StyledPanel = styled(TabPanel)`
-
     background-color: #68659E;
     padding: 15px;
     border-left: 1px solid #22263C;
@@ -94,37 +90,6 @@ const StyledPanel = styled(TabPanel)`
     border-radius: .5px;
 `;
 
-const Title = styled.h1`
-  margin: 0 0 0 0;
-  display: flex;
-  justify-content: center;
-  color: #ffffff;
-  font-size: 60px;
-  padding: 0;
-  font-weight: 700;
-`;
-
-const TitleContent = styled.p `
-    display: flex;
-    justify-content: flex-end;
-    color: #ffffff;
-    font-size: 16px;
-    padding-left: 5px;
-    color: #3985ac;
-    width: 30%;
-    margin: 0% 0% 1% 20%; 
-  
-
-  
-
-`;
-
-const BottomBorder = styled.div`
-  border-bottom: 2px solid #d4b36e;
-  height: 20px;
-  width: 100%;
-  margin: 0 0 50px 0;
-`;
 
 export default class Notifications extends Component {
 
@@ -174,9 +139,7 @@ export default class Notifications extends Component {
         <StyledMain>
   
           <StyledTop>
-          <TitleContent>Review pending events</TitleContent>
-            <Title>Child Events</Title>
-            <BottomBorder></BottomBorder>
+            <Header title="Child Events" subTitle="Review pending events with"/>
           </StyledTop>
           
           <StyledBottom>
@@ -189,11 +152,9 @@ export default class Notifications extends Component {
     } else if (this.props.familyEvents){
     return (
       <StyledMain>
-        <StyledTop>
-        <TitleContent>Review pending events</TitleContent>
-          <Title>Notifications</Title>
-          <BottomBorder />
-        </StyledTop>
+          <StyledTop>
+            <Header title="Child Events" subTitle="Review pending events with"/>
+          </StyledTop>
 
         <StyledBottom>
           <StyledTabs>

@@ -3,6 +3,16 @@ import InfoCarousel from './InfoCarousel';
 import styled from "styled-components";
 import Header from "./Header.js"
 
+
+const StyledTop = styled.div`
+  color: white;
+  margin: 0 0 25px 0;
+  font-family: "Merriweather", sans-serif;
+`;
+
+const StyledBottom = styled.div`
+
+`;
 const MainContainer = styled.div`
 
 `;
@@ -32,13 +42,6 @@ const Title = styled.h1`
     font-size: 92px;
     padding:0;
     font-weight: 700;
-`;
-
-const StyledTop = styled.div`
-  color: white;
-  font-size: 64px;
-  margin: 0 0 25px 0;
-  font-family: "Merriweather", sans-serif;
 `;
 
 const BottomBorder = styled.div`
@@ -119,11 +122,11 @@ class LandingPage extends Component {
     render() {
       return (
         <MainContainer>
+          <StyledTop>
+            <Header/>
+          </StyledTop>
+          <StyledBottom>
           <MainElements>
-            <StyledTop>
-                 <Header />
-            </StyledTop>
-
               <LeftLanding>
                 <TitleContent>keep tabs on the whole family with</TitleContent>
                 <Title>Family Tabs</Title>
@@ -150,6 +153,7 @@ class LandingPage extends Component {
                 </CarouselDiv>
               </RightLanding>
           </MainElements>
+          </StyledBottom>
         </MainContainer>
       )
     }
