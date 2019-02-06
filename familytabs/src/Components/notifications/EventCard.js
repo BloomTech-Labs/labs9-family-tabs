@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import moment from "moment";
+import EventEdit from "../event-edit/EventEdit";
 
 // const Card = styled.div`
 //   border: 2px solid lightgrey;
@@ -99,7 +100,13 @@ width:100%;
 `
 
 class EventCard extends React.Component {
+  state={showForm:false}
+    toggleForm = () => {
+      this.setState({ showForm: !this.state.showForm });
+    };
+
   render() {
+
     return (
       <Card>
         <Header>EVENT: {this.props.eventData.scheduledEvent_name}</Header>
@@ -127,9 +134,11 @@ class EventCard extends React.Component {
         </Info>
         {/* this ternary checks to see if this event card was created by one of the pending events. It also makes sure that the user is an admin. 
         If both of those tests our passed, the buttons will render. If not, the buttons will not display*/}
-        {this.props.pending && this.props.isAdmin ? ( 
+        
           <ButtonBox>
-            <StyledButton
+            <StyledButton onClick={this.toggleForm}>EDIT</StyledButton>
+
+          {this.props.pending  ? (  <> <StyledButton
               onClick={this.props.approveClick}
               id={this.props.eventData.id}
             >
@@ -140,13 +149,22 @@ class EventCard extends React.Component {
               id={this.props.eventData.id}
             >
               DECLINE
-            </StyledButton>
-          </ButtonBox>
-         )
-        // everything before the colon will load if our tests pass. everything after the colon will load if they don't
-        : (
+            </StyledButton></>): (
           ""
         )}
+          </ButtonBox>
+         
+        {/* // everything before the colon will load if our tests pass. everything after the colon will load if they don't */}
+        
+
+{this.state.showForm ? <EventEdit
+          pendingEditId={this.props.eventData.id}
+          loadGlobal={this.props.loadState}
+          pendingEdit={this.props.eventData}
+          family={this.props.family}
+          toggleForm={this.toggleForm}
+          profile={this.props.profile}
+        /> : ""}
       </Card>
     );
   }

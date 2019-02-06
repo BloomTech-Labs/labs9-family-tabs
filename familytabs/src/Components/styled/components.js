@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const StyledFormWrapper = styled.div`
-  height: 100vh;
+  height: 100%;
   z-index: 3000;
   width: 100vw;
   background: #00000080;
@@ -12,17 +12,18 @@ export const StyledFormWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  overflow:scroll ;
   form {
     width: 500px;
-    margin: 100px auto;
     background: #68659e;
     display: flex;
     flex-direction: column;
-    h2 {
+    overflow:auto ;
+        h2 {
       font-family: "Merriweather", sans-serif;
       font-size: 32px;
       color: white;
-      margin: 30px;
+      margin: 90px;
     }
     input {
       cursor: text;
@@ -61,6 +62,9 @@ export const StyledFormWrapper = styled.div`
         align-items: center;
         flex-wrap: nowrap;
         cursor: text;
+        .css-1g6gooi{
+          color:white;
+        }
       }
       .css-vj8t7z,
       .css-bl6clz,
@@ -118,6 +122,9 @@ export const StyledFormWrapper = styled.div`
           cursor: pointer;
         }
       }
+    }
+    svg{
+      cursor:pointer;
     }
   }
 `;

@@ -4,7 +4,6 @@ import CreatableSelect from "react-select/lib/Creatable";
 import styled from "styled-components";
 
 const StyledCreatable = styled(CreatableSelect)`
-
   border-style: none;
   background-color: #68659e;
   width: 420px;
@@ -15,6 +14,7 @@ const StyledCreatable = styled(CreatableSelect)`
   .css-vj8t7z,
   .css-bl6clz,
   .css-2o5izw,
+  .css-162g8z5,
   .input-selectable {
     cursor: text;
     border-style: inherit;
@@ -23,6 +23,9 @@ const StyledCreatable = styled(CreatableSelect)`
     height: 35px;
     color: white;
     padding: 0 20px;
+    .css-1g6gooi {
+      color: white;
+    }
     .css-xp4uvy {
       color: inherit;
     }
@@ -66,7 +69,7 @@ export default class CreatableAdvanced extends Component {
         placeholder={this.props.placeholder}
         isClearable
         className="input-selectable"
-        isDisabled={this.state.isLoading}
+        isDisabled={this.state.isLoading ||this.props.isDisabled}
         isLoading={this.state.isLoading}
         onChange={this.handleChange}
         onCreateOption={this.handleCreate}
