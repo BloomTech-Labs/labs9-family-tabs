@@ -233,7 +233,18 @@ const StyledCalendar = styled(Calendar)`
 
   .rbc-calendar .rbc-agenda-view {
     color: white;
-    margin: 10px;
+    margin: 10px 10px 10px 10px;
+  }
+
+  thead {
+    width: 100%;
+    border: 2px solid red;
+    display: none;
+
+    > tr > th {
+    border: 2px solid red;
+  }
+    
   }
 
   .rbc-agenda-view .rbc-agenda-empty {
@@ -245,6 +256,7 @@ const StyledCalendar = styled(Calendar)`
       display: flex; 
       justify-content: center;
     }
+
 
   @media (max-width: 481px) {
     .rbc-month-view {
