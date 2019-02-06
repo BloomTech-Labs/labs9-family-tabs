@@ -34,7 +34,7 @@ const getState = (app, db) => {
         .first();
       return res.status(201).json(newProfile);
     } catch (err) {
-      res.json({ err });
+      res.status(500).json({ err });
     }
   });
 
@@ -58,12 +58,9 @@ const getState = (app, db) => {
         .first();
 
       profile.email = profile.email.toLowerCase();
-      if (!profile.userName) {
-        res.status(200).json({ message: "no profile" });
-      }
       return res.status(200).json(profile);
     } catch (err) {
-      res.json({ err });
+      res.status(404).json({ message: "no profile" });
     }
   });
 
@@ -131,7 +128,14 @@ const getState = (app, db) => {
           "scheduledEvent.locationID",
           "scheduledEvent.eventTypeID"
         );
+      if (!familyEvents.length) {
+        const family = await db("family").where({ id });
 
+        if (family.length) {
+          return res.status(200).json({ message: "no events for this family" });
+        }
+        return res.status(400).json({ message: "no family at that id" });
+      }
       return res.status(200).json(condenseUsers(familyEvents));
     } catch (err) {
       res.status(500).json({ err: "failed to get all events by family" });
@@ -141,14 +145,17 @@ const getState = (app, db) => {
   app.get("/eventbyusers/:scheduledEventID", async (req, res) => {
     const { scheduledEventID } = req.params;
     try {
-     const eventByUsers= await db("eventWithUsers")
+      const eventByUsers = await db("eventWithUsers")
         .where({ scheduledEventID })
         .select("eventWithUsers.id", "eventWithUsers.userID");
-
-        return res.status(200).json(eventByUsers);
-
+      if(!eventByUsers.length){
+        throw new Error()
+      }
+      return res.status(200).json(eventByUsers);
     } catch (err) {
-      res.status(500).json({ err: "failed to get all users for scheduled event" })
+      res
+        .status(500)
+        .json({ err: "failed to get all users for scheduled event" });
     }
   });
 
