@@ -40,26 +40,28 @@ const AppStyles = styled.div`
   text-align: center;
   max-width: 100%;
   background-color: #242943;
+  border: 2px solid red;
+
 `;
 
 const StyleMain = styled.div`
   display: flex;
   justify-content: flex-end;
   padding: 15px;
+
 `;
 
 const TopWrapper = styled.div`
   display: flex;
   justify-content: flex-end;
   width: 98%;
+
   padding-top: 5px;
   margin-left: 10px;
 `;
 
 const ImageWrapper = styled.div`
-`;
 
-const BurgerWrapper = styled.div`
   display: flex;
   justify-content: flex-end;
   width: 100%;
@@ -69,6 +71,7 @@ const BurgerWrapper = styled.div`
 const LogoImage = styled.img`
   width: 200px;
   background-color: #242943;
+
   opacity: 1;
 `;
 
@@ -78,15 +81,15 @@ class App extends Component {
   render() {
     return (
       <MediaStyles>
-        <TopWrapper>
+         <TopWrapper>
           <ImageWrapper>
             <LogoImage src={FTLogo8} alt="FTLogo8"></LogoImage>
           </ImageWrapper>
           <BurgerWrapper>
             <PublicRoute exact path='/' component={LoginButton}></PublicRoute>
             <PrivateRoute path="/home" component={NavBurger} />
-          </BurgerWrapper>
-        </TopWrapper>
+          </BurgerWrapper> 
+        </TopWrapper>  
         <StyleMain>
           
         </StyleMain>

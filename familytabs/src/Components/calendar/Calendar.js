@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Calendar from "react-big-calendar";
 import moment from "moment";
 import styled from "styled-components";
+import Header from '../Header';
 import axios from "axios";
 import Select from "react-select";
 import AddEvent from "./AddEvent";
@@ -464,11 +465,13 @@ class CalendarComponent extends Component {
       <StyledMain>
         <StyledTop>
 
-            <TitleContent>Our calendar</TitleContent>
+            {/* <TitleContent>Our calendar</TitleContent>
             <Title>Family Tabs</Title>
-            <BottomBorder></BottomBorder>
+            <BottomBorder></BottomBorder> */}
+             <Header />
+        </StyledTop> 
 
-        </StyledTop>
+       
 
         <StyledBottom>
           <LeftSide>
