@@ -88,8 +88,8 @@ const StyledButton = styled.button`
   margin-left: 5px;
 
   :hover {
-    border-color: #3985ac;
-    color: #3985ac;
+    border-color: ${props => props.color};
+    color:  ${props => props.color};
     cursor: pointer;
   }
 `;
@@ -140,18 +140,20 @@ class EventCard extends React.Component {
         If both of those tests our passed, the buttons will render. If not, the buttons will not display*/}
 
         <ButtonBox>
-          <StyledButton onClick={this.toggleForm}>EDIT</StyledButton>
+          <StyledButton color='#3985ac' onClick={this.toggleForm}>EDIT</StyledButton>
 
           {this.props.pending ? (
             <>
               {" "}
               <StyledButton
+              color='#4ec49d'
                 onClick={this.props.approveClick}
                 id={this.props.eventData.id}
               >
                 APPROVE
               </StyledButton>
               <StyledButton
+              color='#f3845a'
                 onClick={this.toggleModal}
                 id={this.props.eventData.id}
               >
