@@ -10,8 +10,6 @@ import Family5 from './images/Family_Play_5.jpg';
 
 
 const StyledCarousel = styled(Carousel)`
-    /* height: 45%;
-    width: 45%; */
 `;
  
 class InfoCarousel extends Component {
@@ -44,7 +42,5 @@ class InfoCarousel extends Component {
 };
 
 
-
-// onChange={onChange} onClickItem={onClickItem} onClickThumb={onClickThumb}
 
 export default InfoCarousel;

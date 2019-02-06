@@ -4,39 +4,6 @@ import moment from "moment";
 import EventEdit from "../event-edit/EventEdit";
 import NotificationsModal from "./NotificationsModal";
 
-// const Card = styled.div`
-//   border: 2px solid lightgrey;
-//   width: 400px;
-//   height: 200px;
-//   display: flex;
-//   flex-direction: column;
-//   align-items: flex-start;
-//   line-height: 2;
-//   background: #ffffff;
-//   font-family: "Roboto", sans-serif;
-//   margin: 28px;
-// `;
-
-// const Header = styled.div`
-//   font-family: "Roboto", sans-serif;
-//   color: black;
-//   font-size: 18px;
-//   width: 100%;
-//   height: 60px;
-//   justify-content: center;
-//   padding-top: 10px;
-//   display: flex;
-// `;
-
-// const Info = styled.div`
-//   font-family: "Lato", sans-serif;
-//   padding-left: 20px;
-//   display: flex;
-//   flex-direction: column;
-//   align-items: flex-start;
-//   padding-bottom: 10px;
-// `;
-
 const Card = styled.div`
   border: 2px solid lightgrey;
   width: 380px;
@@ -83,7 +50,6 @@ const StyledButton = styled.button`
   color: white;
   background: #68659e;
   border: 2px solid #ffffff;
-  /* padding: 15px 50px 15px 50px; */
   width: 100px;
   height: 25px;
   margin-left: 5px;
