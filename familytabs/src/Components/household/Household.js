@@ -169,7 +169,7 @@ export default class Household extends Component {
       <StyledTop>
       <TitleContent>View and add family members</TitleContent>
           <Title>Household</Title>
-          <BottomBorder></BottomBorder>
+ 
       </StyledTop>
       <ButtonContainer>
       {this.props.profile.isAdmin ? (
