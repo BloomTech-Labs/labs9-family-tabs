@@ -12,7 +12,7 @@ import "react-big-calendar/lib/css/react-big-calendar.css";
 const localizer = Calendar.momentLocalizer(moment);
 
 const StyledMain = styled.div`
-  padding: 0 150px 0 150px;
+
   display: flex;
   flex-direction: column;
 
@@ -37,6 +37,7 @@ const StyledTop = styled.div`
 `;
 
 const StyledBottom = styled.div`
+  padding: 0 150px 0 150px;
   display: flex;
   flex-direction: row;
 
@@ -464,14 +465,9 @@ class CalendarComponent extends Component {
     return (
       <StyledMain>
         <StyledTop>
-
-            {/* <TitleContent>Our calendar</TitleContent>
-            <Title>Family Tabs</Title>
-            <BottomBorder></BottomBorder> */}
-             <Header />
+             <Header title="Family Tabs" subTitle="Your calendar of events at" />
         </StyledTop> 
 
-       
 
         <StyledBottom>
           <LeftSide>

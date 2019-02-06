@@ -32,7 +32,6 @@ const MediaStyles = styled.div`
   @media (min-width: 320px) and (max-width: 768px) {
     max-width: 100%;
   }
-
 `;
 
 const AppStyles = styled.div`
@@ -41,7 +40,6 @@ const AppStyles = styled.div`
   max-width: 100%;
   background-color: #242943;
   border: 2px solid red;
-
 `;
 
 const StyleMain = styled.div`
@@ -51,29 +49,6 @@ const StyleMain = styled.div`
 
 `;
 
-const TopWrapper = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  width: 98%;
-
-  padding-top: 5px;
-  margin-left: 10px;
-`;
-
-const ImageWrapper = styled.div`
-
-  display: flex;
-  justify-content: flex-end;
-  width: 100%;
-  padding-top: 7.5px;
-`;
-
-const LogoImage = styled.img`
-  width: 200px;
-  background-color: #242943;
-
-  opacity: 1;
-`;
 
 
 
@@ -81,18 +56,6 @@ class App extends Component {
   render() {
     return (
       <MediaStyles>
-         <TopWrapper>
-          <ImageWrapper>
-            <LogoImage src={FTLogo8} alt="FTLogo8"></LogoImage>
-          </ImageWrapper>
-          <BurgerWrapper>
-            <PublicRoute exact path='/' component={LoginButton}></PublicRoute>
-            <PrivateRoute path="/home" component={NavBurger} />
-          </BurgerWrapper> 
-        </TopWrapper>  
-        <StyleMain>
-          
-        </StyleMain>
         <AppStyles>
           <PublicRoute exact path="/" component={LandingPage} />
           <PublicRoute exact path="/signup" component={SignUp} />

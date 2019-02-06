@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import InfoCarousel from './InfoCarousel';
 import styled from "styled-components";
+import Header from "./Header.js"
 
 const MainContainer = styled.div`
 
@@ -14,6 +15,7 @@ const MainElements = styled.div`
      font-family:'Roboto', sans-serif; 
     margin: 0 150px 0 150px;
 `;
+
 const LeftLanding = styled.div`
     display: flex ; 
     flex-direction: column;
@@ -30,6 +32,13 @@ const Title = styled.h1`
     font-size: 92px;
     padding:0;
     font-weight: 700;
+`;
+
+const StyledTop = styled.div`
+  color: white;
+  font-size: 64px;
+  margin: 0 0 25px 0;
+  font-family: "Merriweather", sans-serif;
 `;
 
 const BottomBorder = styled.div`
@@ -77,23 +86,6 @@ const TitleContent = styled.p `
     color: #3985ac;
 `;
 
-// const NewButton = styled.button `
-//     color: white;
-//     background: #242943;
-//     border: 2px solid #ffffff; 
-//     padding: 15px 50px 15px 50px;
-//     margin: 0 0 50px 0;
-//     width: 200px; 
-//     height: 50px;
-//     margin-left: 5px;
-
-//     :hover {
-//       border-color: #3985ac;
-//       color: #3985ac;
-//       cursor: pointer;
-//     }
-// `;
-
 const GoButton = styled.button `
     color: white;
     background: #242943;
@@ -128,6 +120,10 @@ class LandingPage extends Component {
       return (
         <MainContainer>
           <MainElements>
+            <StyledTop>
+                 <Header />
+            </StyledTop>
+
               <LeftLanding>
                 <TitleContent>keep tabs on the whole family with</TitleContent>
                 <Title>Family Tabs</Title>
@@ -152,8 +148,6 @@ class LandingPage extends Component {
                 <CarouselDiv>
                    <InfoCarousel />
                 </CarouselDiv>
-               
-                
               </RightLanding>
           </MainElements>
         </MainContainer>
