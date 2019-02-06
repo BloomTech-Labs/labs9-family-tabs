@@ -43,6 +43,8 @@ const BurgerWrapper = styled.div`
   justify-content: flex-end;
   width: 100%;
   padding-top: 7.5px; */
+
+  
 `;
 
 const ImageWrapper = styled.div`
