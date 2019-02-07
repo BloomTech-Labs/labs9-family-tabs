@@ -9,7 +9,11 @@ import PublicRoute from "./context/PublicRoute";
 import PrivateRoute from "./context/PrivateRoute";
 import VerifyProfile from "./Components/VerifyProfile";
 import styled from "styled-components";
-import SignUp from "./Components/SignUp";
+import StyledSignUp from "./Components/StyledSignUp";
+// import NavBurger from "./Components/NavBurger";
+// import FTLogo8 from './Components/images/FT_Logo_8.png';
+// import LoginButton from "./Components/styled/LoginButton";
+=======
 
 
 const MediaStyles = styled.div`
@@ -45,7 +49,7 @@ class App extends Component {
       <MediaStyles>
         <AppStyles>
           <PublicRoute exact path="/" component={LandingPage} />
-          <PublicRoute exact path="/signup" component={SignUp} />
+          <PublicRoute exact path="/signup" component={StyledSignUp} />
           <PrivateRoute exact path="/home/tabs" component={ParentHome} />
           <PrivateRoute exact path="/home/notifications" component={Notifications}/>
           <PrivateRoute exact path="/home/household" component={Household} />
