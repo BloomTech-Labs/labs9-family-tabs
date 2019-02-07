@@ -10,6 +10,9 @@ import Family5 from './images/Family_Play_5.jpg';
 
 
 const StyledCarousel = styled(Carousel)`
+    .thumbs-wrapper {
+        display: none;
+    }
 `;
  
 class InfoCarousel extends Component {
