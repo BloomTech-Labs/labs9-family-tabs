@@ -31,7 +31,7 @@ const getState = (app, db) => {
           "user.isAdmin",
           "family.family_name"
         )
-        .first();
+        .first();p
       return res.status(201).json(newProfile);
     } catch (err) {
       res.status(500).json({ err });
@@ -80,9 +80,7 @@ const getState = (app, db) => {
           "user.familyID",
           "user.textCheckbox"
         );
-      if (!familyMembers.length) {
-        return res.status(400).json({ err: "no family at that id" });
-      }
+
       return res.status(200).json(familyMembers);
     } catch (err) {
       console.log(err);

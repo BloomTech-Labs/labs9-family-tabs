@@ -1,15 +1,16 @@
 import React, { Component } from "react";
-import { StyledFormWrapper } from "../styled/components";
+import { StyledAlertWrapper } from "../styled/components";
 
 export default class AlertModal extends Component {
-
-
   render() {
     return (
-        <StyledFormWrapper>
+        <StyledAlertWrapper>
+          <div className='alert'>
             <h2>Success!</h2>
-            <button onClick={this.props.addEventHandler}>Exit</button>
-        </StyledFormWrapper>
+            <div className='button-box'>
+            <button onClick={this.props.toggleForm}>Exit</button></div>
+            </div>
+        </StyledAlertWrapper>
     )
   }
 

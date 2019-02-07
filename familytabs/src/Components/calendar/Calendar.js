@@ -15,13 +15,7 @@ const localizer = Calendar.momentLocalizer(moment);
 const StyledMain = styled.div`
   display: flex;
   flex-direction: column;
-  @media (min-width: 1024px) and (max-width: 1281px) {
-    padding: 0;
-  }
-  @media (min-width: 768px) and (max-width: 1024px) {
-    padding: 0;
-  }
-  @media (max-width: 768px) {
+  @media (max-width: 1281px) {
     padding: 0;
   }
 `;
@@ -57,42 +51,9 @@ const StyledBottom = styled.div`
   }
 `;
 
-// const Title = styled.h1`
-//   display: flex;
-//   justify-content: center;
-//   color: #ffffff;
-//   font-size: 60px;
-//   font-weight: 700;
-// `;
-
-// const TitleContent = styled.p `
-//   display: flex;
-//   justify-content: flex-end;
-//   color: #ffffff;
-//   font-size: 16px;
-//   padding-left: 5px;
-//   color: #3985ac;
-//   width: 30%;
-//   margin: 0% 0% 1% 14%; 
-//   border: 2px solid red;
-// `;
-
-// const BottomBorder = styled.div`
-//   border-bottom: 2px solid #d4b36e;
-//   height: 20px;
-//   width: 100%;
-//   margin: 0 0 50px 0;
-// `;
-
 const LeftSide = styled.div`
   width: 85%;
-  @media (min-width: 1024px) and (max-width: 1281px) {
-    width: 100%;
-  }
-  @media (min-width: 768px) and (max-width: 1024px) {
-    width: 100%;
-  }
-  @media (max-width: 768px) {
+  @media  (max-width: 1281px) {
     width: 100%;
   }
 `;
@@ -102,15 +63,7 @@ const RightSide = styled.div`
   flex-direction: column;
   width: 15%;
   margin: 75px 0 75px 15px;
-  @media (min-width: 1024px) and (max-width: 1281px) {
-    margin: 0 0 25px 0;
-    width: 100%;
-  }
-  @media (min-width: 768px) and (max-width: 1024px) {
-    margin: 0 0 25px 0;
-    width: 100%;
-  }
-  @media (max-width: 768px) {
+  @media (max-width: 1281px) {
     margin: 0 0 25px 0;
     width: 100%;
   }
@@ -133,21 +86,12 @@ const Button = styled.button`
 const SelectStyled = styled(Select)`
   margin: 50px 15px 0 0;
   width: 250px;
-  @media (min-width: 1024px) and (max-width: 1281px) {
+  @media (max-width: 1281px) {
     margin: auto;
     margin-top: 25px;
     width: 350px;
   }
-  @media (min-width: 768px) and (max-width: 1024px) {
-    margin: auto;
-    margin-top: 25px;
-    width: 350px;
-  }
-  @media (max-width: 768px) {
-    margin: auto;
-    margin-top: 25px;
-    width: 350px;
-  }
+
 `;
 
 const StyledCalendar = styled(Calendar)`
@@ -278,7 +222,7 @@ class CalendarComponent extends Component {
         { value: "declined", label: "Declined Events" }
       ]);
 
-  onInputChange = (inputValue, { action }) => {
+  setCalendarFilter = (inputValue, { action }) => {
     if (!inputValue.length) {
       this.setState({ participants: [] });
       return;
@@ -300,7 +244,7 @@ class CalendarComponent extends Component {
 
   loadState = async () => {
     const { familyID } = this.props;
-    let { locations, eventTypes } = this.state;
+    let { locations, eventTypes} = this.state;
     if (!locations.length) {
       locations = await axios.get(
         `${process.env.REACT_APP_API_URL}/location/byfamily/${familyID}`
@@ -435,15 +379,9 @@ class CalendarComponent extends Component {
   toggleFormChild = () => {
     this.setState({showForm: false})
   }
-
-  setFormState = () => {
-    if(this.props.family.length === 1) {
-      this.setState({showForm: true})
-    }
-    console.log("RUNNING SETFORM STATE", this.state.showForm, this.props.family.length)
-  }
   
   render() {
+    console.log(this.state.participants)
     let events = this.mapToCalendar(this.props.familyEvents);
 
     return (
@@ -482,6 +420,7 @@ class CalendarComponent extends Component {
                   family={this.props.family}
                   loadGlobal={this.props.loadState}
                   history={this.props.history}
+                  setCalendarFilter={this.setCalendarFilter}
                 />
               ) : (
                 <Button onClick={this.toggleForm}>NEW EVENT</Button>
@@ -495,7 +434,7 @@ class CalendarComponent extends Component {
               isMulti
               options={this.participantToOptions(this.props.family)}
               value={this.state.participants}
-              onChange={this.onInputChange}
+              onChange={this.setCalendarFilter}
             />
           </RightSide>
         </StyledBottom>
@@ -509,9 +448,7 @@ class CalendarComponent extends Component {
         /> : ""}
 
         {this.props.family.length ===1 ? (
-              <ChildPromptModal
-            toggleForm={this.toggleFormChild}
-              />
+              <ChildPromptModal/>
             ) : (
               ""
             )}

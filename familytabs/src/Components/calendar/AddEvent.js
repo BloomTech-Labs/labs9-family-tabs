@@ -5,8 +5,8 @@ import Select from "react-select";
 import moment from "moment";
 import axios from "axios";
 import "react-datepicker/dist/react-datepicker.css";
-import {StyledFormWrapper} from '../styled/components'
-
+import { StyledFormWrapper } from "../styled/components";
+import AlertModal from "./AlertModal";
 
 class AddEvent extends React.Component {
   state = {
@@ -15,7 +15,8 @@ class AddEvent extends React.Component {
     eventEnd: null,
     eventTypeID: null,
     locationID: null,
-    participants: []
+    participants: [],
+    showAlert: false
   };
 
   participantToOptions = options =>
@@ -94,10 +95,20 @@ class AddEvent extends React.Component {
         locationID: null
       });
       await this.props.loadGlobal(familyID);
-     this.props.toggleForm();
+      if (!this.props.profile.isAdmin) {
+        this.props.setCalendarFilter([{
+          label: "Events Pending Approval",
+          value: "pending"
+        }], '');
+      }
+      this.toggleAlert();
     } catch (err) {
       console.log(err);
     }
+  };
+
+  toggleAlert = () => {
+    this.setState({ showAlert: !this.state.showAlert });
   };
 
   render() {
@@ -109,95 +120,100 @@ class AddEvent extends React.Component {
       eventStart,
       locationID,
       eventEnd,
-      participants
+      participants,
+      showAlert
     } = this.state;
+    console.log(showAlert);
     return (
-      <StyledFormWrapper>
-        <form onSubmit={this.addEventHandler}>
-          <h2>New Event</h2>
-          <input
-            type="text"
-            name="scheduledEvent_name"
-            onChange={this.inputHandler}
-            placeholder="Event Title"
-            value={scheduledEvent_name}
-          />
+      <>
+        {showAlert ? <AlertModal toggleForm={toggleForm} /> : ""}
+        <StyledFormWrapper hide={showAlert}>
+          <form onSubmit={this.addEventHandler}>
+            <h2>New Event</h2>
+            <input
+              type="text"
+              name="scheduledEvent_name"
+              onChange={this.inputHandler}
+              placeholder="Event Title"
+              value={scheduledEvent_name}
+            />
 
-          <DatePicker
-            name="eventStart"
-            dateFormat="MMMM d, yyyy h:mm aa"
-            selected={eventStart}
-            minDate={new Date()}
-            selectsStart
-            showTimeSelect
-            placeholderText="Event start"
-            value={eventStart}
-            startDate={eventStart}
-            endDate={eventEnd}
-            onChange={this.setStart}
-            timeFormat="h:mm aa"
-            popperClassName="popper"
-            popperPlacement="top"
-          />
+            <DatePicker
+              name="eventStart"
+              dateFormat="MMMM d, yyyy h:mm aa"
+              selected={eventStart}
+              minDate={new Date()}
+              selectsStart
+              showTimeSelect
+              placeholderText="Event start"
+              value={eventStart}
+              startDate={eventStart}
+              endDate={eventEnd}
+              onChange={this.setStart}
+              timeFormat="h:mm aa"
+              popperClassName="popper"
+              popperPlacement="top"
+            />
 
-          <DatePicker
-            name="eventEnd"
-            value={eventEnd}
-            selected={eventEnd}
-            //minDate={eventStart || new Date()}
-            selectsEnd
-            showTimeSelect
-            placeholderText="Event end"
-            popperPlacement="top"
-            popperModifiers={{
-              offset: {
-                enabled: true,
-                offset: '100px,0'
-              }
-            }}
-            popperClassName="popper popper-end"
-            timeFormat="h:mm aa"
-            dateFormat="MMMM d, yyyy h:mm aa"
-            startDate={eventStart}
-            endDate={eventEnd}
-            onChange={this.setEnd}
-          />
-          <CreatableAdvanced
-            name="eventType"
-            placeholder="Event type"
-            options={eventTypes}
-            value={eventTypeID}
-            setValue={this.setEventID}
-            addOption={addOption}
-            familyID={profile.familyID}
-          />
+            <DatePicker
+              name="eventEnd"
+              value={eventEnd}
+              selected={eventEnd}
+              //minDate={eventStart || new Date()}
+              selectsEnd
+              showTimeSelect
+              placeholderText="Event end"
+              popperPlacement="top"
+              popperModifiers={{
+                offset: {
+                  enabled: true,
+                  offset: "100px,0"
+                }
+              }}
+              popperClassName="popper popper-end"
+              timeFormat="h:mm aa"
+              dateFormat="MMMM d, yyyy h:mm aa"
+              startDate={eventStart}
+              endDate={eventEnd}
+              onChange={this.setEnd}
+            />
+            <CreatableAdvanced
+              name="eventType"
+              placeholder="Event type"
+              options={eventTypes}
+              value={eventTypeID}
+              setValue={this.setEventID}
+              addOption={addOption}
+              familyID={profile.familyID}
+            />
 
-          <CreatableAdvanced
-            name="location"
-            placeholder="Location"
-            options={locations}
-            value={locationID}
-            setValue={this.setLocationID}
-            addOption={addOption}
-            familyID={profile.familyID}
-          />
+            <CreatableAdvanced
+              name="location"
+              placeholder="Location"
+              options={locations}
+              value={locationID}
+              setValue={this.setLocationID}
+              addOption={addOption}
+              familyID={profile.familyID}
+            />
 
-          <Select
-            placeholder="Participants"
-            name="participants"
-            defaultValue={null}
-            isMulti
-            options={this.participantToOptions(family)}
-            value={participants}
-            onChange={this.onInputChange}
-            className="participants-input"
-          />
-          <div className="button-box">
-            <button type="submit">Add Event</button>
-            <button onClick={toggleForm}>Exit</button>
-          </div>
-        </form>
-      </StyledFormWrapper>
+            <Select
+              placeholder="Participants"
+              name="participants"
+              defaultValue={null}
+              isMulti
+              options={this.participantToOptions(family)}
+              value={participants}
+              onChange={this.onInputChange}
+              className="participants-input"
+            />
+            <div className="button-box">
+              <button type="submit">Add Event</button>
+              <button onClick={toggleForm}>Exit</button>
+            </div>
+          </form>
+        </StyledFormWrapper>
+      </>
     );
   }
 }
