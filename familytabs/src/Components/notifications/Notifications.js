@@ -133,7 +133,13 @@ export default class Notifications extends Component {
     return (
       <StyledMain>
         <StyledTop>
-          <Header title="Child Events" subTitle="Review pending events with" />
+          <Header
+            title="Child Events"
+            subTitle="Review pending events with"
+            isSubscribed={
+              this.props.profile ? this.props.profile.isSubscribed : 0
+            }
+          />
         </StyledTop>
 
         <StyledBottom>

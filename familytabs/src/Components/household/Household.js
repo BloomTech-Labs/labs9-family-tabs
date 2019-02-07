@@ -39,23 +39,23 @@ const StyledBottom = styled.div`
 `;
 
 const StyledButton = styled.button`
-    color: white;
-    background: #242943;
-    border: 2px solid #ffffff; 
-    padding: 15px 50px 15px 50px;
-    margin: 0 0 50px 0;
-    width: 300px; 
-    height: 50px;
-    margin-left: 5px; 
+  color: white;
+  background: #242943;
+  border: 2px solid #ffffff;
+  padding: 15px 50px 15px 50px;
+  margin: 0 0 50px 0;
+  width: 300px;
+  height: 50px;
+  margin-left: 5px;
 
-    :hover {
-      border-color: #3985ac;
-      color: #3985ac;
-      cursor: pointer;
-    }
+  :hover {
+    border-color: #3985ac;
+    color: #3985ac;
+    cursor: pointer;
+  }
 `;
 
-const ButtonContainer = styled.div `
+const ButtonContainer = styled.div`
   margin-top: 0;
 `;
 
@@ -72,13 +72,13 @@ export default class Household extends Component {
     };
   }
 
-  handleAdminChange=(isAdmin) =>{
+  handleAdminChange = isAdmin => {
     this.setState({ isAdmin });
-  }
+  };
 
-  handleNotificationChange=(notification) =>{
+  handleNotificationChange = notification => {
     this.setState({ notification });
-  }
+  };
 
   onInputChange = (inputValue, { action }) => {
     this.setState({ isAdmin: inputValue });
@@ -118,7 +118,7 @@ export default class Household extends Component {
         phone: "",
         email: "",
         showForm: false,
-        notification:false
+        notification: false
       });
     } catch (err) {
       console.error(err);
@@ -131,47 +131,52 @@ export default class Household extends Component {
     }
     return (
       <StyledMain>
+        <StyledTop>
+          <Header
+            title="Household"
+            subTitle="View and add family members with"
+            isSubscribed={
+              this.props.profile ? this.props.profile.isSubscribed : 0
+            }
+          />
+        </StyledTop>
 
-      <StyledTop>
-          <Header title="Household" subTitle="View and add family members with"/>
-      </StyledTop>
-
-
-      <StyledBottom>
-
+        <StyledBottom>
           <ButtonContainer>
-          {this.props.profile.isAdmin ? (
-                  <StyledButton onClick={this.toggleForm}>ADD FAMILY MEMBER</StyledButton>
-                ) : (
-                  ""
-                )}
-          </ButtonContainer>
-            <CardList>
-              {this.props.family.map(familydata => (
-                <HouseholdFamily
-                  key={familydata.id}
-                  familydata={familydata}
-                  profile={this.props.profile}
-                  loadState={this.props.loadState}
-                />
-              ))}
-            </CardList>
-            
-            {this.state.showForm ? (
-              <HouseholdModal
-            toggleForm={this.toggleForm}
-            inputHandler={this.inputHandler}
-            onInputChange={this.onInputChange}
-            {...this.state}
-            {...this.props}
-            addOrEdit={this.memberAdder}
-            handleNotificationChange={this.handleNotificationChange}
-            notification={this.state.notification}
-            handleAdminChange={this.handleAdminChange}
-              />
+            {this.props.profile.isAdmin ? (
+              <StyledButton onClick={this.toggleForm}>
+                ADD FAMILY MEMBER
+              </StyledButton>
             ) : (
               ""
             )}
+          </ButtonContainer>
+          <CardList>
+            {this.props.family.map(familydata => (
+              <HouseholdFamily
+                key={familydata.id}
+                familydata={familydata}
+                profile={this.props.profile}
+                loadState={this.props.loadState}
+              />
+            ))}
+          </CardList>
+
+          {this.state.showForm ? (
+            <HouseholdModal
+              toggleForm={this.toggleForm}
+              inputHandler={this.inputHandler}
+              onInputChange={this.onInputChange}
+              {...this.state}
+              {...this.props}
+              addOrEdit={this.memberAdder}
+              handleNotificationChange={this.handleNotificationChange}
+              notification={this.state.notification}
+              handleAdminChange={this.handleAdminChange}
+            />
+          ) : (
+            ""
+          )}
         </StyledBottom>
       </StyledMain>
     );

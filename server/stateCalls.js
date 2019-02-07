@@ -31,7 +31,7 @@ const getState = (app, db) => {
           "user.isAdmin",
           "family.family_name"
         )
-        .first();p
+        .first();
       return res.status(201).json(newProfile);
     } catch (err) {
       res.status(500).json({ err });

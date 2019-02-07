@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import Calendar from "react-big-calendar";
 import moment from "moment";
 import styled from "styled-components";
-import Header from '../Header';
-import ChildPromptModal from './ChildPromptModal'
+import Header from "../Header";
+import ChildPromptModal from "./ChildPromptModal";
 import axios from "axios";
 import Select from "react-select";
 import AddEvent from "./AddEvent";
@@ -53,7 +53,7 @@ const StyledBottom = styled.div`
 
 const LeftSide = styled.div`
   width: 85%;
-  @media  (max-width: 1281px) {
+  @media (max-width: 1281px) {
     width: 100%;
   }
 `;
@@ -91,7 +91,6 @@ const SelectStyled = styled(Select)`
     margin-top: 25px;
     width: 350px;
   }
-
 `;
 
 const StyledCalendar = styled(Calendar)`
@@ -153,9 +152,8 @@ const StyledCalendar = styled(Calendar)`
     border: 2px solid red;
     display: none;
     > tr > th {
-    border: 2px solid red;
-  }
-    
+      border: 2px solid red;
+    }
   }
   .rbc-agenda-view .rbc-agenda-empty {
     color: white;
@@ -190,7 +188,7 @@ class CalendarComponent extends Component {
       participants: [],
       showForm: false,
       pendingEditId: null,
-      pendingEdit: {},
+      pendingEdit: {}
     };
   }
 
@@ -199,8 +197,8 @@ class CalendarComponent extends Component {
   }
 
   setEdit = id => {
-    if(!this.props.profile.isAdmin){
-      return
+    if (!this.props.profile.isAdmin) {
+      return;
     }
     if (id) {
       const pendingEdit = this.props.familyEvents.find(
@@ -244,7 +242,7 @@ class CalendarComponent extends Component {
 
   loadState = async () => {
     const { familyID } = this.props;
-    let { locations, eventTypes} = this.state;
+    let { locations, eventTypes } = this.state;
     if (!locations.length) {
       locations = await axios.get(
         `${process.env.REACT_APP_API_URL}/location/byfamily/${familyID}`
@@ -259,9 +257,9 @@ class CalendarComponent extends Component {
     }
   };
 
-  mapToCalendar = events =>{
-    if(!events.length){
-      return[]
+  mapToCalendar = events => {
+    if (!events.length) {
+      return [];
     }
     return events
       .map((event, i) => {
@@ -325,7 +323,7 @@ class CalendarComponent extends Component {
         let currentFamilyIDs = participants.map(person => person.value);
         return currentFamilyIDs.some(id => event.userID.includes(id));
       });
-}
+  };
   addToCalendar = async eventData => {
     try {
       let addedEvent = await axios.post(
@@ -377,19 +375,24 @@ class CalendarComponent extends Component {
   };
 
   toggleFormChild = () => {
-    this.setState({showForm: false})
-  }
-  
+    this.setState({ showForm: false });
+  };
+
   render() {
-    console.log(this.state.participants)
+    console.log(this.state.participants);
     let events = this.mapToCalendar(this.props.familyEvents);
 
     return (
       <StyledMain>
         <StyledTop>
-             <Header title="Family Tabs" subTitle="Your calendar of events at" />
-        </StyledTop> 
-
+          <Header
+            title="Family Tabs"
+            subTitle="Your calendar of events at"
+            isSubscribed={
+              this.props.profile ? this.props.profile.isSubscribed : 0
+            }
+          />
+        </StyledTop>
 
         <StyledBottom>
           <LeftSide>
@@ -438,20 +441,20 @@ class CalendarComponent extends Component {
             />
           </RightSide>
         </StyledBottom>
-        {this.state.pendingEditId ? <EventEdit 
-          pendingEditId={this.state.pendingEditId}
-          loadGlobal={this.props.loadState}
-          pendingEdit={this.state.pendingEdit}
-          family={this.props.family}
-          toggleForm={this.setEdit}
-          profile={this.props.profile}
-        /> : ""}
+        {this.state.pendingEditId ? (
+          <EventEdit
+            pendingEditId={this.state.pendingEditId}
+            loadGlobal={this.props.loadState}
+            pendingEdit={this.state.pendingEdit}
+            family={this.props.family}
+            toggleForm={this.setEdit}
+            profile={this.props.profile}
+          />
+        ) : (
+          ""
+        )}
 
-        {this.props.family.length ===1 ? (
-              <ChildPromptModal/>
-            ) : (
-              ""
-            )}
+        {this.props.family.length === 1 ? <ChildPromptModal /> : ""}
       </StyledMain>
     );
   }
