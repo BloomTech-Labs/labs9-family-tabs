@@ -123,7 +123,7 @@ class BillingCard extends React.Component {
             <div className="button-box">
               <Checkout
               familyID={ this.props.familyID }
-              loadState={this.props.loadState}
+              loadAPIProfile={this.props.loadAPIProfile}
                 name={"Family Tabs"}
                 description={"Monthy Subscription"}
                 amount={9.99}
