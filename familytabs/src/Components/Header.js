@@ -61,6 +61,8 @@ const LogoImage = styled.img`
 
 const Title = styled.div`
   font-size: 60px;
+  color: white;
+  font-family: "Merriweather", sans-serif;
 `;
 
 const SubTitle = styled.div`

@@ -15,7 +15,7 @@ import SignUp from "./Components/SignUp";
 const MediaStyles = styled.div`
     max-width: 100%;
     background-color: #242943;
-    height: 100vh;
+    min-height: 100vh;
     padding: 25px;
 
   @media (min-width: 1024px) and (max-width: 1281px) {
