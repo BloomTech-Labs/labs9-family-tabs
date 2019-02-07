@@ -143,13 +143,12 @@ export const StyledFormWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  overflow: scroll;
   form {
-    width: 500px;
+    max-width: 500px;
     background: #68659e;
     display: flex;
     flex-direction: column;
-    overflow: auto;
+
     h2 {
       font-family: "Merriweather", sans-serif;
       font-size: 32px;
