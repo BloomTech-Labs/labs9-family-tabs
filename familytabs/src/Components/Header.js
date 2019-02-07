@@ -11,9 +11,7 @@ const TopWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   padding-top: 5px;
-  margin: 15px 25px 0 25px;
   max-width: 100%;
-
 
   @media (max-width: 768px) {
     display: flex;
@@ -41,12 +39,13 @@ const BurgerWrapper = styled.div`
   padding-top: 7.5px;
   font-size: 14px;
   cursor: pointer;
+  margin-left: 25px;
 `;
 
 const LogoImage = styled.img`
   width: 150px;
   background-color: #242943;
-  opacity: 1;
+  margin-right: 25px;
 
   @media (min-width: 1281px) and (max-width: 1450px) {
   }
@@ -82,37 +81,17 @@ const TitleHolder = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 50px 0 0 0;
-  margin: 10px 0 0 0;
+  margin: 10px 0;
+  width: 100%;  
+  border-bottom: ${props => props.colorBorder ? "2px solid #242943" : "2px solid #d4b36e"};
 `;
 
 const TitleText = styled.div`
   /* border: 5px solid red; */
-  width: 550px;
   display: flex;
   flex-direction: column;
 `;
 
-const BottomBorder = styled.div`
-  border-bottom: 2px solid #d4b36e;
-  width: 1200px;
-  padding: 5px 0 0 0;
-
-  @media (min-width: 1281px) and (max-width: 1450px) {
-    width: 1000px;
-  }
-
-  @media (min-width: 1024px) and (max-width: 1281px) {
-    width: 800px;
-  }
-
-  @media (min-width: 768px) and (max-width: 1024px) {
-    width: 600px;
-  }
-
-  @media (min-width: 320px) and (max-width: 768px) {
-    width: 400px;
-  }
-`;
 
 class Header extends Component {
   render() {
@@ -123,15 +102,11 @@ class Header extends Component {
           {this.props.isSubscribed ?  <h5>Premium</h5>: ""}
         </ImageWrapper>
 
-        <TitleHolder>
+        <TitleHolder colorBorder={this.props.colorBorder}>
           <TitleText>
             <SubTitle>{this.props.subTitle}</SubTitle>
             <Title>{this.props.title}</Title>
           </TitleText>
-
-          <div>
-            <BottomBorder />
-          </div>
         </TitleHolder>
 
         <BurgerWrapper>
