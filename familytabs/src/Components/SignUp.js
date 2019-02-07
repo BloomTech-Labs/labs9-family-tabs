@@ -38,21 +38,21 @@ const  SignUpTop = styled.div`
   max-height: 100%;
 `;
 
-const Title = styled.h1`
-    margin: 0 0 0 0;
-    display: flex;
-    justify-content: center;
-    color: #ffffff;
-    font-size: 50px;
-    padding:0;
-    font-weight: 700;
-`;
+// const Title = styled.h1`
+//     margin: 0 0 0 0;
+//     display: flex;
+//     justify-content: center;
+//     color: #ffffff;
+//     font-size: 50px;
+//     padding:0;
+//     font-weight: 700;
+// `;
 
-const BottomBorder = styled.div`
-    border-bottom: 2px solid #D4B36E;
-    height: 20px;
-    width: 100%;
-`;
+// const BottomBorder = styled.div`
+//     border-bottom: 2px solid #D4B36E;
+//     height: 20px;
+//     width: 100%;
+// `;
 
 const Content = styled.p `
     text-align: left;

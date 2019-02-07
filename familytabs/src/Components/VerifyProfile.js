@@ -88,7 +88,7 @@ class VerifyProfile extends Component {
           `${process.env.REACT_APP_API_URL}/profile/${this.state.userEmail}`
         );
         this.setState({ loaded: true });
-        if (response.data.err) {
+        if (response.data.message) {
           return;
         }
         this.props.loadState(response.data.familyID);

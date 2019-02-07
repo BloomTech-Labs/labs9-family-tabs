@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import NavBurger from './NavBurger';
-import FTLogo8 from './images/FT_Logo_8.png'
+import NavBurger from "./NavBurger";
+import FTLogo8 from "./images/FT_Logo_8.png";
 import styled from "styled-components";
 import PublicRoute from "../context/PublicRoute";
 import PrivateRoute from "../context/PrivateRoute";
-import LoginButton from './styled/LoginButton'
+import LoginButton from "./styled/LoginButton";
 
 const TopWrapper = styled.div`
   /* border: 2px solid white; */
@@ -14,28 +14,33 @@ const TopWrapper = styled.div`
   margin: 15px 25px 0 25px;
   max-width: 100%;
 
-  @media (min-width: 1024px) and (max-width: 1281px) {
 
-  }
-
-  @media (min-width: 768px) and (max-width: 1024px) {
-
-  }
-
-  @media (min-width: 320px) and (max-width: 768px) {
+  @media (max-width: 768px) {
     display: flex;
+    align-items:center;
     flex-direction: column-reverse;
   }
 `;
 
 const ImageWrapper = styled.div`
-
+  position: relative;
+  h5 {
+    position: absolute;
+    left: 65px;
+    bottom: -15px;
+    font-size: 18px;
+    @media (max-width:768px){
+      bottom: 10px;
+      left:90px;
+    }
+  }
 `;
 
 const BurgerWrapper = styled.div`
   /* border: 2px solid blue; */
   padding-top: 7.5px;
   font-size: 14px;
+  cursor: pointer;
 `;
 
 const LogoImage = styled.img`
@@ -44,20 +49,17 @@ const LogoImage = styled.img`
   opacity: 1;
 
   @media (min-width: 1281px) and (max-width: 1450px) {
+  }
 
-   }
+  @media (min-width: 1024px) and (max-width: 1281px) {
+  }
 
-    @media (min-width: 1024px) and (max-width: 1281px) {
+  @media (min-width: 768px) and (max-width: 1024px) {
+  }
 
-    }
-
-    @media (min-width: 768px) and (max-width: 1024px) {
-
-    }
-
-    @media (min-width: 320px) and (max-width: 768px) {
-      margin: 25px;
-    }
+  @media (min-width: 320px) and (max-width: 768px) {
+    margin: 25px;
+  }
 `;
 
 const Title = styled.div`
@@ -67,7 +69,7 @@ const Title = styled.div`
 const SubTitle = styled.div`
   /* border: 3px solid purple; */
   font-size: 14px;
-  padding: 0 0 5px 50px; 
+  padding: 0 0 5px 50px;
   width: 100%;
   display: flex;
   justify-content: flex-start;
@@ -91,53 +93,53 @@ const TitleText = styled.div`
 `;
 
 const BottomBorder = styled.div`
-   border-bottom: 2px solid #D4B36E;
-   width: 1200px;
-   padding: 5px 0 0 0;
+  border-bottom: 2px solid #d4b36e;
+  width: 1200px;
+  padding: 5px 0 0 0;
 
-   @media (min-width: 1281px) and (max-width: 1450px) {
-      width: 1000px;
-   }
+  @media (min-width: 1281px) and (max-width: 1450px) {
+    width: 1000px;
+  }
 
-    @media (min-width: 1024px) and (max-width: 1281px) {
-      width: 800px;
-    }
+  @media (min-width: 1024px) and (max-width: 1281px) {
+    width: 800px;
+  }
 
-    @media (min-width: 768px) and (max-width: 1024px) {
-      width: 600px;
-    }
+  @media (min-width: 768px) and (max-width: 1024px) {
+    width: 600px;
+  }
 
-    @media (min-width: 320px) and (max-width: 768px) {
-      width: 400px;
-}
+  @media (min-width: 320px) and (max-width: 768px) {
+    width: 400px;
+  }
 `;
 
 class Header extends Component {
-    render() {
-        return (
-         <TopWrapper>
+  render() {
+    return (
+      <TopWrapper>
+        <ImageWrapper>
+          <LogoImage src={FTLogo8} alt="FTLogo8" />
+          {this.props.isSubscribed ?  <h5>Premium</h5>: ""}
+        </ImageWrapper>
 
-          <ImageWrapper>
-            <LogoImage src={FTLogo8} alt="FTLogo8"></LogoImage>
-          </ImageWrapper>
+        <TitleHolder>
+          <TitleText>
+            <SubTitle>{this.props.subTitle}</SubTitle>
+            <Title>{this.props.title}</Title>
+          </TitleText>
 
-          <TitleHolder>
-            <TitleText>
-              <SubTitle>{this.props.subTitle}</SubTitle>
-              <Title>{this.props.title}</Title>
-            </TitleText>
+          <div>
+            <BottomBorder />
+          </div>
+        </TitleHolder>
 
-            <div>
-              <BottomBorder></BottomBorder>
-            </div>
-          </TitleHolder>
-
-          <BurgerWrapper>
-            <PublicRoute exact path='/' component={LoginButton}></PublicRoute>
-            <PrivateRoute path="/home" component={NavBurger} />
-          </BurgerWrapper> 
-        </TopWrapper> 
-        )
+        <BurgerWrapper>
+          <PublicRoute exact path="/" component={LoginButton} />
+          <PrivateRoute path="/home" component={NavBurger} />
+        </BurgerWrapper>
+      </TopWrapper>
+    );
   }
 }
 

@@ -45,9 +45,8 @@ describe("Get profile by email", () => {
     let shape = Object.keys(JSON.parse(response.text)).length;
     expect(shape).toBe(9);
   });
-  it("Returns correct error response for non existant email", async () => {
+  it("Returns correct message response for non existant email", async () => {
     const response = await request.get(`/profile/${badEmail}`);
-    expect(response.status).toEqual(404);
     expect(response.type).toBe("application/json");
     expect(JSON.parse(response.text)).toEqual({"message": "no profile"});
   });
@@ -65,12 +64,11 @@ describe("Return family member data by family id", () => {
     });
     it("Returns correct error response for non existant family id", async () => {
       const response = await request.get(`/familymembers/q`);
-      expect(response.status).toEqual(400);
       expect(response.type).toBe("application/json");
-      expect(JSON.parse(response.text)).toEqual({"err": "no family at that id"});
+      expect(JSON.parse(response.text)).toEqual([]);
     });
   });
-
+ 
   describe("Return event data by family id", () => {
     it("Returns event data from existing family id", async () => {
       const response = await request.get(`/fulleventsbyfamily/1`);
@@ -83,7 +81,6 @@ describe("Return family member data by family id", () => {
     });
     it("Returns correct error response for non existant family id", async () => {
       const response = await request.get(`/fulleventsbyfamily/y`);
-      expect(response.status).toEqual(400);
       expect(response.type).toBe("application/json");
       expect(JSON.parse(response.text)).toEqual({message:"no family at that id"});
     });

@@ -60,7 +60,7 @@ const getState = (app, db) => {
       profile.email = profile.email.toLowerCase();
       return res.status(200).json(profile);
     } catch (err) {
-      res.status(404).json({ message: "no profile" });
+      res.json({ message: "no profile" });
     }
   });
 
@@ -80,9 +80,7 @@ const getState = (app, db) => {
           "user.familyID",
           "user.textCheckbox"
         );
-      if (!familyMembers.length) {
-        return res.status(400).json({ err: "no family at that id" });
-      }
+
       return res.status(200).json(familyMembers);
     } catch (err) {
       console.log(err);
