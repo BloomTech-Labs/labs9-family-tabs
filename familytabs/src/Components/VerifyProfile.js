@@ -3,14 +3,31 @@ import axios from "axios";
 import { Redirect } from "react-router-dom";
 import { StyledFamilyForm } from "./styled/components";
 import styled from 'styled-components'
+import Header from "./Header";
 
 const IntroWrapper = styled.div`
+  margin:35px 0 0 175px;
   display:flex;
+  @media (max-width:1140px){
+    margin-left:35px;
+  }
+  @media (max-width:960px){
+    flex-direction:column;
+    align-items:center;
+  }
+  @media (max-width:635px){
+    margin-left:0;
+  }
   .intro{
     width:40%;
-    margin:30px;
+    margin:30px 0;
     color:white;
-    
+    @media (max-width:960px){
+      width:400px;
+  }
+  @media (max-width:460px){
+      width:300px;
+    }
     h3{
       font-size:35px;
       margin-bottom:10px;
@@ -110,7 +127,8 @@ class VerifyProfile extends Component {
           <>
             {this.props.profile ? (
               <Redirect to="/home/tabs" />
-            ) : (
+            ) : (<><Header title="Welcome"
+            subTitle="You must be new here"></Header>
               <IntroWrapper>
                 <div className='intro'>
                 <h3>Welcome to Family Tabs</h3>
@@ -144,7 +162,7 @@ class VerifyProfile extends Component {
                   <button type="submit">Submit</button>
                   <button onClick={this.props.auth.logout}>Log out</button>
                 </div>
-              </StyledFamilyForm></IntroWrapper>
+              </StyledFamilyForm></IntroWrapper></>
             )}
           </>
         )}
