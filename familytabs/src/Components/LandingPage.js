@@ -22,7 +22,7 @@ const MainElements = styled.div`
     justify-content: space-between;
     opacity: 100%;
     color: #242943;
-     font-family:'Roboto', sans-serif; 
+    font-family:'Roboto', sans-serif; 
     margin: 0 150px 0 150px;
 `;
 
@@ -123,7 +123,7 @@ class LandingPage extends Component {
       return (
         <MainContainer>
           <StyledTop>
-            <Header/>
+            <Header colorBorder="colorBorder"/>
           </StyledTop>
           <StyledBottom>
           <MainElements>
