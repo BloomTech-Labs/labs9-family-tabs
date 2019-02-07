@@ -14,6 +14,7 @@ import StyledSignUp from "./Components/StyledSignUp";
 // import NavBurger from "./Components/NavBurger";
 // import FTLogo8 from './Components/images/FT_Logo_8.png';
 // import LoginButton from "./Components/styled/LoginButton";
+=======
 
 //import SignUp from "./Components/SignUp";
 
@@ -22,7 +23,9 @@ import StyledSignUp from "./Components/StyledSignUp";
 const MediaStyles = styled.div`
     max-width: 100%;
     background-color: #242943;
-    height: 100vh;
+
+    min-height: 100vh;
+
     padding: 25px;
 
   @media (min-width: 1024px) and (max-width: 1281px) {

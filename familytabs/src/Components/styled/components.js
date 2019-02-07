@@ -260,7 +260,7 @@ export const StyledFormWrapper = styled.div`
 `;
 
 export const StyledFamilyForm = styled.form`
-  width: 500px;
+  max-width: 500px;
   margin: 0 auto;
   background: #68659e;
   display: flex;
@@ -275,7 +275,7 @@ export const StyledFamilyForm = styled.form`
     background-color: #68659e;
     cursor: text;
     width: 400px;
-    margin: 10px auto;
+    margin: 10px ;
     padding: 0 20px;
     height: 35px;
     color: white;
@@ -285,12 +285,18 @@ export const StyledFamilyForm = styled.form`
       color: whitesmoke;
       opacity: 0.6;
     }
+    @media (max-width:460px){
+      width:300px;
+    }
   }
   .button-box {
     width: 400px;
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
+    @media (max-width:460px){
+      width:300px;
+    }
     button {
       margin: 10px 0px 20px 10px;
       color: white;
