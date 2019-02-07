@@ -158,7 +158,8 @@ class StyledSignUp extends Component {
               whole family!
         </p>
         <LinkContainer>
-        <StyledLink to="/verify">Sign Up for Family Tabs!</StyledLink>
+        <StyledLink to="/verify">Sign Up for Family Tabs Premium!
+        </StyledLink>
         </LinkContainer>
         </StyledCard>
         <StyledCard>
@@ -175,7 +176,7 @@ class StyledSignUp extends Component {
               whole family!
         </p>
         <LinkContainer>
-        <StyledLink to="/verify">Sign Up for Family Tabs Premium!</StyledLink>
+        <StyledLink to="/verify">Sign Up for Family Tabs!</StyledLink>
         </LinkContainer>
         </StyledCard>
         </Content>
