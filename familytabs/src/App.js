@@ -9,16 +9,20 @@ import PublicRoute from "./context/PublicRoute";
 import PrivateRoute from "./context/PrivateRoute";
 import VerifyProfile from "./Components/VerifyProfile";
 import styled from "styled-components";
+
 import StyledSignUp from "./Components/StyledSignUp";
+
 // import NavBurger from "./Components/NavBurger";
 // import FTLogo8 from './Components/images/FT_Logo_8.png';
-// import LoginButton from "./Components/styled/LoginButton";
+
+import SignUp from "./Components/SignUp";
 
 
 const MediaStyles = styled.div`
     max-width: 100%;
     background-color: #242943;
     height: 100vh;
+    padding: 25px;
 
   @media (min-width: 1024px) and (max-width: 1281px) {
     max-width: 100%;
@@ -39,13 +43,6 @@ const AppStyles = styled.div`
   max-width: 100%;
   background-color: #242943;
 `;
-
-// const StyleMain = styled.div`
-//   display: flex;
-//   justify-content: flex-end;
-//   padding: 15px;
-
-// `;
 
 
 class App extends Component {

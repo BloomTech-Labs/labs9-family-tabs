@@ -52,7 +52,7 @@ export default class Billing extends Component {
                 this.props.profile ? this.props.profile.isSubscribed : 0
               }
               familyID={ this.props.familyID }
-              loadState={this.props.loadState}
+              loadAPIProfile={this.props.loadAPIProfile}
             />
           </CardContainer>
         </StyledBottom>
