@@ -83,7 +83,6 @@ const LogoutButton = styled.button`
 
 
 class Navigation extends Component {
-
     render(){
     return (
       <NavBarStyling>
@@ -102,7 +101,8 @@ class Navigation extends Component {
         </NavBarStyling>
     )
   }
-  }
+}
+
   export default Navigation;
 
 

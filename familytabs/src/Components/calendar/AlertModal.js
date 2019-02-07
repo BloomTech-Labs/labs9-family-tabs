@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import { StyledFormWrapper } from "../styled/components";
 
 export default class AlertModal extends Component {
-
-
   render() {
     return (
         <StyledFormWrapper>

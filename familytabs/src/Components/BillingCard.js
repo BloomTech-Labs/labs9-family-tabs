@@ -9,12 +9,9 @@ const BillingWrapper = styled.div`
     color: #ffffff;
     display: flex;
     flex-direction: column;
- 
-    width: 50%;
-
-  
 
 `;
+
 const Title = styled.div `
  text-align: left;
  font-size: 20px;
