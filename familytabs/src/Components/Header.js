@@ -7,7 +7,6 @@ import PrivateRoute from "../context/PrivateRoute";
 import LoginButton from "./styled/LoginButton";
 
 const TopWrapper = styled.div`
-  /* border: 2px solid white; */
   display: flex;
   justify-content: space-between;
   padding-top: 5px;
@@ -37,7 +36,6 @@ const ImageWrapper = styled.div`
 `;
 
 const BurgerWrapper = styled.div`
-  /* border: 2px solid blue; */
   padding-top: 7.5px;
   font-size: 14px;
   cursor: pointer;
@@ -67,7 +65,6 @@ const Title = styled.div`
 `;
 
 const SubTitle = styled.div`
-  /* border: 3px solid purple; */
   font-size: 14px;
   padding: 0 0 5px 50px;
   width: 100%;
@@ -77,7 +74,6 @@ const SubTitle = styled.div`
 `;
 
 const TitleHolder = styled.div`
-  /* border: 5px solid orange; */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -86,7 +82,6 @@ const TitleHolder = styled.div`
 `;
 
 const TitleText = styled.div`
-  /* border: 5px solid red; */
   width: 550px;
   display: flex;
   flex-direction: column;

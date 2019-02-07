@@ -24,6 +24,7 @@ const MainElements = styled.div`
     color: #242943;
      font-family:'Roboto', sans-serif; 
     margin: 0 150px 0 150px;
+
 `;
 
 const LeftLanding = styled.div`
@@ -57,6 +58,9 @@ const RightLanding = styled.div`
 `;
 
 const CarouselDiv = styled.div`
+    @media (max-width: 768px) {
+    display: none;
+  }
 `;
 
 const ButtonContainer = styled.div`
@@ -68,6 +72,11 @@ const StartContainer = styled.div`
     display: flex;
     justify-content: flex-end;
     padding-right: 20px;
+
+    @media (max-width: 768px) {
+    justify-content: center;
+    margin-left: 100px;
+  }
 `;
 
 const Content = styled.p `
@@ -87,6 +96,10 @@ const TitleContent = styled.p `
     margin: 30px 0px 10px 20px;
     padding-right: 15px;
     color: #3985ac;
+
+    @media (max-width: 768px) {
+    display: none;
+  }
 `;
 
 const GoButton = styled.button `
