@@ -3,10 +3,10 @@ import {Link} from 'react-router-dom';
 import styled from "styled-components";
 
 const StyledMain = styled.div `
-border: 2px solid yellow;
+
 max-width: 100%;
     background-color: #242943;
-    height: 100vh;
+   
 
   @media (min-width: 1024px) and (max-width: 1281px) {
     max-width: 100%;
@@ -29,17 +29,29 @@ const Content = styled.div `
 background: #242943;
 display: flex;
 justify-content: space-evenly;
-border: 2px solid red;
+
 margin-top: 90px;
 padding: 30px;
 @media (min-width: 768px) and (max-width: 1024px) {
     max-width: 100%;
+    max-height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     margin: 20px;
     padding: 20px;
     
+  }
+
+  @media (min-width: 320px) and (max-width: 768px) {
+    max-width: 100%;
+    max-height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+    padding: 20px;
+
   }
 `;
 
@@ -69,7 +81,17 @@ const StyledCard = styled.div `
       line-height:1.5;
       text-align:left;
     }
+    
+    @media (min-width: 320px) and (max-width: 768px) {
+    max-width: 100%;
+    max-height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+    padding: 20px;
 
+  }
 
 `;
 
