@@ -45,9 +45,8 @@ describe("Get profile by email", () => {
     let shape = Object.keys(JSON.parse(response.text)).length;
     expect(shape).toBe(9);
   });
-  it("Returns correct error response for non existant email", async () => {
+  it("Returns correct message response for non existant email", async () => {
     const response = await request.get(`/profile/${badEmail}`);
-    expect(response.status).toEqual(404);
     expect(response.type).toBe("application/json");
     expect(JSON.parse(response.text)).toEqual({"message": "no profile"});
   });

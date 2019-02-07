@@ -60,7 +60,7 @@ const getState = (app, db) => {
       profile.email = profile.email.toLowerCase();
       return res.status(200).json(profile);
     } catch (err) {
-      res.status(404).json({ message: "no profile" });
+      res.json({ message: "no profile" });
     }
   });
 

@@ -3,6 +3,7 @@ import Calendar from "react-big-calendar";
 import moment from "moment";
 import styled from "styled-components";
 import Header from '../Header';
+import ChildPromptModal from './ChildPromptModal'
 import axios from "axios";
 import Select from "react-select";
 import AddEvent from "./AddEvent";
@@ -12,18 +13,14 @@ import "react-big-calendar/lib/css/react-big-calendar.css";
 const localizer = Calendar.momentLocalizer(moment);
 
 const StyledMain = styled.div`
-
   display: flex;
   flex-direction: column;
-
   @media (min-width: 1024px) and (max-width: 1281px) {
     padding: 0;
   }
-
   @media (min-width: 768px) and (max-width: 1024px) {
     padding: 0;
   }
-
   @media (max-width: 768px) {
     padding: 0;
   }
@@ -40,64 +37,61 @@ const StyledBottom = styled.div`
   padding: 0 150px 0 150px;
   display: flex;
   flex-direction: row;
-
   @media (min-width: 1024px) and (max-width: 1281px) {
     display: flex;
     flex-direction: column-reverse;
     align-items: center;
+    padding: 0;
   }
-
   @media (min-width: 768px) and (max-width: 1024px) {
     display: flex;
     flex-direction: column-reverse;
     align-items: center;
+    padding: 0;
   }
-
   @media (max-width: 768px) {
     display: flex;
     flex-direction: column-reverse;
     align-items: center;
+    padding: 0;
   }
 `;
 
-const Title = styled.h1`
-  display: flex;
-  justify-content: center;
-  color: #ffffff;
-  font-size: 60px;
-  font-weight: 700;
-`;
+// const Title = styled.h1`
+//   display: flex;
+//   justify-content: center;
+//   color: #ffffff;
+//   font-size: 60px;
+//   font-weight: 700;
+// `;
 
-const TitleContent = styled.p `
-  display: flex;
-  justify-content: flex-end;
-  color: #ffffff;
-  font-size: 16px;
-  padding-left: 5px;
-  color: #3985ac;
-  width: 30%;
-  margin: 0% 0% 1% 14%; 
-  border: 2px solid red;
-`;
+// const TitleContent = styled.p `
+//   display: flex;
+//   justify-content: flex-end;
+//   color: #ffffff;
+//   font-size: 16px;
+//   padding-left: 5px;
+//   color: #3985ac;
+//   width: 30%;
+//   margin: 0% 0% 1% 14%; 
+//   border: 2px solid red;
+// `;
 
-const BottomBorder = styled.div`
-  border-bottom: 2px solid #d4b36e;
-  height: 20px;
-  width: 100%;
-  margin: 0 0 50px 0;
-`;
+// const BottomBorder = styled.div`
+//   border-bottom: 2px solid #d4b36e;
+//   height: 20px;
+//   width: 100%;
+//   margin: 0 0 50px 0;
+// `;
 
 const LeftSide = styled.div`
   width: 85%;
-
   @media (min-width: 1024px) and (max-width: 1281px) {
     width: 100%;
   }
-
   @media (min-width: 768px) and (max-width: 1024px) {
     width: 100%;
   }
-
   @media (max-width: 768px) {
     width: 100%;
   }
@@ -108,17 +102,14 @@ const RightSide = styled.div`
   flex-direction: column;
   width: 15%;
   margin: 75px 0 75px 15px;
-
   @media (min-width: 1024px) and (max-width: 1281px) {
     margin: 0 0 25px 0;
     width: 100%;
   }
-
   @media (min-width: 768px) and (max-width: 1024px) {
     margin: 0 0 25px 0;
     width: 100%;
   }
-
   @media (max-width: 768px) {
     margin: 0 0 25px 0;
     width: 100%;
@@ -132,7 +123,6 @@ const Button = styled.button`
   padding: 15px 50px 15px 50px;
   width: 200px;
   height: 50px;
-
   :hover {
     border-color: #3985ac;
     color: #3985ac;
@@ -143,19 +133,16 @@ const Button = styled.button`
 const SelectStyled = styled(Select)`
   margin: 50px 15px 0 0;
   width: 250px;
-
   @media (min-width: 1024px) and (max-width: 1281px) {
     margin: auto;
     margin-top: 25px;
     width: 350px;
   }
-
   @media (min-width: 768px) and (max-width: 1024px) {
     margin: auto;
     margin-top: 25px;
     width: 350px;
   }
-
   @media (max-width: 768px) {
     margin: auto;
     margin-top: 25px;
@@ -168,90 +155,72 @@ const StyledCalendar = styled(Calendar)`
   .rbc-month-view {
     height: 90vh;
   }
-
   .rbc-day-bg {
     background: white;
   }
-
   .rbc-row-content {
     z-index: 0;
   }
-
   /* date number styles in here */
   .rbc-date-cell {
     font-family: "Lato", sans-serif;
     font-size: 17px;
     padding: 5px;
   }
-
   /* today's date */
   .rbc-month-view .rbc-now {
     background-color: #68659e;
     color: white;
   }
-
   .rbc-toolbar-label {
     font-family: "Lato", sans-serif;
     color: white;
     font-size: 24px;
     margin: 15px;
   }
-
   .rbc-header {
     font-family: "Lato", sans-serif;
     padding: 15px;
     font-weight: 300;
     color: white;
   }
-
   .rbc-btn-group button {
     color: white;
   }
-
   .rbc-btn-group .rbc-active {
     color: #242943;
   }
-
   .rbc-time-header {
     background-color: #242943;
   }
-
   .rbc-time-header .rbc-today {
     color: #242943;
     font-weight: 550;
   }
-
   .rbc-time-view {
     background-color: white;
   }
-
   .rbc-calendar .rbc-agenda-view {
     color: white;
     margin: 10px 10px 10px 10px;
   }
-
   thead {
     width: 100%;
     border: 2px solid red;
     display: none;
-
     > tr > th {
     border: 2px solid red;
   }
     
   }
-
   .rbc-agenda-view .rbc-agenda-empty {
     color: white;
     margin: 10px;
   }
-
   .rbc-header {
     display: flex;
     justify-content: center;
   }
-
-
   @media (max-width: 481px) {
     .rbc-month-view {
       height: 80vh;
@@ -277,7 +246,7 @@ class CalendarComponent extends Component {
       participants: [],
       showForm: false,
       pendingEditId: null,
-      pendingEdit: {}
+      pendingEdit: {},
     };
   }
 
@@ -346,8 +315,11 @@ class CalendarComponent extends Component {
     }
   };
 
-  mapToCalendar = events =>
-    events
+  mapToCalendar = events =>{
+    if(!events.length){
+      return[]
+    }
+    return events
       .map((event, i) => {
         const {
           address,
@@ -409,7 +381,7 @@ class CalendarComponent extends Component {
         let currentFamilyIDs = participants.map(person => person.value);
         return currentFamilyIDs.some(id => event.userID.includes(id));
       });
-
+}
   addToCalendar = async eventData => {
     try {
       let addedEvent = await axios.post(
@@ -460,8 +432,20 @@ class CalendarComponent extends Component {
     }
   };
 
+  toggleFormChild = () => {
+    this.setState({showForm: false})
+  }
+
+  setFormState = () => {
+    if(this.props.family.length === 1) {
+      this.setState({showForm: true})
+    }
+    console.log("RUNNING SETFORM STATE", this.state.showForm, this.props.family.length)
+  }
+  
   render() {
     let events = this.mapToCalendar(this.props.familyEvents);
+
     return (
       <StyledMain>
         <StyledTop>
@@ -523,6 +507,14 @@ class CalendarComponent extends Component {
           toggleForm={this.setEdit}
           profile={this.props.profile}
         /> : ""}
+
+        {this.props.family.length ===1 ? (
+              <ChildPromptModal
+            toggleForm={this.toggleFormChild}
+              />
+            ) : (
+              ""
+            )}
       </StyledMain>
     );
   }
