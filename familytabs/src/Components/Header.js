@@ -12,6 +12,20 @@ const TopWrapper = styled.div`
   justify-content: space-between;
   padding-top: 5px;
   margin: 15px 25px 0 25px;
+  max-width: 100%;
+
+  @media (min-width: 1024px) and (max-width: 1281px) {
+
+  }
+
+  @media (min-width: 768px) and (max-width: 1024px) {
+
+  }
+
+  @media (min-width: 320px) and (max-width: 768px) {
+    display: flex;
+    flex-direction: column-reverse;
+  }
 `;
 
 const ImageWrapper = styled.div`
@@ -28,10 +42,26 @@ const LogoImage = styled.img`
   width: 150px;
   background-color: #242943;
   opacity: 1;
+
+  @media (min-width: 1281px) and (max-width: 1450px) {
+
+   }
+
+    @media (min-width: 1024px) and (max-width: 1281px) {
+
+    }
+
+    @media (min-width: 768px) and (max-width: 1024px) {
+
+    }
+
+    @media (min-width: 320px) and (max-width: 768px) {
+      margin: 25px;
+    }
 `;
 
 const Title = styled.div`
-    font-size: 60px;
+  font-size: 60px;
 `;
 
 const SubTitle = styled.div`
@@ -61,9 +91,25 @@ const TitleText = styled.div`
 `;
 
 const BottomBorder = styled.div`
-    border-bottom: 2px solid #D4B36E;
-    width: 1400px;
-    padding: 5px 0 0 0;
+   border-bottom: 2px solid #D4B36E;
+   width: 1200px;
+   padding: 5px 0 0 0;
+
+   @media (min-width: 1281px) and (max-width: 1450px) {
+      width: 1000px;
+   }
+
+    @media (min-width: 1024px) and (max-width: 1281px) {
+      width: 800px;
+    }
+
+    @media (min-width: 768px) and (max-width: 1024px) {
+      width: 600px;
+    }
+
+    @media (min-width: 320px) and (max-width: 768px) {
+      width: 400px;
+}
 `;
 
 class Header extends Component {

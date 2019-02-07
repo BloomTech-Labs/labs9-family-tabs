@@ -2,8 +2,36 @@ import React, { Component } from 'react';
 import {Link} from 'react-router-dom'; 
 import styled from "styled-components";
 import { Card } from "@blueprintjs/core";
+import Header from "./Header";
 
 
+const StyledMain = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  @media (min-width: 1024px) and (max-width: 1281px) {
+    padding: 0;
+  }
+
+  @media (min-width: 768px) and (max-width: 1024px) {
+    padding: 0;
+  }
+
+  @media (min-width: 320px) and (max-width: 768px) {
+    padding: 0;
+  }
+`;
+
+const StyledTop = styled.div`
+  color: white;
+  font-family: "Merriweather", sans-serif;
+`;
+
+const StyledBottom = styled.div`
+  padding: 25px 150px 0 150px;
+  display: flex;
+  flex-direction: column;
+`;
 
 const  SignUpTop = styled.div`
   max-width: 100%;
@@ -80,10 +108,14 @@ class SignUp extends Component {
     render() {
       
       return (
-        <div>
+      <StyledMain>
+
+          <StyledTop>
+          <Header title="Sign Up"/>
+          </StyledTop>
+
+          <StyledBottom>
           <SignUpTop>
-              <Title>Join Family Tabs!</Title>
-              <BottomBorder></BottomBorder>
               <Content>Family Tabs free accounts automatically offers a single parent account with up to two children. For only 9.99 a month the Premium account includes three admins and 
                 unlimited amount of children accounts. Your information is always safe with us, and will never be sold to third parties under any circumstances. With Family Tabs we make it 
                 easy to keep tabs on the whole family!</Content>
@@ -100,7 +132,8 @@ class SignUp extends Component {
               </StyledCard>
               </CardContainer>
           </SignUpTop>
-        </div>
+          </StyledBottom>
+        </StyledMain>
       )
     }
   }

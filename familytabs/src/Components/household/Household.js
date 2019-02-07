@@ -13,6 +13,17 @@ const CardList = styled.div`
 const StyledMain = styled.div`
   display: flex;
   flex-direction: column;
+`;
+
+const StyledTop = styled.div`
+  color: white;
+  font-family: "Merriweather", sans-serif;
+`;
+
+const StyledBottom = styled.div`
+  padding: 25px 150px 0 150px;
+  display: flex;
+  flex-direction: column;
 
   @media (min-width: 1024px) and (max-width: 1281px) {
     padding: 0;
@@ -25,17 +36,6 @@ const StyledMain = styled.div`
   @media (min-width: 320px) and (max-width: 768px) {
     padding: 0;
   }
-`;
-
-const StyledTop = styled.div`
-  color: white;
-  font-family: "Merriweather", sans-serif;
-`;
-
-const StyledBottom = styled.div`
-  padding: 25px 150px 0 150px;
-  display: flex;
-  flex-direction: column;
 `;
 
 const StyledButton = styled.button`

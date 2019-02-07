@@ -3,6 +3,7 @@ import Calendar from "react-big-calendar";
 import moment from "moment";
 import styled from "styled-components";
 import Header from '../Header';
+import ChildPromptModal from './ChildPromptModal'
 import axios from "axios";
 import Select from "react-select";
 import AddEvent from "./AddEvent";
@@ -45,18 +46,21 @@ const StyledBottom = styled.div`
     display: flex;
     flex-direction: column-reverse;
     align-items: center;
+    padding: 0;
   }
 
   @media (min-width: 768px) and (max-width: 1024px) {
     display: flex;
     flex-direction: column-reverse;
     align-items: center;
+    padding: 0;
   }
 
   @media (max-width: 768px) {
     display: flex;
     flex-direction: column-reverse;
     align-items: center;
+    padding: 0;
   }
 `;
 
@@ -277,12 +281,16 @@ class CalendarComponent extends Component {
       participants: [],
       showForm: false,
       pendingEditId: null,
-      pendingEdit: {}
+      pendingEdit: {},
+      showForm: false,
     };
   }
 
   componentDidMount() {
     this.loadState();
+
+    this.setFormState();
+    
   }
 
   setEdit = id => {
@@ -331,7 +339,7 @@ class CalendarComponent extends Component {
 
   loadState = async () => {
     const { familyID } = this.props;
-    let { locations, eventTypes } = this.state;
+    let { locations, eventTypes, family } = this.state;
     if (!locations.length) {
       locations = await axios.get(
         `${process.env.REACT_APP_API_URL}/location/byfamily/${familyID}`
@@ -460,8 +468,21 @@ class CalendarComponent extends Component {
     }
   };
 
+  toggleFormChild = () => {
+    this.setState({showForm: false})
+  }
+
+  setFormState = () => {
+    if(this.props.family.length === 1) {
+      this.setState({showForm: true})
+    }
+    console.log("RUNNING SETFORM STATE", this.state.showForm, this.props.family.length)
+  }
+  
   render() {
     let events = this.mapToCalendar(this.props.familyEvents);
+    console.log("STATE STATE", this.state)
+
     return (
       <StyledMain>
         <StyledTop>
@@ -523,6 +544,14 @@ class CalendarComponent extends Component {
           toggleForm={this.setEdit}
           profile={this.props.profile}
         /> : ""}
+
+        {this.state.showForm ? (
+              <ChildPromptModal
+            toggleForm={this.toggleFormChild}
+              />
+            ) : (
+              ""
+            )}
       </StyledMain>
     );
   }
