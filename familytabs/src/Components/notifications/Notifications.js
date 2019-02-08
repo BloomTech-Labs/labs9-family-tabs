@@ -107,25 +107,6 @@ export default class Notifications extends Component {
     }
   };
 
-  declineClick = async e => {
-    e.preventDefault();
-    this.toggleForm();
-    const id = this.state.id;
-    let decline = {
-      declined: true,
-      pendingApproval: false
-    };
-    try {
-      await axios.put(
-        `${process.env.REACT_APP_API_URL}/event/edit/${id}`,
-        decline
-      );
-      this.props.loadState(this.props.familyID);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
   render() {
     if (!this.props.family) {
       return <h1>loading...</h1>;
@@ -165,7 +146,6 @@ export default class Notifications extends Component {
                       family={this.props.family}
                       isAdmin={this.props.profile.isAdmin}
                       approveClick={this.approveClick}
-                      declineClick={this.declineClick}
                       loadState={this.props.loadState}
                       profile={this.props.profile}
                     />

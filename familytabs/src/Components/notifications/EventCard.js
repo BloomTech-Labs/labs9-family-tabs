@@ -3,6 +3,7 @@ import styled from "styled-components";
 import moment from "moment";
 import EventEdit from "../event-edit/EventEdit";
 import NotificationsModal from "./NotificationsModal";
+import axios from 'axios'
 
 const Card = styled.div`
   border: 2px solid lightgrey;
@@ -77,6 +78,25 @@ class EventCard extends React.Component {
     this.setState({ showModal: !this.state.showModal });
   };
 
+    declineClick = async e => {
+    e.preventDefault();
+    const {id} = this.props.eventData;
+    let decline = {
+      declined: true,
+      pendingApproval: false
+    };
+    try {
+      await axios.put(
+        `${process.env.REACT_APP_API_URL}/event/edit/${id}`,
+        decline
+      );
+      this.props.loadState(this.props.profile.familyID);
+      this.toggleModal();
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   render() {
     return (
       <Card>
@@ -136,7 +156,7 @@ class EventCard extends React.Component {
         {/* // everything before the colon will load if our tests pass. everything after the colon will load if they don't */}
         {this.state.showModal ? (
           <NotificationsModal
-            declineClick={this.props.declineClick}
+            declineClick={this.declineClick}
             toggleModal={this.toggleModal}
             id={this.props.eventData.id}
           />
