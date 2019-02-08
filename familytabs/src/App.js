@@ -14,7 +14,7 @@ import StyledSignUp from "./Components/StyledSignUp";
 // import NavBurger from "./Components/NavBurger";
 // import FTLogo8 from './Components/images/FT_Logo_8.png';
 // import LoginButton from "./Components/styled/LoginButton";
-=======
+
 
 //import SignUp from "./Components/SignUp";
 
